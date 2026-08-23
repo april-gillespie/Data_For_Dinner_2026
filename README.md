@@ -34,7 +34,6 @@ This repository contains the working materials and final deliverables for our 20
 - Exploratory data analysis
 - Data pipeline and application development
 - AI-assisted analysis and development workflows
-- Data storytelling, presentation development, and video editing
 - Translating findings into practical, data-driven solutions
 
 ## Datathon
