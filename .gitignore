@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Data for Dinner project outputs
+data/raw/
+qa/
+node_modules/
+tools/vendor/
+outputs/
+deliverables/qa_project_charter/
+reports/.assets/
+reports/*.inspect.ndjson
+reports/*.optimized.pdf
+~$*
+.DS_Store
+Thumbs.db

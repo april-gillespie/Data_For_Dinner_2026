@@ -1,0 +1,15 @@
+check,status,observed,expected,note
+SRAM normalized row count,PASS,84119,"84,119",
+SRAM geography coverage,PASS,51,50 states plus D.C.,
+SRAM duplicate GEOID,PASS,0,0,
+GEOID normalization impact,PASS,15636,Document and repair leading-zero loss,General characteristics dropped leading zeros for state FIPS codes below 10; zfill(11) restored matches.
+Latest state food-security rows,PASS,52,"U.S., 50 states, and D.C. (52 rows)",
+DD_SRAM_LAPOP1_10 does not exceed POP2020,PASS,0,0,
+DD_SRAM_LALOWI1_10 does not exceed TractLOWI,PASS,0,0,
+la_kids_mixed does not exceed TractKids,PASS,0,0,
+la_seniors_mixed does not exceed TractSeniors,PASS,0,0,
+la_hunv_mixed does not exceed TractHUNV,PASS,0,0,
+la_snap_mixed does not exceed TractSNAP,PASS,0,0,
+Primary measure completeness,REVIEW,15,0 or documented source-data exceptions,"Fourteen Suffolk County, New York tracts lack low-income denominators; one zero-population Massachusetts tract lacks the LILA flag. Alabama and the project-defined Southeast are complete."
+Alabama geometry join coverage,PASS,1436,1436,
+

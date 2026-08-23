@@ -1,0 +1,37 @@
+geography,indicator_key,indicator,period,unit,display_value,value,lower_bound,upper_bound,flag,source_id
+World,moderate_or_severe_food_insecurity,Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average),2023-2025,%,26.8,26.8,26.3,27.3,E,FAO_FS
+Africa,moderate_or_severe_food_insecurity,Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average),2023-2025,%,57.4,57.4,56.8,58.1,E,FAO_FS
+Asia,moderate_or_severe_food_insecurity,Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average),2023-2025,%,21.8,21.8,21.0,22.6,E,FAO_FS
+Europe,moderate_or_severe_food_insecurity,Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average),2023-2025,%,7.4,7.4,7.0,7.7,E,FAO_FS
+Latin America and the Caribbean,moderate_or_severe_food_insecurity,Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average),2023-2025,%,24.2,24.2,23.8,24.6,E,FAO_FS
+Oceania,moderate_or_severe_food_insecurity,Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average),2023-2025,%,26.7,26.7,25.4,27.9,E,FAO_FS
+United States of America,moderate_or_severe_food_insecurity,Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average),2023-2025,%,10.7,10.7,10.4,11.0,A,FAO_FS
+World,severe_food_insecurity,Prevalence of severe food insecurity in the total population (percent) (3-year average),2023-2025,%,9.8,9.8,9.4,10.1,E,FAO_FS
+Africa,severe_food_insecurity,Prevalence of severe food insecurity in the total population (percent) (3-year average),2023-2025,%,21.1,21.1,20.7,21.5,E,FAO_FS
+Asia,severe_food_insecurity,Prevalence of severe food insecurity in the total population (percent) (3-year average),2023-2025,%,8.6,8.6,8.0,9.1,E,FAO_FS
+Europe,severe_food_insecurity,Prevalence of severe food insecurity in the total population (percent) (3-year average),2023-2025,%,1.9,1.9,1.7,2.2,E,FAO_FS
+Latin America and the Caribbean,severe_food_insecurity,Prevalence of severe food insecurity in the total population (percent) (3-year average),2023-2025,%,6.7,6.7,6.3,7.0,E,FAO_FS
+Oceania,severe_food_insecurity,Prevalence of severe food insecurity in the total population (percent) (3-year average),2023-2025,%,10.3,10.3,9.6,10.9,E,FAO_FS
+United States of America,severe_food_insecurity,Prevalence of severe food insecurity in the total population (percent) (3-year average),2023-2025,%,1.1,1.1,1.0,1.2,A,FAO_FS
+World,undernourishment,Prevalence of undernourishment (percent) (3-year average),2023-2025,%,8.1,8.1,,,E,FAO_FS
+Africa,undernourishment,Prevalence of undernourishment (percent) (3-year average),2023-2025,%,20.1,20.1,,,E,FAO_FS
+Asia,undernourishment,Prevalence of undernourishment (percent) (3-year average),2023-2025,%,6.5,6.5,,,E,FAO_FS
+Europe,undernourishment,Prevalence of undernourishment (percent) (3-year average),2023-2025,%,<2.5,2.5,,,E,FAO_FS
+Latin America and the Caribbean,undernourishment,Prevalence of undernourishment (percent) (3-year average),2023-2025,%,5.1,5.1,,,E,FAO_FS
+Oceania,undernourishment,Prevalence of undernourishment (percent) (3-year average),2023-2025,%,8.2,8.2,,,E,FAO_FS
+United States of America,undernourishment,Prevalence of undernourishment (percent) (3-year average),2023-2025,%,<2.5,2.5,,,E,FAO_FS
+United States of America,healthy_diet_unaffordability,Prevalence of unaffordability (PUA),2025,%,4.5,4.5,,,E,FAO_COAHD
+World,healthy_diet_unaffordability,Prevalence of unaffordability (PUA),2025,%,32.7,32.7,,,E,FAO_COAHD
+Africa,healthy_diet_unaffordability,Prevalence of unaffordability (PUA),2025,%,66.6,66.6,,,E,FAO_COAHD
+Europe,healthy_diet_unaffordability,Prevalence of unaffordability (PUA),2025,%,8.2,8.2,,,E,FAO_COAHD
+Latin America and the Caribbean,healthy_diet_unaffordability,Prevalence of unaffordability (PUA),2025,%,25.7,25.7,,,E,FAO_COAHD
+Asia,healthy_diet_unaffordability,Prevalence of unaffordability (PUA),2025,%,28.9,28.9,,,E,FAO_COAHD
+Oceania,healthy_diet_unaffordability,Prevalence of unaffordability (PUA),2025,%,5.0,5.0,,,E,FAO_COAHD
+United States of America,people_unable_to_afford_healthy_diet,Number of people unable to afford a healthy diet (NUA),2025,million No,15.7,15.7,,,E,FAO_COAHD
+World,people_unable_to_afford_healthy_diet,Number of people unable to afford a healthy diet (NUA),2025,million No,2692.1,2692.1,,,E,FAO_COAHD
+Africa,people_unable_to_afford_healthy_diet,Number of people unable to afford a healthy diet (NUA),2025,million No,1031.2,1031.2,,,E,FAO_COAHD
+Europe,people_unable_to_afford_healthy_diet,Number of people unable to afford a healthy diet (NUA),2025,million No,61.0,61.0,,,E,FAO_COAHD
+Latin America and the Caribbean,people_unable_to_afford_healthy_diet,Number of people unable to afford a healthy diet (NUA),2025,million No,172.0,172.0,,,E,FAO_COAHD
+Asia,people_unable_to_afford_healthy_diet,Number of people unable to afford a healthy diet (NUA),2025,million No,1399.1,1399.1,,,E,FAO_COAHD
+Oceania,people_unable_to_afford_healthy_diet,Number of people unable to afford a healthy diet (NUA),2025,million No,2.3,2.3,,,E,FAO_COAHD
+
