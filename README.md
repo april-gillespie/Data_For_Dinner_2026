@@ -59,7 +59,7 @@ The 2026 Women in Data datathon challenges teams to use open food-system data to
 - Eat
 - Sustain
 
-**Selected track:** TBD
+**Selected track:** Eat
 
 ## Problem Statement
 
