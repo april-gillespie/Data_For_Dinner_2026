@@ -22,21 +22,23 @@ This record captures the meeting decisions that affect the published repository.
 - Target final recording and submission for the weekend ending September 13, 2026.
 - Prioritize a visual story that contrasts available food resources with actual access, but do not label a measure as food abundance until its definition and data source are approved.
 
-## Deferred data item
+## Feeding America data update
 
-The meeting notes state that 2024 Feeding America map data for Alabama was retrieved. It is not integrated in this revision because the repository does not contain the source file, direct source citation, field definitions, denominators, geography, license, or validation record.
+The previously deferred Feeding America item now has direct provenance. Sandra Kopecky obtained the official Map the Meal Gap archive from the Feeding America Research Team on August 25, 2026. Feeding America stated that the archive contains 2024 data for the 2026 release, a package covering 2019-2023, and earlier annual files. They also stated that 2023 county overall and child estimates were revised and corrected in the supplied archive.
 
-Before integration, confirm:
+The source is therefore accepted into project intake and registered in the source manifest. It is not yet promoted into publication outputs because the emailed Qualtrics ZIP must still be locally downloaded, hashed, extracted, inventoried, and mapped to exact variables and denominators. `src/ingest_feeding_america.py` provides that intake workflow, and `docs/feeding_america_source.md` records the provenance and interpretation rules.
 
-1. the exact publisher page and downloadable file;
-2. whether 2024 is a release year, observation year, or model year;
-3. whether values are raw counts, percentages, or modeled estimates;
-4. the population universe and denominator;
-5. county, ZIP, tract, or other geographic grain;
-6. permitted use and redistribution terms;
-7. comparability with the USDA household and retailer-access measures; and
-8. reconciliation of Alabama totals against the published source.
+Before publication use, confirm:
+
+1. exact file names and schemas inside the supplied archive;
+2. which fields correspond to overall, child, senior/older-adult, income, race/ethnicity, meal-cost, and food-budget-shortfall measures;
+3. the population universe and denominator for every retained field;
+4. geographic grain and identifier format;
+5. permitted use and redistribution terms in the supplied documentation;
+6. use of the corrected 2023 county overall and child values rather than superseded copies;
+7. comparability boundaries with USDA household and retailer-access measures; and
+8. reconciliation of Alabama and selected county values against Feeding America's published outputs.
 
 ## Validation checkpoint
 
-The primary Alabama result remains 20.2% of low-income residents beyond the 1-mile urban and 10-mile rural road-network threshold. The alternate road-network estimates are 35.9% under the 0.5-mile urban threshold and 19.6% under the 20-mile rural threshold. Final deliverables must use the same primary value and state the threshold.
+The primary Alabama retailer-access result remains 20.2% of low-income residents beyond the 1-mile urban and 10-mile rural road-network threshold. The alternate road-network estimates are 35.9% under the 0.5-mile urban threshold and 19.6% under the 20-mile rural threshold. Feeding America food-insecurity estimates are a separate outcome layer and must not be substituted for or blended into this retailer-access metric.
