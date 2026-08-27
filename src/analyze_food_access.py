@@ -212,15 +212,13 @@ def load_sram() -> tuple[pd.DataFrame, dict]:
     common = {"dtype": {"CensusTract20": "string"}, "low_memory": False, "encoding": "cp1252"}
     general = pd.read_csv(base / "SRAM General Tract Characteristics Data.csv", **common)
     driving = pd.read_csv(base / "SRAM Driving Distance Data.csv", **common)
-    straight = pd.read_csv(base / "SRAM Straight Line Distance Data.csv", **common)
 
     raw_join_matches = len(set(general["CensusTract20"]) & set(driving["CensusTract20"]))
-    for frame in (general, driving, straight):
+    for frame in (general, driving):
         frame["GEOID20"] = frame["CensusTract20"].str.zfill(11)
     general = general.drop(columns="CensusTract20")
     driving = driving.drop(columns=["CensusTract20", "State", "County20", "County24"])
-    straight = straight.drop(columns=["CensusTract20", "State", "County20", "County24"])
-    merged = general.merge(driving, on="GEOID20", validate="one_to_one").merge(straight, on="GEOID20", validate="one_to_one")
+    merged = general.merge(driving, on="GEOID20", validate="one_to_one")
 
     derived = {}
     for group in ("kids", "seniors", "hunv", "snap"):
@@ -233,7 +231,6 @@ def load_sram() -> tuple[pd.DataFrame, dict]:
     diagnostics = {
         "general_rows": len(general),
         "driving_rows": len(driving),
-        "straight_rows": len(straight),
         "raw_join_matches_before_geoid_padding": raw_join_matches,
         "normalized_rows": len(merged),
         "state_count_including_dc": int(merged["State"].nunique()),
@@ -332,7 +329,6 @@ def build_sensitivity(sram: pd.DataFrame) -> pd.DataFrame:
         ("Driving", "0.5 urban / 10 rural", "DD_SRAM_LAPOP05_10", "DD_SRAM_LALOWI05_10", "DD_SRAM_LILATracts_halfAnd10"),
         ("Driving", "1 urban / 10 rural", "DD_SRAM_LAPOP1_10", "DD_SRAM_LALOWI1_10", "DD_SRAM_LILATracts_1And10"),
         ("Driving", "1 urban / 20 rural", "DD_SRAM_LAPOP1_20", "DD_SRAM_LALOWI1_20", "DD_SRAM_LILATracts_1And20"),
-        ("Straight line", "1 urban / 10 rural", "SD_SRAM_LAPOP1_10", "SD_SRAM_LALOWI1_10", "SD_SRAM_LILATracts_1And10"),
     ]
     geographies = {
         "United States": sram,
@@ -415,6 +411,7 @@ def build_dataset_assessment() -> pd.DataFrame:
         ["CENSUS_TRACTS_AL_2020", "Alabama mapping geometry", "2020 census tract", "2020", "KEEP - mapping support", "Geometry only; must join on an 11-digit text GEOID."],
         ["USDA_LRAM_2019", "Large-supermarket retailer-universe sensitivity", "2010 census tract", "2019 retailer list", "OPTIONAL NEXT CRAWL", "Different retailer universe and tract base; use as a sensitivity comparison, not a time series."],
         ["USDA_FOOD_ENVIRONMENT_ATLAS", "County-level price, store, assistance, and environment context", "County/state", "Mixed vintages", "ADD ONLY FOR A DECLARED GAP", "Do not add broadly; retain only variables with a specific analytical purpose."],
+        ["FEEDING_AMERICA_AL_2024", "Potential Alabama food-insecurity context", "Unconfirmed", "2024 label requires validation", "HOLD - validation required", "Meeting notes report a retrieved map, but the repository lacks the source file, direct citation, definitions, denominator, geography, license, and reconciliation record."],
         ["SUBSTATE_FOOD_INSECURITY_OUTCOME", "County/tract food-insecurity outcome", "County or smaller", "No directly comparable official tract series identified", "GAP - evaluate modeled source", "Needed only if the team wants to explain local food insecurity rather than local retailer access."],
     ]
     frame = pd.DataFrame(rows, columns=["source_id", "analytical_purpose", "grain", "vintage", "recommendation", "limitation"])
@@ -710,16 +707,10 @@ def build_findings(
     top_food = southeast.sort_values("food_insecurity_pct", ascending=False).iloc[0]
     top_access = southeast.sort_values("low_income_low_access_population_pct", ascending=False).iloc[0]
     top_tracts = tracts.dropna(subset=["priority_rank_by_affected_low_income_count"]).sort_values("priority_rank_by_affected_low_income_count").head(10)
-    primary_sensitivity = sensitivity[
+    alabama_sensitivity = sensitivity[
         (sensitivity["geography"] == "Alabama")
         & (sensitivity["distance_method"] == "Driving")
-        & (sensitivity["threshold"] == "1 urban / 10 rural")
-    ].iloc[0]
-    straight_sensitivity = sensitivity[
-        (sensitivity["geography"] == "Alabama")
-        & (sensitivity["distance_method"] == "Straight line")
-        & (sensitivity["threshold"] == "1 urban / 10 rural")
-    ].iloc[0]
+    ].set_index("threshold")
     findings = {
         "as_of": "2026-08-22",
         "global": {
@@ -752,9 +743,10 @@ def build_findings(
             **regional["Alabama"],
             "top_counties_by_affected_low_income_count": counties.head(10)[["county", "low_income_low_access_population", "low_income_low_access_population_pct"]].to_dict("records"),
             "top_lila_tracts_by_affected_low_income_count_excluding_high_group_quarters": top_tracts[["GEOID20", "County24", "DD_SRAM_LALOWI1_10", "low_income_low_access_population_pct", "PovertyRate"]].to_dict("records"),
-            "driving_vs_straight_line_low_income_low_access_pct": {
-                "driving": float(primary_sensitivity["low_income_low_access_population_pct"]),
-                "straight_line": float(straight_sensitivity["low_income_low_access_population_pct"]),
+            "driving_threshold_low_income_low_access_pct": {
+                "0.5_urban_10_rural": float(alabama_sensitivity.loc["0.5 urban / 10 rural", "low_income_low_access_population_pct"]),
+                "1_urban_10_rural": float(alabama_sensitivity.loc["1 urban / 10 rural", "low_income_low_access_population_pct"]),
+                "1_urban_20_rural": float(alabama_sensitivity.loc["1 urban / 20 rural", "low_income_low_access_population_pct"]),
             },
         },
         "sufficiency": {
@@ -794,4 +786,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

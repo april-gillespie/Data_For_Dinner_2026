@@ -483,7 +483,7 @@ def build_document():
         fp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
         fp.paragraph_format.space_before = Pt(0)
         fp.paragraph_format.space_after = Pt(0)
-        prefix = fp.add_run("Working draft  |  Page ")
+        prefix = fp.add_run("Approved scope  |  Page ")
         set_font(prefix, size=9, color=MUTED)
         add_field(fp, "PAGE")
 
@@ -494,7 +494,7 @@ def build_document():
     kicker = doc.add_paragraph()
     kicker.paragraph_format.space_before = Pt(8)
     kicker.paragraph_format.space_after = Pt(4)
-    kr = kicker.add_run("TEAM WORKING DRAFT")
+    kr = kicker.add_run("TEAM-APPROVED SCOPE")
     set_font(kr, size=9.5, color=BLUE, bold=True)
 
     title = doc.add_paragraph()
@@ -509,29 +509,29 @@ def build_document():
     sr = subtitle.add_run("Project Charter and Data Plan")
     set_font(sr, size=15, color=MUTED)
 
-    add_label_paragraph(doc, "Status", "Draft for team approval", after=2)
+    add_label_paragraph(doc, "Status", "Updated with decisions from August 25, 2026", after=2)
     add_label_paragraph(doc, "Prepared", "August 22, 2026", after=2)
-    add_label_paragraph(doc, "Next review", "Tuesday, August 25, 2026 at 8:30 p.m. Central", after=2)
+    add_label_paragraph(doc, "Next review", "Saturday, August 29, 2026 at 1:00 p.m. Central", after=2)
     add_label_paragraph(doc, "Primary focus", "Food insecurity and food access in Alabama", after=12)
 
     add_callout(
         doc,
         "Recommended direction",
-        "Treat food insecurity as the broader condition and food access as the measurable Alabama lens. Food allergies and pesticides are outside the active project scope.",
+        "Treat food insecurity as the broader condition and food access as the measurable Alabama lens. Food allergies, race and gender demographic analysis, pesticides, and straight-line distance are outside the active project scope.",
     )
 
     add_heading(doc, "1. Executive summary", 1)
     add_body(
         doc,
-        "This charter converts the August 22 planning discussion into a focused, reproducible data project. The study will begin with brief global and national context, compare Alabama with a project-defined Southeast region, and then examine food access within Alabama at the census-tract level.",
+        "This charter combines the August 22 planning discussion with the decisions recorded on August 25. The study begins with brief global and national context, compares Alabama with a project-defined Southeast region, and then examines food access within Alabama at the census-tract level.",
     )
-    add_label_paragraph(doc, "Proposed main question", "Which Alabama census tracts have the greatest combined burden of low income and limited access to food retailers, and how does Alabama compare with the selected Southeast states and the United States?", after=8)
-    add_body(doc, "Before the full data crawl, the team should approve four items:")
+    add_label_paragraph(doc, "Approved main question", "Which Alabama census tracts have the greatest combined burden of low income and limited access to food retailers, and how does Alabama compare with the selected Southeast states and the United States?", after=8)
+    add_body(doc, "The August 25 meeting confirmed four controlling decisions:")
     for item in (
-        "The main research question and the distinction between food insecurity and food access.",
-        "The ten-state, project-defined Southeast comparison group.",
-        "The retailer universe: SNAP-authorized food retailers versus supermarkets and large grocery stores.",
-        "The primary low-income/low-access definition and planned sensitivity checks.",
+        "Keep food insecurity and food access as distinct concepts.",
+        "Use the ten-state, project-defined Southeast comparison group.",
+        "Use SNAP-authorized food retailers for the primary local analysis.",
+        "Use road-network distance at 1 mile urban and 10 miles rural, and exclude straight-line distance.",
     ):
         add_list_item(doc, item)
 
@@ -555,7 +555,7 @@ def build_document():
 
     add_heading(doc, "Working definitions", 2)
     add_label_paragraph(doc, "Food insecurity", "A household-level condition in which access to adequate food is limited or uncertain because of insufficient money or other resources.")
-    add_label_paragraph(doc, "Food access", "The ability to reach and obtain food. The primary local measure proposed here captures retailer proximity and tract-level economic conditions, not the full concept.")
+    add_label_paragraph(doc, "Food access", "The ability to reach and obtain food. The primary local measure used here captures retailer proximity and tract-level economic conditions, not the full concept.")
     add_label_paragraph(doc, "Low-income/low-access tract", "A census tract meeting a specified USDA low-income test and a specified distance-and-population access threshold.")
     add_label_paragraph(doc, "Project-defined Southeast", "Alabama, Arkansas, Florida, Georgia, Kentucky, Louisiana, Mississippi, North Carolina, South Carolina, and Tennessee. This is a project choice, not a standard federal regional definition.")
 
@@ -573,6 +573,8 @@ def build_document():
     add_heading(doc, "Out of scope for the current project", 2)
     for item in (
         "Food allergies and allergen-specific commodity analysis.",
+        "Race and gender demographic analysis.",
+        "Straight-line distance metrics.",
         "Pesticide use, exposure, or residue analysis.",
         "Claims that retailer proximity causes food insecurity or health outcomes.",
         "Individual-level prediction or identification of affected people.",
@@ -587,8 +589,8 @@ def build_document():
         accent=CAUTION,
     )
 
-    add_heading(doc, "4. Proposed data plan", 1)
-    add_body(doc, "The project should use a small, purposeful data stack. Each layer has one job; no source should be included merely because it is available.")
+    add_heading(doc, "4. Approved data plan", 1)
+    add_body(doc, "The project uses a small, purposeful data stack. Each layer has one job; no source is included merely because it is available.")
 
     data_rows = [
         ("Global context", "FAOSTAT Suite of Food Security Indicators", "Country or region; annual", "Use one contextual food-insecurity indicator. Do not join it to U.S. tract data."),
@@ -607,7 +609,7 @@ def build_document():
     add_heading(doc, "Primary access measure", 2)
     add_callout(
         doc,
-        "Proposed primary measure",
+        "Primary measure",
         "Use the network-based low-income/low-access definition at 1 mile for urban tracts and 10 miles for rural tracts: at least 500 people or 33 percent of the population live beyond the threshold from the nearest SNAP-authorized food retailer.",
     )
     add_body(
@@ -619,7 +621,8 @@ def build_document():
     for item in (
         "Alternative urban threshold: 0.5 mile, with 10 miles for rural tracts.",
         "Alternative rural threshold: 20 miles, with 1 mile for urban tracts.",
-        "Vehicle-access formulation for households without a vehicle and far from a retailer.",
+        "Straight-line distance is excluded from the analysis and published results.",
+        "Reconcile the final Alabama primary result to 20.2 percent before publication.",
         "Separate descriptive comparison with the 2019 large-retailer measure only if clearly labeled; never present 2019 and 2025 as a direct trend.",
     ):
         add_list_item(doc, item)
@@ -630,7 +633,7 @@ def build_document():
         ("Denominators", "Total population, housing units, and the relevant subgroup population or household count."),
         ("Primary outcome", "Low-income/low-access indicator plus the count and share of people beyond the selected distance threshold."),
         ("Access burden", "No-vehicle/low-access households and SNAP-receiving housing units with limited access."),
-        ("Optional subgroups", "Children and adults age 65 or older; race and ethnicity only if used as a carefully framed disparity analysis."),
+        ("Optional subgroups", "Children and adults age 65 or older, reported only with matching source denominators. Race and gender are outside the current scope."),
         ("Provenance", "Source release, data vintage, retrieval date, original field name, transformation, and denominator."),
     )
     for label, text in variable_groups:
@@ -680,7 +683,7 @@ def build_document():
     add_heading(doc, "7. Team collaboration and capture", 1)
     add_heading(doc, "System of record", 2)
     add_label_paragraph(doc, "Google Drive", "Canonical location for meeting notes, raw-data snapshots, the data inventory, paper drafts, slides, video files, and shared review artifacts.")
-    add_label_paragraph(doc, "GitHub", "Canonical location for code, notebooks, small processed datasets where appropriate, documentation, source manifests, data dictionaries, and reproducible outputs.")
+    add_label_paragraph(doc, "GitHub", "Canonical location for finalized code, small processed datasets where appropriate, documentation, source manifests, data dictionaries, and reproducible publication outputs. Partial drafts and exploratory files remain outside the published repository.")
     add_label_paragraph(doc, "Email", "Notification channel only. Decisions made by email must be copied into the shared decision log.")
     add_label_paragraph(doc, "Gemini meeting notes", "Draft input only. Within 24 hours, a team member should convert the notes into decisions, open questions, actions, owners, and due dates.")
 
@@ -730,29 +733,16 @@ def build_document():
     ):
         add_list_item(doc, item)
 
-    add_heading(doc, "8. Roles and responsibilities", 1)
-    add_body(doc, "Only the roles explicitly discussed in the meeting are assigned below. The team should fill the remaining ownership gaps on August 25.")
-    role_rows = [
-        ("Data discovery and QA", "April", "Evaluate sources, maintain the inventory, run the Alabama pilot, document variables, and produce QA evidence."),
-        ("Paper and methods", "Sandra and April", "Develop the IEEE-style paper from the approved analysis, including methods, limitations, and future work."),
-        ("App exploration", "April - stretch", "Explore an app only after the static analysis and core figures are stable."),
-        ("Project coordination", "TBD", "Maintain decisions, actions, deadlines, meeting notes, and cross-deliverable alignment."),
-        ("Repository and pipeline", "TBD", "Own GitHub structure, review integration, and reproducibility checks."),
-        ("Visualization", "TBD", "Own chart/map standards, accessibility, figure captions, and slide-ready exports."),
-        ("Slides and video", "TBD", "Own the seven-minute narrative, speaker timing, recording workflow, and final rehearsal."),
-    ]
-    add_table(doc, ["Role", "Proposed owner", "Responsibility"], role_rows, [2160, 1800, 5400], font_size=9)
-
-    add_heading(doc, "9. Milestones and decision gates", 1)
+    add_heading(doc, "8. Milestones and decision gates", 1)
     milestone_rows = [
-        ("August 25, 8:30 p.m.", "Scope approval", "Approved question, Southeast list, retailer definition, primary threshold, and role assignments."),
-        ("August 29, 1:00 p.m.", "Data freeze decision", "Alabama pilot, source inventory, variable whitelist, QA summary, first state chart, and first tract map."),
+        ("August 25, 8:30 p.m.", "Scope approval complete", "Question, comparison region, road-network threshold, exclusions, repository policy, and role placement recorded."),
+        ("August 29, 1:00 p.m.", "Team working session", "Finalize the problem statement, review approved data, confirm sensitivity numbers, and begin final visualizations."),
         ("Before full analysis", "Reproducibility gate", "Frozen raw snapshot, source manifest, data dictionary, scripts, and successful QA checks."),
-        ("Before submission", "Publication gate", "Rebuilt figures, paper/source reconciliation, seven-minute rehearsal, video check, and final repository review."),
+        ("Weekend ending September 13", "Publication and submission", "Rebuilt figures, report/source reconciliation, seven-minute rehearsal, video check, final repository review, recording, and submission."),
     ]
     add_table(doc, ["Date", "Gate", "Required evidence"], milestone_rows, [2160, 2160, 5040], font_size=9.25)
 
-    add_heading(doc, "10. Deliverable plan", 1)
+    add_heading(doc, "9. Deliverable plan", 1)
     add_heading(doc, "Seven-slide narrative", 2)
     slide_outline = (
         "Problem, definitions, and main research question.",
@@ -770,34 +760,34 @@ def build_document():
     add_heading(doc, "Paper and video alignment", 2)
     add_body(doc, "The paper, slides, and video should use the same approved definitions, source vintages, numbers, figures, captions, and limitations. The analysis pipeline should create the tables and figures used by all three deliverables so that revisions do not produce conflicting results.")
 
-    add_heading(doc, "11. Decisions required on August 25", 1)
+    add_heading(doc, "10. Decisions recorded on August 25", 1)
     decisions = (
-        "Approve or revise the main question.",
-        "Approve the ten-state Southeast comparison group and the label 'project-defined Southeast.'",
-        "Choose between current SNAP-authorized retailer access and older supermarket/large-retailer access.",
-        "Approve the network-based 1-mile urban/10-mile rural primary measure.",
-        "Approve the sensitivity checks and subgroup priorities.",
-        "Confirm whether global context earns space in the seven-minute presentation.",
-        "Assign the coordinator, repository, visualization, and slide/video owners.",
-        "Set the final submission calendar, review dates, and rehearsal date.",
+        "Retain the main question and keep food security distinct from food access.",
+        "Retain the ten-state comparison and label it the project-defined Southeast.",
+        "Use current SNAP-authorized retailer access for the primary local analysis.",
+        "Use the road-network 1-mile urban / 10-mile rural primary measure.",
+        "Exclude straight-line distance and vary road-network thresholds for sensitivity.",
+        "Exclude food allergies, race, and gender from the current analysis.",
+        "Publish only finalized repository files and place roles in supporting material at the end.",
+        "Record and submit the final project during the weekend ending September 13, 2026.",
     )
     for item in decisions:
         add_list_item(doc, item)
 
-    add_heading(doc, "12. Pre-crawl approval gate", 1)
+    add_heading(doc, "11. Publication and source gate", 1)
     add_callout(
         doc,
-        "What may begin now",
-        "A targeted Alabama pilot and inventory work may begin immediately to test feasibility. The broad multi-source crawl should wait until the team approves the question, retailer universe, comparison geography, and primary measure.",
+        "What may be published",
+        "Only reviewed, reproducible, publication-ready files belong in GitHub. Raw downloads, local previews, partial drafts, and exploratory allergen outputs remain outside the published repository.",
     )
-    add_body(doc, "The full crawl is authorized when all of the following are true:")
+    add_body(doc, "A new dataset may be integrated when all of the following are true:")
     for item in (
-        "The main question is approved and written in the charter.",
-        "Every retained source has a unique analytical purpose.",
-        "The primary measure and denominator are declared in advance.",
-        "The Southeast geography and data vintages are frozen.",
-        "The inventory, Drive folders, GitHub repository, and owner assignments are ready.",
-        "The Alabama pilot passes the key and denominator QA checks.",
+        "The exact publisher page and downloadable file are recorded.",
+        "Release, observation, and retrieval dates are distinguished.",
+        "Geography, unit, denominator, identifiers, and missing-value rules are documented.",
+        "License and redistribution terms permit the planned use.",
+        "Processing is reproducible and the source adds a unique analytical purpose.",
+        "QA and reconciliation checks pass for Alabama and the project region.",
     ):
         add_list_item(doc, item)
 
@@ -809,6 +799,7 @@ def build_document():
         ("D03", "USDA 2025 SNAP-authorized Retailer Access Map", "Primary local analysis", "Piloting", "Test Alabama network-based variables, keys, counts, and geography."),
         ("D04", "USDA Food Environment Atlas", "Optional county context", "Proposed", "Retain only if a documented county-level gap remains."),
         ("D05", "Compatible census-tract geometry", "Mapping", "Proposed", "Use the USDA service or confirmed 2020-based tract geometry."),
+        ("D06", "Feeding America Alabama map data", "Potential Alabama context", "On hold", "Add only after source file, year meaning, fields, denominator, geography, license, and Alabama totals are validated."),
         ("A01", "Allergy/gluten exploration", "Out-of-scope archive", "Archived", "Preserve existing work; exclude it from active data and figures."),
     ]
     add_table(doc, ["ID", "Dataset", "Purpose", "Status", "Next action"], starter_rows, [720, 2460, 1740, 1260, 3180], font_size=8.75)
@@ -876,6 +867,17 @@ def build_document():
     for paragraph in limitation_paragraphs[:-1]:
         paragraph.paragraph_format.keep_with_next = True
 
+    roles_heading = add_heading(doc, "Appendix D. Project roles", 1)
+    roles_heading.paragraph_format.page_break_before = True
+    add_body(doc, "Roles are placed at the end so readers encounter the project content before team assignments.")
+    role_rows = [
+        ("Sharon Brooks", "Team lead and project management", "Coordinate meetings and review the repository framework."),
+        ("Sandra Kopecky", "Data and database", "Review sources and use the approved dataset for analysis."),
+        ("April Gillespie", "Repository and analysis", "Manage repository updates, technical implementation, documentation, and integration of validated team data."),
+        ("Shared", "Final review and delivery", "Validate final numbers, record the presentation, and submit during the weekend ending September 13, 2026."),
+    ]
+    add_table(doc, ["Team member", "Role", "Responsibility"], role_rows, [1800, 2400, 5160], font_size=9)
+
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     doc.save(OUTPUT)
     return OUTPUT
@@ -884,4 +886,3 @@ def build_document():
 if __name__ == "__main__":
     path = build_document()
     print(path.resolve())
-

@@ -129,14 +129,23 @@ function addDataSheet(name, title, subtitle, data, endColumn, tableName, widths 
 }
 
 const summary = workbook.worksheets.add("Summary");
-titleBand(summary, "J", "Data for Dinner — food-access analysis", "Global → United States → project-defined Southeast → Alabama | frozen pull: 2026-08-22");
+titleBand(summary, "J", "Data for Dinner: food-access analysis", "Global → United States → project-defined Southeast → Alabama | frozen pull: 2026-08-22");
 summary.getRange("A4:J4").merge();
 summary.getRange("A4").values = [["Key facts"]];
 summary.getRange("A4:J4").format = { fill: COLORS.green, font: { bold: true, color: COLORS.white, size: 12 } };
 summary.getRange("A6:B6").values = [["Measure", "Value"]];
 styleHeader(summary.getRange("A6:B6"));
 summary.getRange("A7:A14").values = [["World moderate/severe food insecurity (2023–2025)"], ["U.S. households food insecure (2024)"], ["Alabama households food insecure (2022–2024)"], ["Alabama low-income residents beyond 1/10-mile threshold"], ["Alabama LILA tracts"], ["Alabama LILA tract share"], ["QA checks passed"], ["QA checks failed"]];
-summary.getRange("B7:B14").formulas = [["=INDEX(Global!$F:$F,MATCH(1,(Global!$A:$A=\"World\")*(Global!$B:$B=\"Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)\"),0))"], ["=13.7"], ["=INDEX(Southeast!$C:$C,MATCH(\"AL\",Southeast!$B:$B,0))"], ["=INDEX(Southeast!$G:$G,MATCH(\"AL\",Southeast!$B:$B,0))"], ["=151"], ["=10.5153203343"], ["=COUNTIF(QA!$B:$B,\"PASS\")"], ["=COUNTIF(QA!$B:$B,\"FAIL\")"]];
+summary.getRange("B7:B14").formulas = [
+  [`=INDEX('Global'!$F$5:$F$${4 + globalData.rows.length},MATCH(1,('Global'!$A$5:$A$${4 + globalData.rows.length}=\"World\")*('Global'!$B$5:$B$${4 + globalData.rows.length}=\"Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)\"),0))`],
+  [`=INDEX('US States'!$C$5:$C$${4 + usStates.rows.length},MATCH(\"U.S.\",'US States'!$B$5:$B$${4 + usStates.rows.length},0))`],
+  [`=INDEX('Southeast'!$C$5:$C$${4 + southeast.rows.length},MATCH(\"AL\",'Southeast'!$B$5:$B$${4 + southeast.rows.length},0))`],
+  [`=INDEX('Southeast'!$G$5:$G$${4 + southeast.rows.length},MATCH(\"AL\",'Southeast'!$B$5:$B$${4 + southeast.rows.length},0))`],
+  [`=INDEX('Retail by State'!$J$5:$J$${4 + retailStates.rows.length},MATCH(\"AL\",'Retail by State'!$B$5:$B$${4 + retailStates.rows.length},0))`],
+  [`=INDEX('Retail by State'!$K$5:$K$${4 + retailStates.rows.length},MATCH(\"AL\",'Retail by State'!$B$5:$B$${4 + retailStates.rows.length},0))`],
+  [`=COUNTIF('QA'!$B$5:$B$${4 + qa.rows.length},\"PASS\")`],
+  [`=COUNTIF('QA'!$B$5:$B$${4 + qa.rows.length},\"FAIL\")`],
+];
 summary.getRange("B7:B10").format.numberFormat = "0.0%";
 summary.getRange("B7:B10").formulas = [["=26.8/100"], ["=13.7/100"], ["=INDEX(Southeast!$C:$C,MATCH(\"AL\",Southeast!$B:$B,0))/100"], ["=INDEX(Southeast!$G:$G,MATCH(\"AL\",Southeast!$B:$B,0))/100"]];
 summary.getRange("B11").format.numberFormat = "#,##0";
@@ -149,13 +158,13 @@ summary.getRange("D6:J6").merge();
 summary.getRange("D6").values = [["What stands out"]];
 summary.getRange("D6:J6").format = { fill: COLORS.blue, font: { bold: true, color: COLORS.white } };
 summary.getRange("D7:J12").merge();
-summary.getRange("D7").values = [["Alabama is ninth-highest of the ten project states on the USDA household estimate (12.1% ± 2.23 points) and eighth-highest on the low-income retailer-access burden (20.2%). Its burden is just below the provisional U.S. result of 21.2%, but 10.5% of Alabama tracts are flagged low-income/low-access versus 7.5% nationally. Network distance produces a much higher burden than straight-line distance, so the method is part of the result."]];
+summary.getRange("D7").values = [["Alabama is ninth-highest of the ten project states on the USDA household estimate (12.1% ± 2.23 points) and eighth-highest on the low-income retailer-access burden (20.2%). Its burden is just below the provisional U.S. result of 21.2%, but 10.5% of Alabama tracts are flagged low-income/low-access versus 7.5% nationally. Road-network sensitivity ranges from 19.6% to 35.9%, so the selected threshold must accompany every result."]];
 summary.getRange("D7:J12").format = { fill: COLORS.paleBlue, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.blue } };
 summary.getRange("A16:J16").merge();
 summary.getRange("A16").values = [["Decision"]];
 summary.getRange("A16:J16").format = { fill: COLORS.amber, font: { bold: true, color: COLORS.white } };
 summary.getRange("A17:J21").merge();
-summary.getRange("A17").values = [["Retain USDA SRAM as the primary local dataset. It is complete for Alabama and all ten project states and supports clear population and subgroup denominators. Keep FAOSTAT and USDA household estimates as separate context/outcome layers. Do not add a broad county atlas unless the team declares a specific gap. Run allergies as a separately gated feasibility crawl."]];
+summary.getRange("A17").values = [["Retain USDA SRAM road-network data as the primary local dataset and exclude straight-line fields. Keep FAOSTAT and USDA household estimates as separate context and outcome layers. Keep allergies outside the active scope. Hold the 2024 Feeding America Alabama data until its source file, definitions, denominator, geography, license, and reconciliation are documented."]];
 summary.getRange("A17:J21").format = { fill: COLORS.paleAmber, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.amber } };
 summary.getRange("A23:J23").merge();
 summary.getRange("A23").values = [["Comparability boundary"]];
@@ -204,7 +213,7 @@ tractSheet.getRange(`E5:E${4 + tracts.rows.length}`).format.numberFormat = "0.0"
 tractSheet.getRange(`F5:I${4 + tracts.rows.length}`).format.numberFormat = "#,##0";
 tractSheet.getRange(`J5:O${4 + tracts.rows.length}`).format.numberFormat = "0.0";
 
-const sensSheet = addDataSheet("Sensitivity", "Distance and threshold sensitivity", "The primary result is the driving-distance 1-mile urban / 10-mile rural row", sensitivity, "I", "SensitivityResults", { A: 28, B: 16, C: 24, D: 20, E: 20, F: 25, G: 25, H: 16, I: 16 });
+const sensSheet = addDataSheet("Sensitivity", "Road-network threshold sensitivity", "Straight-line distance is excluded; the primary result is the 1-mile urban / 10-mile rural row", sensitivity, "I", "SensitivityResults", { A: 28, B: 16, C: 24, D: 20, E: 20, F: 25, G: 25, H: 16, I: 16 });
 sensSheet.getRange(`D5:D${4 + sensitivity.rows.length}`).format.numberFormat = "#,##0";
 sensSheet.getRange(`E5:E${4 + sensitivity.rows.length}`).format.numberFormat = "0.0";
 sensSheet.getRange(`F5:F${4 + sensitivity.rows.length}`).format.numberFormat = "#,##0";
@@ -239,7 +248,7 @@ const renderTargets = [
   ["Southeast", "A1:N14"],
   ["Alabama Counties", "A1:P14"],
   ["Alabama Tracts", "A1:P14"],
-  ["Sensitivity", "A1:I16"],
+  ["Sensitivity", `A1:I${4 + sensitivity.rows.length}`],
   ["QA", `A1:E${4 + qa.rows.length}`],
   ["Assessment", `A1:F${4 + assessment.rows.length}`],
   ["Variables", `A1:E${4 + variables.rows.length}`],
@@ -262,4 +271,3 @@ await fs.writeFile(path.join(previewDir, "errors.inspect.ndjson"), errors.ndjson
 const output = await SpreadsheetFile.exportXlsx(workbook);
 await output.save(outputPath);
 console.log(JSON.stringify({ outputPath, previewDir, sheets: renderTargets.length, formulaErrorScan: errors.ndjson }, null, 2));
-

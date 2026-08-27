@@ -2,7 +2,11 @@
 
 ## Scope
 
-This analysis reports facts at four levels: global, United States, a ten-state project-defined Southeast, and Alabama. Food allergies are outside the active analysis.
+This analysis reports facts at four levels: global, United States, a ten-state project-defined Southeast, and Alabama. Food allergies, race and gender demographic analysis, and straight-line distance metrics are outside the active analysis.
+
+## Study period
+
+The frozen pull was retrieved August 22, 2026, Central Time. Observation periods differ by source: FAOSTAT core indicators use 2023-2025 averages, USDA household data uses 2024 nationally and 2022-2024 for state averages, retailer access uses retailers as of June 2025 with 2020 Census and 2020-2024 ACS inputs, and Alabama geometry uses 2020 tracts. Retrieval date is not treated as the observation date.
 
 ## Measures
 
@@ -25,7 +29,7 @@ Counts are aggregated to state, project-region, county, and Alabama tract levels
 
 ## Subgroups
 
-The SRAM distance files provide counts for children, seniors, occupied housing units without a vehicle, and occupied housing units receiving SNAP. The pipeline applies the urban 1-mile and rural 10-mile columns consistently. Housing-unit measures are not compared directly to population measures.
+The SRAM road-network file provides counts for children, seniors, occupied housing units without a vehicle, and occupied housing units receiving SNAP. The pipeline applies the urban 1-mile and rural 10-mile columns consistently. Housing-unit measures are not compared directly to population measures. SNAP-receiving occupied housing units are used as a household-need proxy, not as a count of people.
 
 ## Geography
 
@@ -39,21 +43,26 @@ Fifteen national source rows require review: fourteen Suffolk County, New York t
 
 ## Sensitivity
 
-The primary network-distance result is compared with:
+The primary road-network result is compared with:
 
 - a stricter 0.5-mile urban / 10-mile rural threshold;
-- a 1-mile urban / 20-mile rural threshold; and
-- a 1-mile urban / 10-mile rural straight-line measure.
+- a 1-mile urban / 20-mile rural threshold.
 
-The straight-line measure is lower because it does not follow roads. The network measure remains primary because it matches the stated plan and better represents road travel, but the method is shown next to the result.
+Straight-line distance is excluded because it does not follow road travel and produced implausibly influential outliers for this study. It is not imported, analyzed, or published.
+
+The final Alabama primary estimate is 20.2% of low-income residents beyond the selected threshold. The stricter urban threshold produces 35.9%, while the 20-mile rural threshold produces 19.6%. The urban threshold materially affects the estimated burden. Final outputs must state the selected road-network threshold and reconcile to the primary value before publication.
 
 ## Interpretation boundaries
 
 - Household food insecurity is an economic and experiential outcome; retailer proximity is a physical-access proxy.
 - SRAM covers SNAP-authorized retailers and excludes farmers markets and delivery routes from its listed retailer universe.
 - Proximity does not measure price, quality, nutrition, inventory, transit, disability access, store hours, or household food insecurity.
+- The current data does not measure food abundance or food-supply volume.
+- Race and gender are not analyzed in the current scope.
 - FAOSTAT population measures should not be numerically compared as if they were USDA household or tract measures.
 - The analysis is descriptive. It does not make causal, medical, or policy-effect claims.
+
+See `docs/limitations.md` for the appendix-ready list of known blind spots and future-work requirements.
 
 ## Official sources
 
@@ -63,4 +72,3 @@ The straight-line measure is lower because it does not follow roads. The network
 - [USDA ERS SRAM reference guide](https://www.ers.usda.gov/data-products/food-access-research-atlas/documentation/snap-authorized-retailer-access-map-reference-guide)
 - [USDA ERS SRAM methods](https://www.ers.usda.gov/data-products/food-access-research-atlas/documentation/snap-authorized-retailer-access-map-data-sources-and-technical-methods)
 - [U.S. Census Bureau Alabama tract geometry](https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_01_tract_500k.zip)
-

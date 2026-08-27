@@ -213,9 +213,10 @@
         "PovertyRate": 15.8
       }
     ],
-    "driving_vs_straight_line_low_income_low_access_pct": {
-      "driving": 20.222953645654634,
-      "straight_line": 8.618290990821858
+    "driving_threshold_low_income_low_access_pct": {
+      "0.5_urban_10_rural": 35.91630205958686,
+      "1_urban_10_rural": 20.222953645654634,
+      "1_urban_20_rural": 19.617818411956215
     }
   },
   "sufficiency": {

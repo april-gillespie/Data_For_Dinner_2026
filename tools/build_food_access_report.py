@@ -234,13 +234,13 @@ def build_document() -> Path:
     subtitle = doc.add_paragraph(style="Report Subtitle")
     subtitle.add_run("Official-data pull, factual analysis, dataset sufficiency, and next-crawl recommendation")
 
-    base.add_callout(doc, "SCOPE", "Global → United States → project-defined Southeast → Alabama. Food allergies are outside the active analysis and are handled as a separately gated next crawl.", accent=BLUE)
+    base.add_callout(doc, "SCOPE", "Global to United States to project-defined Southeast to Alabama. Food allergies, race and gender demographic analysis, and straight-line distance are outside the active analysis.", accent=BLUE)
 
     meta = doc.add_table(rows=4, cols=2)
     meta.style = "Table Grid"
     set_repeat_table_header(meta.rows[0])
     rows = [
-        ("Prepared for", "Sharon Brooks, Sandra Kopecky, and April Gillespie"),
+        ("Prepared by", "Data for Dinner 2026 project team"),
         ("Frozen pull", "August 22, 2026 (Central Time)"),
         ("Primary local source", "USDA ERS 2025 SNAP-authorized Retailer Access Map"),
         ("Project region", "AL, AR, FL, GA, KY, LA, MS, NC, SC, TN"),
@@ -262,11 +262,11 @@ def build_document() -> Path:
     base.add_heading(doc, "Key facts", 2)
     add_fact_list(doc, [
         f"Global: FAOSTAT estimates {global_value('World', 'moderate_or_severe_food_insecurity')}% of the world population experienced moderate or severe food insecurity in 2023–2025. The U.S. FAOSTAT estimate is {global_value('United States of America', 'moderate_or_severe_food_insecurity')}%.",
-        "United States: USDA estimates 13.7% of U.S. households were food insecure in 2024—18.34 million households. Very low food security affected 5.4%, or 7.20 million households.",
+        "United States: USDA estimates 13.7% of U.S. households were food insecure in 2024, representing 18.34 million households. Very low food security affected 5.4%, or 7.20 million households.",
         "Project-defined Southeast: 2022–2024 state household estimates range from 11.8% in North Carolina to 19.4% in Arkansas. Alabama is 12.1% ± 2.23 percentage points and ranks ninth of ten from high to low.",
-        f"Alabama: {pct(alabama['low_income_low_access_population_pct'])} of low-income residents—{num(alabama['low_income_low_access_population'])} people—are beyond the primary retailer-access threshold.",
+        f"Alabama: {pct(alabama['low_income_low_access_population_pct'])} of low-income residents, or {num(alabama['low_income_low_access_population'])} people, are beyond the primary retailer-access threshold.",
         f"Alabama: {num(alabama['lila_tract_count'])} tracts, or {pct(alabama['lila_tract_pct'])}, are flagged low-income/low-access. The provisional U.S. share is {pct(united_states['lila_tract_pct'])}.",
-        f"Sensitivity: Alabama's low-income burden is {pct(alabama['driving_vs_straight_line_low_income_low_access_pct']['driving'])} using driving distance and {pct(alabama['driving_vs_straight_line_low_income_low_access_pct']['straight_line'])} using straight-line distance.",
+        f"Sensitivity: Alabama's low-income burden is {pct(alabama['driving_threshold_low_income_low_access_pct']['1_urban_10_rural'])} at the primary threshold, {pct(alabama['driving_threshold_low_income_low_access_pct']['0.5_urban_10_rural'])} at 0.5 mile urban / 10 miles rural, and {pct(alabama['driving_threshold_low_income_low_access_pct']['1_urban_20_rural'])} at 1 mile urban / 20 miles rural.",
     ])
 
     base.add_heading(doc, "Decisions from this pull", 2)
@@ -274,6 +274,7 @@ def build_document() -> Path:
         ("Primary local dataset", "Retain USDA 2025 SRAM", "Complete for Alabama and the ten project states; supports tract, population, low-income, and subgroup measures."),
         ("Global and U.S. context", "Retain as separate layers", "FAOSTAT population indicators and USDA household estimates answer different questions from retailer proximity."),
         ("More datasets", "Add only against a declared gap", "Avoid a broad crawl that mixes vintages and measures without an analytical purpose."),
+        ("Distance method", "Road network only", "Straight-line distance is excluded because it does not represent road travel and produced implausibly influential outliers for this study."),
         ("Allergies", "Pause integration; run feasibility crawl", "No single official public source links prevalence, tract food insecurity, store inventory, price, and allergens."),
     ]
     base.add_table(doc, ["Decision area", "Recommendation", "Reason"], decision_rows, [2080, 2560, 4720], font_size=8.8)
@@ -293,7 +294,8 @@ def build_document() -> Path:
         "Use the latest official release available on the pull date; retain observation dates separately from retrieval dates.",
         "Keep a measure only when its unit, denominator, geography, and join key are clear.",
         "Use the 1-mile urban / 10-mile rural driving-distance threshold as the primary local measure because it matches the agreed plan and follows the road network.",
-        "Preserve uncertainty for state household estimates and preserve alternate distance methods in sensitivity output.",
+        "Preserve uncertainty for state household estimates and vary only road-network thresholds in sensitivity output.",
+        "Exclude straight-line distance from imported analysis fields, results, workbook tables, and report findings.",
         "Do not average tract percentages. Aggregate numerators and denominators, then calculate the rate.",
     ])
     base.add_heading(doc, "Capture package", 2)
@@ -302,10 +304,8 @@ def build_document() -> Path:
         ("Processed CSVs", "Global summary, all state outcomes, all state retailer access, ten-state comparison, Alabama counties, all Alabama tracts."),
         ("Results", "QA checks, sensitivity analysis, dataset sufficiency assessment, key findings."),
         ("Figures", "Five reviewed charts/maps with source notes and consistent styling."),
-        ("Team files", "This report in DOCX/PDF and a filterable workbook with 12 sheets."),
-        ("Reproducibility", "Acquisition and analysis scripts plus dependency list and methods documentation."),
+        ("Team files and reproducibility", "This report in DOCX/PDF, a filterable workbook with 12 sheets, acquisition and analysis scripts, a dependency list, and methods documentation."),
     ], [2300, 7060], font_size=9)
-    base.add_page_break(doc)
 
     # Global
     base.add_heading(doc, "2. Global access to food", 1)
@@ -333,7 +333,7 @@ def build_document() -> Path:
 
     # U.S.
     base.add_heading(doc, "3. United States access to food", 1)
-    add_section_intro(doc, "The U.S. section separates household food insecurity from physical proximity to SNAP-authorized retailers.")
+    add_section_intro(doc, "\u00a0The U.S. section separates household food insecurity from physical proximity to SNAP-authorized retailers.")
     base.add_heading(doc, "Household food security, 2024", 2)
     us_rows = [
         ("Food secure", "86.3%", "115.58 million households"),
@@ -347,10 +347,10 @@ def build_document() -> Path:
         ("Population beyond threshold", num(united_states["low_access_population"]), pct(united_states["low_access_population_pct"])),
         ("Low-income population beyond threshold", num(united_states["low_income_low_access_population"]), pct(united_states["low_income_low_access_population_pct"])),
         ("Low-income/low-access tracts", num(united_states["lila_tract_count"]), pct(united_states["lila_tract_pct"])),
-        ("Children beyond threshold", "—", pct(united_states["low_access_children_pct"])),
-        ("Adults 65+ beyond threshold", "—", pct(united_states["low_access_seniors_pct"])),
-        ("No-vehicle occupied units beyond threshold", "—", pct(united_states["low_access_no_vehicle_housing_units_pct"])),
-        ("SNAP occupied units beyond threshold", "—", pct(united_states["low_access_snap_housing_units_pct"])),
+        ("Children beyond threshold", "N/A", pct(united_states["low_access_children_pct"])),
+        ("Adults 65+ beyond threshold", "N/A", pct(united_states["low_access_seniors_pct"])),
+        ("No-vehicle occupied units beyond threshold", "N/A", pct(united_states["low_access_no_vehicle_housing_units_pct"])),
+        ("SNAP occupied units beyond threshold", "N/A", pct(united_states["low_access_snap_housing_units_pct"])),
     ]
     base.add_table(doc, ["Measure", "Count", "Share of matching denominator"], retail_rows, [4300, 2200, 2860], font_size=9)
     add_small_note(doc, "Primary threshold: more than 1 driving mile in urban tracts or 10 driving miles in rural tracts. The national low-income share is provisional because fourteen New York tracts lack low-income denominators.")
@@ -387,15 +387,14 @@ def build_document() -> Path:
     base.add_heading(doc, "6. Alabama access to food", 1)
     add_section_intro(doc, "Alabama has complete primary fields for all 1,436 2020 census tracts and complete joins to the selected Census tract geometry.")
     base.add_table(doc, ["Measure", "Count", "Share"], [
-        ("2020 population", num(alabama["population"]), "—"),
-        ("Low-income population", num(alabama["low_income_population"]), "—"),
+        ("2020 population", num(alabama["population"]), "N/A"),
+        ("Low-income population", num(alabama["low_income_population"]), "N/A"),
         ("Population beyond primary threshold", num(alabama["low_access_population"]), pct(alabama["low_access_population_pct"])),
         ("Low-income population beyond threshold", num(alabama["low_income_low_access_population"]), pct(alabama["low_income_low_access_population_pct"])),
         ("Low-income/low-access tracts", num(alabama["lila_tract_count"]), pct(alabama["lila_tract_pct"])),
     ], [4700, 2400, 2260], font_size=9.5)
-    add_picture(doc, "figures/alabama_tract_food_access_map.png", "Choropleth map of Alabama census tracts shaded by the percentage of low-income residents beyond the one mile urban or ten mile rural driving-distance threshold, with no-data tracts identified separately.", "Figure 4. Alabama low-income retailer-access burden by census tract.")
+    add_picture(doc, "figures/alabama_tract_food_access_map.png", "Choropleth map of Alabama census tracts shaded by the percentage of low-income residents beyond the one mile urban or ten mile rural driving-distance threshold, with no-data tracts identified separately.", "Figure 4. Alabama low-income retailer-access burden by census tract.", width=4.5)
     add_small_note(doc, "Dark shading indicates a larger share of the tract's low-income population beyond the threshold; the map does not show household food-insecurity prevalence.")
-    base.add_page_break(doc)
 
     # Counties
     base.add_heading(doc, "7. Alabama county and tract detail", 1)
@@ -424,7 +423,8 @@ def build_document() -> Path:
     base.add_page_break(doc)
 
     # Subgroups
-    base.add_heading(doc, "8. Alabama subgroup access", 1)
+    heading = base.add_heading(doc, "8. Subgroup access results", 1)
+    heading.paragraph_format.page_break_before = True
     add_picture(doc, "figures/alabama_subgroup_access.png", "Horizontal comparison of Alabama and United States retailer-access shares for the total population, low-income population, children, seniors, no-vehicle occupied housing units, and SNAP occupied housing units.", "Figure 5. Primary-threshold retailer access by population or housing-unit subgroup.")
     subgroup_rows = [
         ("All population", pct(alabama["low_access_population_pct"]), pct(united_states["low_access_population_pct"]), "People"),
@@ -445,17 +445,17 @@ def build_document() -> Path:
 
     # Sensitivity + QA
     base.add_heading(doc, "9. Sensitivity and sanity checks", 1)
-    base.add_heading(doc, "Alabama sensitivity", 2)
+    base.add_heading(doc, "Alabama road-network sensitivity", 2)
     al_sensitivity = [row for row in sensitivity_rows if row["geography"] == "Alabama"]
     sens_table = []
     for row in al_sensitivity:
-        sens_table.append((row["distance_method"], row["threshold"], pct(row["low_access_population_pct"]), pct(row["low_income_low_access_population_pct"]), pct(row["lila_tract_pct"])))
-    base.add_table(doc, ["Method", "Threshold", "All population", "Low-income population", "LILA tracts"], sens_table, [1700, 2400, 1650, 1900, 1710], font_size=8.8)
+        sens_table.append((row["threshold"], pct(row["low_access_population_pct"]), pct(row["low_income_low_access_population_pct"]), pct(row["lila_tract_pct"])))
+    base.add_table(doc, ["Road-network threshold", "All population", "Low-income population", "LILA tracts"], sens_table, [3100, 1900, 2360, 2000], font_size=8.8)
     add_fact_list(doc, [
         "Changing the urban threshold from 1.0 mile to 0.5 mile raises Alabama's low-income burden from 20.2% to 35.9%.",
         "Changing the rural threshold from 10 to 20 miles lowers the low-income burden only slightly, from 20.2% to 19.6%.",
-        "Replacing driving distance with straight-line distance lowers the result from 20.2% to 8.6%.",
-        "Recommendation: retain the network 1/10 threshold and label the method on every table, chart, and spoken finding.",
+        "Straight-line distance is excluded from the study and is not treated as a sensitivity result.",
+        "Recommendation: retain the road-network 1/10 threshold and label it on every table, chart, and spoken finding.",
     ])
 
     base.add_heading(doc, "QA result", 2)
@@ -465,7 +465,7 @@ def build_document() -> Path:
     base.add_callout(doc, "QA STATUS", f"{status_counts.get('PASS', 0)} PASS  •  {status_counts.get('REVIEW', 0)} REVIEW  •  {status_counts.get('FAIL', 0)} FAIL", accent=GREEN)
     qa_table = []
     for row in qa_rows:
-        qa_table.append((row["status"], row["check"], row["observed"], row["note"] or "—"))
+        qa_table.append((row["status"], row["check"], row["observed"], row["note"] or "N/A"))
     base.add_table(doc, ["Status", "Check", "Observed", "Note"], qa_table, [1100, 3100, 1500, 3660], font_size=7.2)
     add_small_note(doc, "The one reviewed exception consists of fourteen Suffolk County, New York tracts without low-income denominators and one zero-population Massachusetts tract without a LILA flag. Alabama and the ten project states are complete.")
     base.add_page_break(doc)
@@ -483,6 +483,7 @@ def build_document() -> Path:
         "Do not replace SRAM with the 2019 Large Retailer Access Map. The retailer universe and tract base differ; use LRAM only as a labeled sensitivity comparison.",
         "Do not add the full Food Environment Atlas by default. Add a small, predeclared variable set only if the team decides to examine price, assistance, store environment, or another explicit county-level gap.",
         "If the team wants a local food-insecurity outcome, evaluate a modeled county or tract source separately and document that it is not directly comparable to the official state household series.",
+        "Hold the 2024 Feeding America Alabama data until the source file, direct citation, field definitions, denominator, geography, license, and Alabama reconciliation are documented.",
         "Preserve the current frozen pull. Refresh only with a new dated snapshot and a change log.",
     ])
 
@@ -491,9 +492,9 @@ def build_document() -> Path:
         "SRAM does not measure food price, product quality, nutrition, inventory, store hours, transit, disability access, online purchasing, or household food insecurity.",
         "The listed retailer universe is SNAP-authorized retailers as of June 2025 and excludes farmers markets and delivery routes.",
         "Observation periods differ across layers. This is a cross-source snapshot, not a synchronized time series.",
+        "The current data does not quantify food abundance or supply volume. That visual requires an approved measure and source.",
+        "Race and gender demographic analysis is outside the current scope.",
     ])
-    base.add_page_break(doc)
-
     # Allergy
     base.add_heading(doc, "11. Recommended next crawl for food allergies", 1)
     add_section_intro(doc, "Keep allergies outside the active analysis until feasibility is demonstrated. The public official sources identified here describe different parts of the problem and do not form a direct tract-level access dataset.")
@@ -523,8 +524,8 @@ def build_document() -> Path:
     prompt = (
         "Conduct an official-source-only feasibility crawl for food-allergy access in Alabama and the project-defined Southeast "
         "(AL, AR, FL, GA, KY, LA, MS, NC, SC, TN). Keep this separate from the current food-access analysis until joinability "
-        "is proven. Use the FDA nine major allergens—milk, egg, fish, crustacean shellfish, tree nuts, peanuts, wheat, soybeans, "
-        "and sesame—as the primary taxonomy. Treat fruit and chocolate only as explicitly defined exploratory categories. For each "
+        "is proven. Use the FDA nine major allergens, including milk, egg, fish, crustacean shellfish, tree nuts, peanuts, wheat, soybeans, "
+        "and sesame, as the primary taxonomy. Treat fruit and chocolate only as explicitly defined exploratory categories. For each "
         "candidate dataset, record publisher, exact dataset and table, URL/API endpoint, release and observation dates, population "
         "or product universe, geography, unit of analysis, allergen fields, price/inventory fields, identifiers, access/licensing limits, "
         "update frequency, missingness, and proposed joins. Prioritize CDC/NCHS 2024 NHIS for diagnosed prevalence, USDA FoodData "
@@ -564,7 +565,9 @@ def build_document() -> Path:
         "Descriptive comparisons do not establish causes or policy effects.",
         "State household margins of error should accompany estimates; ranks are descriptive.",
         "Physical proximity is one dimension of food access and cannot be read as product availability or affordability.",
-        "Driving and straight-line results differ materially; method choice must be disclosed.",
+        "Straight-line distance is excluded; road-network thresholds must be disclosed.",
+        "The current data does not quantify food abundance or supply volume.",
+        "Race and gender demographic analysis is outside the current scope.",
         "The national low-income retailer-access estimate is provisional because of fourteen missing New York denominators. Alabama and the project region are unaffected.",
     ])
 
@@ -582,13 +585,14 @@ def build_document() -> Path:
     base.add_page_break(doc)
 
     # Sources
-    base.add_heading(doc, "Appendix C. Official sources", 1)
+    heading = base.add_heading(doc, "Appendix C. Official sources", 1)
+    heading.paragraph_format.page_break_before = True
     sources = [
         ("FAOSTAT Suite of Food Security Indicators", "Food and Agriculture Organization of the United Nations", "https://data.fao.org/catalog/dataset/955d6564-40a9-48b4-b51b-f19d65bb3539", "Global, regional, and national food-security indicators."),
         ("FAOSTAT Cost and Affordability of a Healthy Diet", "Food and Agriculture Organization of the United Nations", "https://bulks-faostat.fao.org/production/Cost_Affordability_Healthy_Diet_(CoAHD)_E_All_Data_(Normalized).zip", "Healthy-diet affordability indicators through 2025."),
         ("Household Food Security in the United States in 2024", "USDA Economic Research Service", "https://ers.usda.gov/sites/default/files/_laserfiche/publications/113623/ERR-358.pdf", "2024 national and 2022–2024 state household estimates."),
         ("Food Security in the U.S.: Key Statistics & Graphics", "USDA Economic Research Service", "https://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/key-statistics-graphics", "Official national summary and definitions."),
-        ("Food Access Research Atlas — Download the Data", "USDA Economic Research Service", "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data", "Official 2025 SRAM download and release information."),
+        ("Food Access Research Atlas - Download the Data", "USDA Economic Research Service", "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data", "Official 2025 SRAM download and release information."),
         ("SRAM Reference Guide", "USDA Economic Research Service", "https://www.ers.usda.gov/data-products/food-access-research-atlas/documentation/snap-authorized-retailer-access-map-reference-guide", "Variables, thresholds, and retailer universe."),
         ("SRAM Data Sources and Technical Methods", "USDA Economic Research Service", "https://www.ers.usda.gov/data-products/food-access-research-atlas/documentation/snap-authorized-retailer-access-map-data-sources-and-technical-methods", "STARS, Census, LandScan, ACS, distance, and method details."),
         ("2020 Alabama Census Tract Boundaries", "U.S. Census Bureau", "https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_01_tract_500k.zip", "Mapping geometry."),
@@ -607,12 +611,23 @@ def build_document() -> Path:
         ("Global, U.S., Southeast, Alabama facts reported", "Yes"),
         ("Primary measure sufficient for project geography", "Yes"),
         ("Subgroup denominators clear", "Yes"),
-        ("Driving-distance sensitivity disclosed", "Yes"),
+        ("Road-network sensitivity disclosed", "Yes"),
+        ("Straight-line result excluded", "Yes"),
         ("Source hashes and retrieval dates captured", "Yes"),
         ("Blocking QA failures", "None"),
         ("Allergy integration", "Paused pending feasibility gate"),
     ]
     base.add_table(doc, ["Check", "Result"], checkpoint_rows, [6600, 2760], font_size=9.2)
+
+    roles_heading = base.add_heading(doc, "Appendix E. Project roles", 1)
+    roles_heading.paragraph_format.page_break_before = True
+    base.add_body(doc, "Roles are placed at the end so readers encounter the project question, methods, evidence, and limitations first.")
+    base.add_table(doc, ["Team member", "Primary responsibilities"], [
+        ("Sharon Brooks", "Team lead and project management, meeting coordination, and review of the repository framework."),
+        ("Sandra Kopecky", "Data and database work, source review, and use of the approved dataset for analysis."),
+        ("April Gillespie", "Repository management, analysis, technical implementation, documentation updates, and integration of validated team data."),
+        ("Shared", "Review definitions and final numbers, record the presentation, and submit during the weekend ending September 13, 2026."),
+    ], [2500, 6860], font_size=9.0)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     doc.save(OUTPUT)
@@ -622,4 +637,3 @@ def build_document() -> Path:
 if __name__ == "__main__":
     result = build_document()
     print(result)
-

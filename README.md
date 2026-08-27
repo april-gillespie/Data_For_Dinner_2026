@@ -1,38 +1,79 @@
 # Data for Dinner 2026
 
-## Team
+## Project status
 
-- Sharon Brooks — team lead / project management
-- Sandra Kopecky — data and database
-- April Gillespie — analysis and technical implementation
+The food-access analysis is complete and quality checked. The primary local measure uses road-network distance. Straight-line distance is excluded from the active analysis and all published results. The team plans to record the final presentation and submit the project during the weekend ending September 13, 2026.
 
 ## Research question
 
-What does current official data show about access to food globally, in the United States, across the project-defined Southeast, and in Alabama?
+What does current official data show about food security and access to food globally, in the United States, across the project-defined Southeast, and in Alabama?
 
-The active analysis intentionally excludes food allergies. Allergy data is treated as a separate feasibility crawl so that prevalence, labeling, product availability, recall events, and retailer access are not combined before their units and joins are validated.
+Food insecurity is a household condition in which access to adequate food is limited or uncertain because of insufficient money or other resources. Food access is the ability to reach and obtain food. The local analysis measures proximity to SNAP-authorized retailers and does not treat proximity as a complete measure of food insecurity.
 
-## Geographic scope
+## Scope
 
-The project-defined Southeast is Alabama, Arkansas, Florida, Georgia, Kentucky, Louisiana, Mississippi, North Carolina, South Carolina, and Tennessee. This is a project convention, not a claim that it is the only official regional definition.
+The active analysis includes global and U.S. food-insecurity context, a ten-state comparison, and Alabama tract-level retailer access. The project-defined Southeast is Alabama, Arkansas, Florida, Georgia, Kentucky, Louisiana, Mississippi, North Carolina, South Carolina, and Tennessee. This is a project convention, not a claim that it is the only official regional definition.
 
-## Current analytical design
+The active analysis excludes:
+
+- food allergies and allergen-specific commodity analysis;
+- race and gender demographic analysis;
+- straight-line distance metrics;
+- causal claims about retailer proximity and food insecurity; and
+- food price, product quality, inventory, transit, and household-level local food-insecurity outcomes.
+
+Exploratory allergen files remain available for future feasibility work, but they are not inputs to the active analysis. See [data/README.md](data/README.md) and [docs/allergy_next_crawl.md](docs/allergy_next_crawl.md).
+
+## Study period and source vintages
+
+The frozen pull was retrieved August 22, 2026, Central Time. The sources do not share one observation period:
+
+- FAOSTAT core food-insecurity indicators use 2023-2025 averages, with some affordability series through 2025.
+- USDA household food-security data use the 2024 national estimate and 2022-2024 state averages.
+- USDA retailer access uses SNAP-authorized retailers as of June 2025, 2020 Census population, and 2020-2024 ACS inputs.
+- Alabama map geometry uses 2020 Census tracts.
+
+Results are compared only where units, denominators, geography, and periods support the comparison. Retrieval date is not treated as the observation date.
+
+## Analytical design
 
 - Global context: FAOSTAT food-insecurity and healthy-diet-affordability indicators.
 - U.S. and state outcomes: USDA ERS household food-security estimates.
-- Local physical access: USDA ERS 2025 SNAP-authorized Retailer Access Map (SRAM), using the network-distance threshold of 1 mile for urban tracts and 10 miles for rural tracts.
+- Local physical access: USDA ERS 2025 SNAP-authorized Retailer Access Map, using more than 1 driving mile for urban tracts and more than 10 driving miles for rural tracts.
 - Alabama mapping: U.S. Census Bureau 2020 tract geometry.
+- Household need proxy: occupied housing units receiving SNAP, reported with its matching housing-unit denominator.
 
-These layers answer related but different questions. Global population indicators, U.S. household food insecurity, and tract retailer proximity are reported separately and are not treated as a single comparable metric.
+These layers answer related but different questions. Global population indicators, U.S. household food insecurity, and tract retailer proximity are reported separately and are not combined into one score.
+
+## Method decisions
+
+- The primary result uses the road-network threshold of 1 mile for urban tracts and 10 miles for rural tracts.
+- Straight-line distance is excluded because it does not represent road travel and produced implausibly influential outliers for this study.
+- Sensitivity checks vary the road-network threshold only: 0.5 mile urban and 10 miles rural, plus 1 mile urban and 20 miles rural.
+- Tract GEOIDs are stored as 11-character text. The pipeline restores leading zeros before every join.
+- State margins of error remain attached to household food-insecurity estimates.
 
 ## Factual highlights
 
-- FAOSTAT estimates 26.8% of the world population experienced moderate or severe food insecurity in 2023–2025; the corresponding U.S. estimate is 10.7%.
+- FAOSTAT estimates 26.8% of the world population experienced moderate or severe food insecurity in 2023-2025. The corresponding U.S. estimate is 10.7%.
 - USDA estimates 13.7% of U.S. households were food insecure in 2024.
-- Among the ten project states, 2022–2024 household food-insecurity estimates range from 11.8% in North Carolina to 19.4% in Arkansas. Alabama is 12.1% with a 2.23 percentage-point margin of error.
-- In Alabama, 20.2% of low-income residents are beyond the primary SRAM retailer-access threshold. Alabama has 151 low-income/low-access tracts, or 10.5% of its tracts.
+- Among the ten project states, 2022-2024 household food-insecurity estimates range from 11.8% in North Carolina to 19.4% in Arkansas. Alabama is 12.1%, with a 2.23 percentage-point margin of error.
+- In Alabama, 20.2% of low-income residents are beyond the primary retailer-access threshold. Alabama has 151 low-income/low-access tracts, or 10.5% of its tracts.
 - Alabama's low-income low-access share is slightly below the provisional U.S. estimate of 21.2%, while its share of tracts flagged low-income/low-access is above the U.S. share of 7.5%.
-- Driving distance gives a materially higher Alabama burden than straight-line distance (20.2% versus 8.6% of low-income residents), so the distance method must remain visible in every report.
+
+## Sensitivity checkpoint
+
+The final Alabama headline is 20.2% of low-income residents beyond the primary threshold. Under the stricter 0.5-mile urban threshold, the estimate is 35.9%. Under the 20-mile rural threshold, it is 19.6%. The urban threshold materially affects the burden estimate, so every final chart, table, and narrative must state the selected threshold.
+
+## Visualization priority
+
+The final story should distinguish the presence of food resources from the ability to reach and afford food. The current repository measures food insecurity, healthy-diet affordability, and retailer proximity. It does not yet contain a validated food-supply-volume measure, so a food-abundance claim or map should be added only after that measure, unit, date range, and geographic coverage are approved.
+
+## Repository policy
+
+Only reviewed, reproducible, publication-ready files belong in the GitHub repository. Raw downloads, local previews, caches, exploratory allergen outputs, and partial drafts remain ignored. A new dataset is published only after its source, vintage, geography, unit, denominator, license, processing steps, and QA status are documented.
+
+The 2024 Feeding America Alabama data discussed on August 25 is not integrated because the reviewed repository does not contain the source file or enough metadata to validate the reported percentages. The acceptance requirements are recorded in [docs/decisions_2026-08-25.md](docs/decisions_2026-08-25.md).
 
 ## Repository structure
 
@@ -40,7 +81,7 @@ These layers answer related but different questions. Global population indicator
 data/
   metadata/        source manifest and variable dictionary
   processed/       analysis-ready CSV outputs
-docs/              methodology and allergy-crawl recommendation
+docs/              methods, decisions, limitations, and future-work notes
 figures/           reviewed charts and Alabama tract map
 reports/           team report, PDF, and analysis workbook
 results/           QA, sensitivity, assessment, and findings outputs
@@ -65,11 +106,13 @@ The acquisition script preserves existing downloads and writes SHA-256 hashes to
 - `reports/Data_for_Dinner_Food_Access_Analysis.pdf`
 - `reports/Data_for_Dinner_Food_Access_Analysis.xlsx`
 
-## Source dates
+## Supporting documentation
 
-The frozen pull was retrieved August 22, 2026 (Central Time). The SRAM retailer list is June 2025, household food-security data are 2024 annual and 2022–2024 state averages, and FAOSTAT core indicators extend through 2023–2025 or 2025 depending on the series.
+- [Methodology](docs/methodology.md)
+- [August 25 decisions](docs/decisions_2026-08-25.md)
+- [Known limitations and blind spots](docs/limitations.md)
+- [Allergy feasibility note](docs/allergy_next_crawl.md)
 
-## Status
+## Project roles
 
-Analysis complete and quality checked. The primary dataset is retained for the current question. Food allergies remain a separately gated next crawl.
-
+Roles are maintained in the supporting document [docs/project_roles.md](docs/project_roles.md) so readers encounter the project content before team assignments.
