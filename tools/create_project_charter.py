@@ -596,11 +596,12 @@ def build_document():
         ("Global context", "FAOSTAT Suite of Food Security Indicators", "Country or region; annual", "Use one contextual food-insecurity indicator. Do not join it to U.S. tract data."),
         ("U.S. and Southeast outcome", "USDA Current Population Survey Food Security Supplement", "National and state; three-year averages", "Compare household food-insecurity prevalence across the ten states and United States."),
         ("Core local analysis", "USDA 2025 SNAP-authorized Retailer Access Map", "2020-based census tract", "Primary source for Alabama mapping and consistent geographic comparisons."),
+        ("Alabama modeled outcome context", "Feeding America Map the Meal Gap 2026", "County and state; observation year 2024", "Report individual-level modeled food-insecurity and food-cost estimates as a separate layer."),
         ("Optional county context", "USDA Food Environment Atlas", "County and state; varying years", "Use only when a specific county-level indicator fills a documented gap."),
         ("Map geometry", "USDA map service or compatible Census tract geometry", "Census tract", "Match the 2025 access data's 2020 tract basis; record the geography vintage."),
     ]
     add_table(doc, ["Story layer", "Source", "Geographic grain", "Planned use"], data_rows, [1440, 2340, 1980, 3600], font_size=9)
-    source_note = doc.add_paragraph("Sources and access links are listed in Appendix B. Data vintages must be recorded at download time.")
+    source_note = doc.add_paragraph("Sources and access links are listed in Appendix B. Data vintages must be recorded at download time. Request-only raw packages stay outside GitHub unless redistribution terms are explicit.")
     source_note.paragraph_format.space_before = Pt(4)
     source_note.paragraph_format.space_after = Pt(4)
     for run in source_note.runs:
@@ -768,6 +769,7 @@ def build_document():
         "Use the road-network 1-mile urban / 10-mile rural primary measure.",
         "Exclude straight-line distance and vary road-network thresholds for sensitivity.",
         "Exclude food allergies, race, and gender from the current analysis.",
+        "Retain the validated Feeding America 2024 county and state modeled estimates as a separate outcome layer.",
         "Publish only finalized repository files and place roles in supporting material at the end.",
         "Record and submit the final project during the weekend ending September 13, 2026.",
     )
@@ -785,7 +787,7 @@ def build_document():
         "The exact publisher page and downloadable file are recorded.",
         "Release, observation, and retrieval dates are distinguished.",
         "Geography, unit, denominator, identifiers, and missing-value rules are documented.",
-        "License and redistribution terms permit the planned use.",
+        "Access and redistribution terms are documented; raw package publication requires explicit permission.",
         "Processing is reproducible and the source adds a unique analytical purpose.",
         "QA and reconciliation checks pass for Alabama and the project region.",
     ):
@@ -799,7 +801,7 @@ def build_document():
         ("D03", "USDA 2025 SNAP-authorized Retailer Access Map", "Primary local analysis", "Piloting", "Test Alabama network-based variables, keys, counts, and geography."),
         ("D04", "USDA Food Environment Atlas", "Optional county context", "Proposed", "Retain only if a documented county-level gap remains."),
         ("D05", "Compatible census-tract geometry", "Mapping", "Proposed", "Use the USDA service or confirmed 2020-based tract geometry."),
-        ("D06", "Feeding America Alabama map data", "Potential Alabama context", "On hold", "Add only after source file, year meaning, fields, denominator, geography, license, and Alabama totals are validated."),
+        ("D06", "Feeding America Map the Meal Gap 2026", "Alabama county and state outcome context", "Accepted", "Use selected 2024 fields separately; keep the request-only raw archive outside GitHub and retain the reconciliation note."),
         ("A01", "Allergy/gluten exploration", "Out-of-scope archive", "Archived", "Preserve existing work; exclude it from active data and figures."),
     ]
     add_table(doc, ["ID", "Dataset", "Purpose", "Status", "Next action"], starter_rows, [720, 2460, 1740, 1260, 3180], font_size=8.75)
@@ -852,6 +854,30 @@ def build_document():
         "U.S. Department of Agriculture, Economic Research Service",
         "https://www.ers.usda.gov/data-products/food-environment-atlas/data-access-and-documentation-downloads",
         "Optional county- and state-level food-environment indicators with varying source years.",
+    )
+    add_source_item(
+        doc,
+        7,
+        "Map the Meal Gap 2026 Report",
+        "Feeding America National Organization",
+        "https://www.feedingamerica.org/research/map-the-meal-gap/overall-executive-summary",
+        "Published July 28, 2026; modeled local food-insecurity and food-cost estimates for observation year 2024.",
+    )
+    add_source_item(
+        doc,
+        8,
+        "Map the Meal Gap Methodology",
+        "Feeding America National Organization",
+        "https://www.feedingamerica.org/research/map-the-meal-gap/how-we-got-the-map-data",
+        "Methods, geographic models, food budget shortfall, and meal-cost definitions.",
+    )
+    add_source_item(
+        doc,
+        9,
+        "Map the Meal Gap Data Request",
+        "Feeding America National Organization",
+        "https://www.feedingamerica.org/research/map-the-meal-gap/by-county",
+        "Official request workflow for the source package. The raw archive remains outside GitHub because it contains no explicit redistribution license.",
     )
 
     limitations_heading = add_heading(doc, "Appendix C. Known USDA measurement limitations to carry forward", 1)

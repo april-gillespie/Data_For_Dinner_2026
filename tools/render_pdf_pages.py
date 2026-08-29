@@ -36,4 +36,3 @@ def render(pdf_path: Path, output_dir: Path) -> None:
 
 if __name__ == "__main__":
     render(Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve())
-

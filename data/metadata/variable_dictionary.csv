@@ -12,4 +12,9 @@ la_snap_mixed,Derived from USDA SRAM,SNAP-recipient occupied housing units beyon
 food_insecurity_pct,USDA CPS-FSS,Households food insecure at some time during the three-year period,percent of households,State estimate with margin of error.
 moderate_or_severe_food_insecurity,FAOSTAT FIES,Population experiencing moderate or severe food insecurity,percent of population,Three-year average with confidence bounds.
 healthy_diet_unaffordability,FAOSTAT CoAHD,Population unable to afford a healthy diet,percent of population,Economic-access indicator.
-
+county_fips,Feeding America MMG 2026,Five-digit county FIPS identifier,text,Leading zero retained; Alabama values begin 01.
+overall_food_insecurity_rate,Feeding America MMG 2026,Estimated share of inhabitants who are food insecure,proportion of people,Modeled 2024 county or state estimate; multiply by 100 for percent display.
+food_insecure_persons,Feeding America MMG 2026,Estimated number of inhabitants who are food insecure,people,County and state estimates come from different geographic models and are not forced to sum.
+child_food_insecurity_rate,Feeding America MMG 2026,Estimated share of children under age 18 who are food insecure,proportion of children,Modeled 2024 county or state estimate.
+cost_per_meal_usd,Feeding America MMG 2026,Average amount spent on food per meal by food-secure individuals,U.S. dollars per meal,Localized food-cost estimate; market-basket values are flagged when imputed.
+annual_food_budget_shortfall_usd,Feeding America MMG 2026,Estimated annual additional food dollars needed among people who are food insecure,U.S. dollars,Reported separately from retailer proximity.

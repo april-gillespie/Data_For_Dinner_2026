@@ -207,6 +207,18 @@ def read_us_food_security() -> tuple[pd.DataFrame, dict]:
     return latest, national
 
 
+def read_mmg_outputs() -> tuple[pd.DataFrame, pd.DataFrame]:
+    counties = pd.read_csv(
+        PROCESSED / "alabama_county_food_insecurity_2024.csv",
+        dtype={"county_fips": "string"},
+    )
+    state = pd.read_csv(
+        PROCESSED / "alabama_state_food_insecurity_2024.csv",
+        dtype={"state_fips": "string"},
+    )
+    return counties, state
+
+
 def load_sram() -> tuple[pd.DataFrame, dict]:
     base = RAW / "usda_sram" / "extracted"
     common = {"dtype": {"CensusTract20": "string"}, "low_memory": False, "encoding": "cp1252"}
@@ -356,7 +368,13 @@ def build_sensitivity(sram: pd.DataFrame) -> pd.DataFrame:
     return result
 
 
-def build_qa(sram: pd.DataFrame, diagnostics: dict, state_food: pd.DataFrame) -> pd.DataFrame:
+def build_qa(
+    sram: pd.DataFrame,
+    diagnostics: dict,
+    state_food: pd.DataFrame,
+    mmg_counties: pd.DataFrame,
+    mmg_state: pd.DataFrame,
+) -> pd.DataFrame:
     checks = []
 
     def add(check: str, status: str, observed, expected: str, note: str = "") -> None:
@@ -397,6 +415,30 @@ def build_qa(sram: pd.DataFrame, diagnostics: dict, state_food: pd.DataFrame) ->
     al_geoids = set(sram.loc[sram["State"] == "Alabama", "GEOID20"])
     add("Alabama geometry join coverage", "PASS" if al_geoids == shape_geoids else "FAIL", len(al_geoids & shape_geoids), f"{len(al_geoids)}")
 
+    add("Map the Meal Gap Alabama county rows", "PASS" if len(mmg_counties) == 67 else "FAIL", len(mmg_counties), "67")
+    add("Map the Meal Gap duplicate county FIPS", "PASS" if mmg_counties["county_fips"].duplicated().sum() == 0 else "FAIL", int(mmg_counties["county_fips"].duplicated().sum()), "0")
+    valid_county_fips = bool(mmg_counties["county_fips"].str.fullmatch(r"01\d{3}").all())
+    add("Map the Meal Gap Alabama county FIPS format", "PASS" if valid_county_fips else "FAIL", int(valid_county_fips), "Five-digit text beginning 01")
+    mmg_rate_columns = [
+        "overall_food_insecurity_rate",
+        "food_insecure_at_or_below_snap_threshold_rate",
+        "food_insecure_above_snap_threshold_rate",
+        "child_food_insecurity_rate",
+    ]
+    rates_valid = bool(mmg_counties[mmg_rate_columns].apply(lambda column: column.between(0, 1) | column.isna()).all().all())
+    add("Map the Meal Gap county rates within 0 to 1", "PASS" if rates_valid else "FAIL", int(rates_valid), "All retained rates")
+    state_valid = len(mmg_state) == 1 and int(mmg_state.iloc[0]["observation_year"]) == 2024
+    add("Map the Meal Gap Alabama state benchmark", "PASS" if state_valid else "FAIL", len(mmg_state), "One Alabama row for observation year 2024")
+    county_total = int(mmg_counties["food_insecure_persons"].sum())
+    state_total = int(mmg_state.iloc[0]["food_insecure_persons"])
+    add(
+        "Map the Meal Gap county to state count reconciliation",
+        "REVIEW",
+        state_total - county_total,
+        "Document difference rather than force equality",
+        "State estimates aggregate congressional-district estimates, while county estimates use the county model. The source states that their totals need not match.",
+    )
+
     qa = pd.DataFrame(checks)
     qa.to_csv(RESULTS / "qa_results.csv", index=False)
     return qa
@@ -411,8 +453,8 @@ def build_dataset_assessment() -> pd.DataFrame:
         ["CENSUS_TRACTS_AL_2020", "Alabama mapping geometry", "2020 census tract", "2020", "KEEP - mapping support", "Geometry only; must join on an 11-digit text GEOID."],
         ["USDA_LRAM_2019", "Large-supermarket retailer-universe sensitivity", "2010 census tract", "2019 retailer list", "OPTIONAL NEXT CRAWL", "Different retailer universe and tract base; use as a sensitivity comparison, not a time series."],
         ["USDA_FOOD_ENVIRONMENT_ATLAS", "County-level price, store, assistance, and environment context", "County/state", "Mixed vintages", "ADD ONLY FOR A DECLARED GAP", "Do not add broadly; retain only variables with a specific analytical purpose."],
-        ["FEEDING_AMERICA_AL_2024", "Potential Alabama food-insecurity context", "Unconfirmed", "2024 label requires validation", "HOLD - validation required", "Meeting notes report a retrieved map, but the repository lacks the source file, direct citation, definitions, denominator, geography, license, and reconciliation record."],
-        ["SUBSTATE_FOOD_INSECURITY_OUTCOME", "County/tract food-insecurity outcome", "County or smaller", "No directly comparable official tract series identified", "GAP - evaluate modeled source", "Needed only if the team wants to explain local food insecurity rather than local retailer access."],
+        ["FEEDING_AMERICA_MMG_2026", "Modeled individual food-insecurity and food-cost context", "County/state", "2024 observation year; file updated July 28, 2026", "KEEP - separate outcome layer", "Modeled estimates, not household survey rates or tract results. State estimates aggregate district results, so county sums differ from the state total."],
+        ["SUBSTATE_FOOD_INSECURITY_OUTCOME", "Tract food-insecurity outcome", "Tract", "No directly comparable tract outcome identified", "GAP - do not infer", "Map the Meal Gap fills the county outcome gap but does not provide tract-level food-insecurity estimates."],
     ]
     frame = pd.DataFrame(rows, columns=["source_id", "analytical_purpose", "grain", "vintage", "recommendation", "limitation"])
     frame.to_csv(RESULTS / "dataset_assessment.csv", index=False)
@@ -434,6 +476,12 @@ def build_variable_dictionary() -> pd.DataFrame:
         ["food_insecurity_pct", "USDA CPS-FSS", "Households food insecure at some time during the three-year period", "percent of households", "State estimate with margin of error."],
         ["moderate_or_severe_food_insecurity", "FAOSTAT FIES", "Population experiencing moderate or severe food insecurity", "percent of population", "Three-year average with confidence bounds."],
         ["healthy_diet_unaffordability", "FAOSTAT CoAHD", "Population unable to afford a healthy diet", "percent of population", "Economic-access indicator."],
+        ["county_fips", "Feeding America MMG 2026", "Five-digit county FIPS identifier", "text", "Leading zero retained; Alabama values begin 01."],
+        ["overall_food_insecurity_rate", "Feeding America MMG 2026", "Estimated share of inhabitants who are food insecure", "proportion of people", "Modeled 2024 county or state estimate; multiply by 100 for percent display."],
+        ["food_insecure_persons", "Feeding America MMG 2026", "Estimated number of inhabitants who are food insecure", "people", "County and state estimates come from different geographic models and are not forced to sum."],
+        ["child_food_insecurity_rate", "Feeding America MMG 2026", "Estimated share of children under age 18 who are food insecure", "proportion of children", "Modeled 2024 county or state estimate."],
+        ["cost_per_meal_usd", "Feeding America MMG 2026", "Average amount spent on food per meal by food-secure individuals", "U.S. dollars per meal", "Localized food-cost estimate; market-basket values are flagged when imputed."],
+        ["annual_food_budget_shortfall_usd", "Feeding America MMG 2026", "Estimated annual additional food dollars needed among people who are food insecure", "U.S. dollars", "Reported separately from retailer proximity."],
     ]
     frame = pd.DataFrame(rows, columns=["field", "source", "definition", "unit", "processing_note"])
     frame.to_csv(METADATA / "variable_dictionary.csv", index=False)
@@ -642,7 +690,13 @@ def save_alabama_map(tracts: pd.DataFrame) -> None:
     image.save(FIGURES / "alabama_tract_food_access_map.png", quality=95)
 
 
-def build_figures(global_data: pd.DataFrame, southeast: pd.DataFrame, regional: dict, tracts: pd.DataFrame) -> None:
+def build_figures(
+    global_data: pd.DataFrame,
+    southeast: pd.DataFrame,
+    regional: dict,
+    tracts: pd.DataFrame,
+    mmg_counties: pd.DataFrame,
+) -> None:
     save_global_chart(global_data)
     food_rows = [
         {
@@ -683,6 +737,22 @@ def build_figures(global_data: pd.DataFrame, southeast: pd.DataFrame, regional: 
     )
     save_subgroup_chart(regional)
     save_alabama_map(tracts)
+    mmg_rows = [
+        {
+            "label": row.county.replace(" County, Alabama", ""),
+            "value": 100.0 * row.overall_food_insecurity_rate,
+            "highlight": False,
+        }
+        for row in mmg_counties.sort_values("overall_food_insecurity_rate", ascending=False).head(10).itertuples()
+    ]
+    save_bar_chart(
+        mmg_rows,
+        FIGURES / "alabama_county_food_insecurity_2024.png",
+        "Highest modeled county food-insecurity rates in Alabama",
+        "Feeding America Map the Meal Gap 2026; individual-level estimates for data year 2024.",
+        "Source: Feeding America, Map the Meal Gap 2026 data request package.",
+        max_value=30,
+    )
 
 
 def build_findings(
@@ -695,6 +765,8 @@ def build_findings(
     tracts: pd.DataFrame,
     sensitivity: pd.DataFrame,
     qa: pd.DataFrame,
+    mmg_counties: pd.DataFrame,
+    mmg_state: pd.DataFrame,
 ) -> dict:
     global_index = global_data.set_index(["indicator_key", "geography"])
 
@@ -711,8 +783,13 @@ def build_findings(
         (sensitivity["geography"] == "Alabama")
         & (sensitivity["distance_method"] == "Driving")
     ].set_index("threshold")
+    mmg_alabama = mmg_state.iloc[0]
+    mmg_high = mmg_counties.sort_values("overall_food_insecurity_rate", ascending=False).iloc[0]
+    mmg_low = mmg_counties.sort_values("overall_food_insecurity_rate", ascending=True).iloc[0]
+    mmg_child_high = mmg_counties.sort_values("child_food_insecurity_rate", ascending=False).iloc[0]
+    mmg_county_total = int(mmg_counties["food_insecure_persons"].sum())
     findings = {
-        "as_of": "2026-08-22",
+        "as_of": "2026-08-29",
         "global": {
             "moderate_or_severe_food_insecurity_world_pct_2023_2025": global_value("moderate_or_severe_food_insecurity", "World"),
             "moderate_or_severe_food_insecurity_us_pct_2023_2025": global_value("moderate_or_severe_food_insecurity", "United States of America"),
@@ -748,6 +825,25 @@ def build_findings(
                 "1_urban_10_rural": float(alabama_sensitivity.loc["1 urban / 10 rural", "low_income_low_access_population_pct"]),
                 "1_urban_20_rural": float(alabama_sensitivity.loc["1 urban / 20 rural", "low_income_low_access_population_pct"]),
             },
+            "feeding_america_mmg_2024": {
+                "observation_year": int(mmg_alabama["observation_year"]),
+                "state_overall_food_insecurity_pct": 100.0 * float(mmg_alabama["overall_food_insecurity_rate"]),
+                "state_food_insecure_persons": int(mmg_alabama["food_insecure_persons"]),
+                "state_child_food_insecurity_pct": 100.0 * float(mmg_alabama["child_food_insecurity_rate"]),
+                "state_food_insecure_children": int(mmg_alabama["food_insecure_children"]),
+                "state_senior_food_insecurity_pct": 100.0 * float(mmg_alabama["senior_food_insecurity_rate"]),
+                "state_older_adult_food_insecurity_pct": 100.0 * float(mmg_alabama["older_adult_food_insecurity_rate"]),
+                "state_cost_per_meal_usd": float(mmg_alabama["cost_per_meal_usd"]),
+                "state_annual_food_budget_shortfall_usd": int(mmg_alabama["annual_food_budget_shortfall_usd"]),
+                "county_count": int(len(mmg_counties)),
+                "county_overall_food_insecurity_median_pct": 100.0 * float(mmg_counties["overall_food_insecurity_rate"].median()),
+                "highest_county": {"county": str(mmg_high["county"]), "pct": 100.0 * float(mmg_high["overall_food_insecurity_rate"])},
+                "lowest_county": {"county": str(mmg_low["county"]), "pct": 100.0 * float(mmg_low["overall_food_insecurity_rate"])},
+                "highest_child_rate_county": {"county": str(mmg_child_high["county"]), "pct": 100.0 * float(mmg_child_high["child_food_insecurity_rate"])},
+                "imputed_market_basket_counties": int(mmg_counties["market_basket_data_imputed"].sum()),
+                "county_food_insecure_persons_sum": mmg_county_total,
+                "state_minus_county_food_insecure_persons": int(mmg_alabama["food_insecure_persons"]) - mmg_county_total,
+            },
         },
         "sufficiency": {
             "primary_dataset": "USDA ERS 2025 SRAM driving-distance data",
@@ -767,15 +863,16 @@ def main() -> None:
     ensure_dirs()
     global_data = read_global_data()
     state_food, national_food = read_us_food_security()
+    mmg_counties, mmg_state = read_mmg_outputs()
     sram, diagnostics = load_sram()
     states, southeast, counties, regional = build_state_and_alabama_outputs(sram, state_food)
     tracts = pd.read_csv(PROCESSED / "alabama_tract_food_access.csv", dtype={"GEOID20": "string"})
     sensitivity = build_sensitivity(sram)
-    qa = build_qa(sram, diagnostics, state_food)
+    qa = build_qa(sram, diagnostics, state_food, mmg_counties, mmg_state)
     build_dataset_assessment()
     build_variable_dictionary()
-    build_figures(global_data, southeast, regional, tracts)
-    findings = build_findings(global_data, national_food, state_food, southeast, counties, regional, tracts, sensitivity, qa)
+    build_figures(global_data, southeast, regional, tracts, mmg_counties)
+    findings = build_findings(global_data, national_food, state_food, southeast, counties, regional, tracts, sensitivity, qa, mmg_counties, mmg_state)
     print(json.dumps({
         "processed_files": len(list(PROCESSED.glob("*.csv"))),
         "figures": len(list(FIGURES.glob("*.png"))),

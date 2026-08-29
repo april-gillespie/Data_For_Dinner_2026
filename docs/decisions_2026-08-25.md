@@ -22,23 +22,21 @@ This record captures the meeting decisions that affect the published repository.
 - Target final recording and submission for the weekend ending September 13, 2026.
 - Prioritize a visual story that contrasts available food resources with actual access, but do not label a measure as food abundance until its definition and data source are approved.
 
-## Feeding America data update
+## Feeding America data decision, completed August 29
 
-The previously deferred Feeding America item now has direct provenance. Sandra Kopecky obtained the official Map the Meal Gap archive from the Feeding America Research Team on August 25, 2026. Feeding America stated that the archive contains 2024 data for the 2026 release, a package covering 2019-2023, and earlier annual files. They also stated that 2023 county overall and child estimates were revised and corrected in the supplied archive.
+The Feeding America Map the Meal Gap 2026 request package is now validated and integrated as a separate Alabama county and state outcome layer. The 2024 label is the observation year. Values are modeled estimates for individuals, children, seniors, and older adults, plus localized food-cost measures. They are not household survey rates and are not tract retailer-access measures.
 
-The source is therefore accepted into project intake and registered in the source manifest. It is not yet promoted into publication outputs because the emailed Qualtrics ZIP must still be locally downloaded, hashed, extracted, inventoried, and mapped to exact variables and denominators. `src/ingest_feeding_america.py` provides that intake workflow, and `docs/feeding_america_source.md` records the provenance and interpretation rules.
+The completed gate records:
 
-Before publication use, confirm:
-
-1. exact file names and schemas inside the supplied archive;
-2. which fields correspond to overall, child, senior/older-adult, income, race/ethnicity, meal-cost, and food-budget-shortfall measures;
-3. the population universe and denominator for every retained field;
-4. geographic grain and identifier format;
-5. permitted use and redistribution terms in the supplied documentation;
-6. use of the corrected 2023 county overall and child values rather than superseded copies;
-7. comparability boundaries with USDA household and retailer-access measures; and
-8. reconciliation of Alabama and selected county values against Feeding America's published outputs.
+1. Feeding America as publisher, its official data request page, and the received archive hash;
+2. observation year 2024 and file update date July 28, 2026;
+3. modeled individual counts and rates, with the appropriate population denominator for each field;
+4. county and state geographic grains, with five-digit county FIPS identifiers stored as text;
+5. a raw-package access note: the archive contains no explicit redistribution license, so it is not committed;
+6. separate interpretation from USDA household food insecurity and USDA retailer proximity;
+7. all 67 Alabama county rows, unique FIPS values, valid rate ranges, and one Alabama state row; and
+8. the documented 35,450-person difference between the state estimate and the sum of county estimates. Feeding America states that state estimates aggregate congressional-district results, so equality is not expected.
 
 ## Validation checkpoint
 
-The primary Alabama retailer-access result remains 20.2% of low-income residents beyond the 1-mile urban and 10-mile rural road-network threshold. The alternate road-network estimates are 35.9% under the 0.5-mile urban threshold and 19.6% under the 20-mile rural threshold. Feeding America food-insecurity estimates are a separate outcome layer and must not be substituted for or blended into this retailer-access metric.
+The primary Alabama result remains 20.2% of low-income residents beyond the 1-mile urban and 10-mile rural road-network threshold. The alternate road-network estimates are 35.9% under the 0.5-mile urban threshold and 19.6% under the 20-mile rural threshold. Final deliverables must use the same primary value and state the threshold.

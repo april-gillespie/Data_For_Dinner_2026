@@ -12,4 +12,9 @@ la_hunv_mixed does not exceed TractHUNV,PASS,0,0,
 la_snap_mixed does not exceed TractSNAP,PASS,0,0,
 Primary measure completeness,REVIEW,15,0 or documented source-data exceptions,"Fourteen Suffolk County, New York tracts lack low-income denominators; one zero-population Massachusetts tract lacks the LILA flag. Alabama and the project-defined Southeast are complete."
 Alabama geometry join coverage,PASS,1436,1436,
-
+Map the Meal Gap Alabama county rows,PASS,67,67,
+Map the Meal Gap duplicate county FIPS,PASS,0,0,
+Map the Meal Gap Alabama county FIPS format,PASS,1,Five-digit text beginning 01,
+Map the Meal Gap county rates within 0 to 1,PASS,1,All retained rates,
+Map the Meal Gap Alabama state benchmark,PASS,1,One Alabama row for observation year 2024,
+Map the Meal Gap county to state count reconciliation,REVIEW,35450,Document difference rather than force equality,"State estimates aggregate congressional-district estimates, while county estimates use the county model. The source states that their totals need not match."

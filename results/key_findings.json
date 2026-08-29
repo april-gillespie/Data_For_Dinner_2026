@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-22",
+  "as_of": "2026-08-29",
   "global": {
     "moderate_or_severe_food_insecurity_world_pct_2023_2025": 26.8,
     "moderate_or_severe_food_insecurity_us_pct_2023_2025": 10.7,
@@ -217,13 +217,41 @@
       "0.5_urban_10_rural": 35.91630205958686,
       "1_urban_10_rural": 20.222953645654634,
       "1_urban_20_rural": 19.617818411956215
+    },
+    "feeding_america_mmg_2024": {
+      "observation_year": 2024,
+      "state_overall_food_insecurity_pct": 17.8,
+      "state_food_insecure_persons": 919160,
+      "state_child_food_insecurity_pct": 24.4,
+      "state_food_insecure_children": 276640,
+      "state_senior_food_insecurity_pct": 7.6,
+      "state_older_adult_food_insecurity_pct": 12.4,
+      "state_cost_per_meal_usd": 3.58,
+      "state_annual_food_budget_shortfall_usd": 624874000,
+      "county_count": 67,
+      "county_overall_food_insecurity_median_pct": 19.0,
+      "highest_county": {
+        "county": "Greene County, Alabama",
+        "pct": 24.8
+      },
+      "lowest_county": {
+        "county": "Shelby County, Alabama",
+        "pct": 13.100000000000001
+      },
+      "highest_child_rate_county": {
+        "county": "Greene County, Alabama",
+        "pct": 39.6
+      },
+      "imputed_market_basket_counties": 22,
+      "county_food_insecure_persons_sum": 883710,
+      "state_minus_county_food_insecure_persons": 35450
     }
   },
   "sufficiency": {
     "primary_dataset": "USDA ERS 2025 SRAM driving-distance data",
     "primary_measure_retained": true,
-    "qa_pass_count": 12,
-    "qa_review_count": 1,
+    "qa_pass_count": 17,
+    "qa_review_count": 2,
     "qa_fail_count": 0,
     "known_limit": "Retailer proximity does not measure affordability, food quality, inventory, transit, or household food insecurity."
   }

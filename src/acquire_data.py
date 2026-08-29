@@ -154,9 +154,15 @@ def main() -> None:
         "status",
         "relative_path",
         "extract_to",
+        "access_notes",
     ]
+    acquired_ids = {row["source_id"] for row in rows}
+    if MANIFEST.exists():
+        with MANIFEST.open(newline="", encoding="utf-8-sig") as stream:
+            preserved = [dict(row) for row in csv.DictReader(stream) if row.get("source_id") not in acquired_ids]
+        rows.extend(preserved)
     with MANIFEST.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
     print(f"Wrote {MANIFEST.relative_to(ROOT)} with {len(rows)} sources")
@@ -164,4 +170,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

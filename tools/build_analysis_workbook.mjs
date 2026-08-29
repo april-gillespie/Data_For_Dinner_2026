@@ -46,7 +46,8 @@ function parseCsv(text) {
 
 function coerce(value, header) {
   if (value === "") return null;
-  if (/^(GEOID20|source_id|state|state_abbr|county|County24|geography|indicator_key|indicator|period|unit|display_value|flag|publisher|dataset|url|vintage|retrieved_at_utc|sha256|analytical_purpose|grain|recommendation|limitation|check|status|expected|note|distance_method|threshold|field|source|definition|processing_note)$/i.test(header)) return value;
+  if (/^(GEOID20|county_fips|state_fips|source_id|state|state_abbr|county|County24|geography|indicator_key|indicator|period|unit|display_value|flag|publisher|dataset|url|vintage|retrieved_at_utc|sha256|analytical_purpose|grain|recommendation|limitation|check|status|expected|note|distance_method|threshold|field|source|definition|processing_note)$/i.test(header)) return value;
+  if (/^market_basket_data_imputed$/i.test(header)) return value.toLowerCase() === "true";
   const number = Number(value);
   return Number.isFinite(number) ? number : value;
 }
@@ -71,11 +72,13 @@ const retailStates = await readCsv("data/processed/us_state_retail_access_summar
 const southeast = await readCsv("data/processed/southeast_state_comparison.csv", ["state", "state_abbr", "food_insecurity_pct", "food_insecurity_moe_pp", "very_low_food_security_pct", "low_access_population_pct", "low_income_low_access_population_pct", "lila_tract_pct", "low_access_children_pct", "low_access_seniors_pct", "low_access_no_vehicle_housing_units_pct", "low_access_snap_housing_units_pct", "food_insecurity_rank_high_to_low", "low_income_low_access_rank_high_to_low"]);
 const counties = await readCsv("data/processed/alabama_county_food_access.csv");
 const tracts = await readCsv("data/processed/alabama_tract_food_access.csv", ["GEOID20", "County24", "Urban", "POP2020", "PovertyRate", "TractLOWI", "DD_SRAM_LILATracts_1And10", "DD_SRAM_LAPOP1_10", "DD_SRAM_LALOWI1_10", "low_access_population_pct", "low_income_low_access_population_pct", "low_access_children_pct", "low_access_seniors_pct", "low_access_no_vehicle_housing_units_pct", "low_access_snap_housing_units_pct", "priority_rank_by_affected_low_income_count"]);
+const mmgCounties = await readCsv("data/processed/alabama_county_food_insecurity_2024.csv");
+const mmgState = await readCsv("data/processed/alabama_state_food_insecurity_2024.csv");
 const sensitivity = await readCsv("results/sensitivity_analysis.csv");
 const qa = await readCsv("results/qa_results.csv");
 const assessment = await readCsv("results/dataset_assessment.csv");
 const variables = await readCsv("data/metadata/variable_dictionary.csv");
-const sources = await readCsv("data/metadata/source_manifest.csv", ["source_id", "publisher", "dataset", "url", "geography", "vintage", "retrieved_at_utc", "bytes", "sha256"]);
+const sources = await readCsv("data/metadata/source_manifest.csv", ["source_id", "publisher", "dataset", "url", "geography", "vintage", "retrieved_at_utc", "bytes", "sha256", "access_notes"]);
 
 const COLORS = {
   navy: "#12304F",
@@ -129,53 +132,42 @@ function addDataSheet(name, title, subtitle, data, endColumn, tableName, widths 
 }
 
 const summary = workbook.worksheets.add("Summary");
-titleBand(summary, "J", "Data for Dinner: food-access analysis", "Global → United States → project-defined Southeast → Alabama | frozen pull: 2026-08-22");
+titleBand(summary, "J", "Data for Dinner: food-access analysis", "Global to United States to project-defined Southeast to Alabama | core pull: 2026-08-22 | MMG package: 2026-08-29");
 summary.getRange("A4:J4").merge();
 summary.getRange("A4").values = [["Key facts"]];
 summary.getRange("A4:J4").format = { fill: COLORS.green, font: { bold: true, color: COLORS.white, size: 12 } };
 summary.getRange("A6:B6").values = [["Measure", "Value"]];
 styleHeader(summary.getRange("A6:B6"));
-summary.getRange("A7:A14").values = [["World moderate/severe food insecurity (2023–2025)"], ["U.S. households food insecure (2024)"], ["Alabama households food insecure (2022–2024)"], ["Alabama low-income residents beyond 1/10-mile threshold"], ["Alabama LILA tracts"], ["Alabama LILA tract share"], ["QA checks passed"], ["QA checks failed"]];
-summary.getRange("B7:B14").formulas = [
-  [`=INDEX('Global'!$F$5:$F$${4 + globalData.rows.length},MATCH(1,('Global'!$A$5:$A$${4 + globalData.rows.length}=\"World\")*('Global'!$B$5:$B$${4 + globalData.rows.length}=\"Prevalence of moderate or severe food insecurity in the total population (percent) (3-year average)\"),0))`],
-  [`=INDEX('US States'!$C$5:$C$${4 + usStates.rows.length},MATCH(\"U.S.\",'US States'!$B$5:$B$${4 + usStates.rows.length},0))`],
-  [`=INDEX('Southeast'!$C$5:$C$${4 + southeast.rows.length},MATCH(\"AL\",'Southeast'!$B$5:$B$${4 + southeast.rows.length},0))`],
-  [`=INDEX('Southeast'!$G$5:$G$${4 + southeast.rows.length},MATCH(\"AL\",'Southeast'!$B$5:$B$${4 + southeast.rows.length},0))`],
-  [`=INDEX('Retail by State'!$J$5:$J$${4 + retailStates.rows.length},MATCH(\"AL\",'Retail by State'!$B$5:$B$${4 + retailStates.rows.length},0))`],
-  [`=INDEX('Retail by State'!$K$5:$K$${4 + retailStates.rows.length},MATCH(\"AL\",'Retail by State'!$B$5:$B$${4 + retailStates.rows.length},0))`],
-  [`=COUNTIF('QA'!$B$5:$B$${4 + qa.rows.length},\"PASS\")`],
-  [`=COUNTIF('QA'!$B$5:$B$${4 + qa.rows.length},\"FAIL\")`],
-];
-summary.getRange("B7:B10").format.numberFormat = "0.0%";
-summary.getRange("B7:B10").formulas = [["=26.8/100"], ["=13.7/100"], ["=INDEX(Southeast!$C:$C,MATCH(\"AL\",Southeast!$B:$B,0))/100"], ["=INDEX(Southeast!$G:$G,MATCH(\"AL\",Southeast!$B:$B,0))/100"]];
-summary.getRange("B11").format.numberFormat = "#,##0";
-summary.getRange("B12").format.numberFormat = "0.0%";
-summary.getRange("B12").formulas = [["=10.5153203343/100"]];
-summary.getRange("B13:B14").format.numberFormat = "0";
-summary.getRange("A7:B14").format.borders = { preset: "inside", style: "thin", color: COLORS.line };
-summary.getRange("B7:B14").format.font = { bold: true, color: COLORS.navy };
+summary.getRange("A7:A16").values = [["World moderate/severe food insecurity (2023-2025)"], ["U.S. households food insecure (2024)"], ["Alabama households food insecure (2022-2024)"], ["Alabama modeled individual food insecurity (2024)"], ["Alabama modeled child food insecurity (2024)"], ["Alabama low-income residents beyond 1/10-mile threshold"], ["Alabama LILA tracts"], ["Alabama LILA tract share"], ["QA checks passed"], ["QA checks failed"]];
+summary.getRange("B7:B16").values = Array.from({ length: 10 }, () => [null]);
+summary.getRange("B7:B12").format.numberFormat = "0.0%";
+summary.getRange("B13").format.numberFormat = "#,##0";
+summary.getRange("B14").format.numberFormat = "0.0%";
+summary.getRange("B15:B16").format.numberFormat = "0";
+summary.getRange("A7:B16").format.borders = { preset: "inside", style: "thin", color: COLORS.line };
+summary.getRange("B7:B16").format.font = { bold: true, color: COLORS.navy };
 summary.getRange("D6:J6").merge();
 summary.getRange("D6").values = [["What stands out"]];
 summary.getRange("D6:J6").format = { fill: COLORS.blue, font: { bold: true, color: COLORS.white } };
-summary.getRange("D7:J12").merge();
-summary.getRange("D7").values = [["Alabama is ninth-highest of the ten project states on the USDA household estimate (12.1% ± 2.23 points) and eighth-highest on the low-income retailer-access burden (20.2%). Its burden is just below the provisional U.S. result of 21.2%, but 10.5% of Alabama tracts are flagged low-income/low-access versus 7.5% nationally. Road-network sensitivity ranges from 19.6% to 35.9%, so the selected threshold must accompany every result."]];
-summary.getRange("D7:J12").format = { fill: COLORS.paleBlue, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.blue } };
-summary.getRange("A16:J16").merge();
-summary.getRange("A16").values = [["Decision"]];
-summary.getRange("A16:J16").format = { fill: COLORS.amber, font: { bold: true, color: COLORS.white } };
-summary.getRange("A17:J21").merge();
-summary.getRange("A17").values = [["Retain USDA SRAM road-network data as the primary local dataset and exclude straight-line fields. Keep FAOSTAT and USDA household estimates as separate context and outcome layers. Keep allergies outside the active scope. Hold the 2024 Feeding America Alabama data until its source file, definitions, denominator, geography, license, and reconciliation are documented."]];
-summary.getRange("A17:J21").format = { fill: COLORS.paleAmber, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.amber } };
-summary.getRange("A23:J23").merge();
-summary.getRange("A23").values = [["Comparability boundary"]];
-summary.getRange("A23:J23").format = { fill: COLORS.red, font: { bold: true, color: COLORS.white } };
-summary.getRange("A24:J27").merge();
-summary.getRange("A24").values = [["FAOSTAT population indicators, USDA household food insecurity, and tract-level SNAP-retailer proximity have different universes, units, and meanings. The workbook keeps them on separate sheets and does not compute a combined score."]];
-summary.getRange("A24:J27").format = { fill: COLORS.paleRed, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.red } };
-summary.getRange("A1:A27").format.columnWidth = 51;
-summary.getRange("B1:B27").format.columnWidth = 18;
-summary.getRange("C1:C27").format.columnWidth = 3;
-summary.getRange("D1:J27").format.columnWidth = 15;
+summary.getRange("D7:J14").merge();
+summary.getRange("D7").values = [["Alabama is ninth-highest of the ten project states on the USDA household estimate (12.1% with a 2.23-point margin of error) and eighth-highest on the low-income retailer-access burden (20.2%). Feeding America separately estimates 17.8% of Alabama residents and 24.4% of children were food insecure in 2024. Road-network sensitivity ranges from 19.6% to 35.9%, so the selected threshold must accompany every proximity result."]];
+summary.getRange("D7:J14").format = { fill: COLORS.paleBlue, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.blue } };
+summary.getRange("A18:J18").merge();
+summary.getRange("A18").values = [["Decision"]];
+summary.getRange("A18:J18").format = { fill: COLORS.amber, font: { bold: true, color: COLORS.white } };
+summary.getRange("A19:J23").merge();
+summary.getRange("A19").values = [["Retain USDA SRAM road-network data as the primary local dataset and exclude straight-line fields. Retain Feeding America Map the Meal Gap as a separate modeled county and state outcome layer. Keep FAOSTAT, USDA household estimates, modeled individual estimates, and retailer proximity distinct. Keep allergies outside the active scope."]];
+summary.getRange("A19:J23").format = { fill: COLORS.paleAmber, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.amber } };
+summary.getRange("A25:J25").merge();
+summary.getRange("A25").values = [["Comparability boundary"]];
+summary.getRange("A25:J25").format = { fill: COLORS.red, font: { bold: true, color: COLORS.white } };
+summary.getRange("A26:J29").merge();
+summary.getRange("A26").values = [["FAOSTAT population indicators, USDA household food insecurity, Feeding America modeled individual estimates, and tract-level SNAP-retailer proximity have different universes, units, and meanings. The workbook keeps them on separate sheets and does not compute a combined score."]];
+summary.getRange("A26:J29").format = { fill: COLORS.paleRed, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.red } };
+summary.getRange("A1:A29").format.columnWidth = 51;
+summary.getRange("B1:B29").format.columnWidth = 18;
+summary.getRange("C1:C29").format.columnWidth = 3;
+summary.getRange("D1:J29").format.columnWidth = 15;
 summary.freezePanes.freezeRows(2);
 
 const globalSheet = addDataSheet("Global", "Global food-access indicators", "Latest selected FAOSTAT values; do not compare these population measures as if they were USDA household or tract measures", globalData, "I", "GlobalIndicators", { A: 24, B: 64, C: 15, D: 12, E: 14, F: 12, G: 12, H: 12, I: 14 });
@@ -213,6 +205,31 @@ tractSheet.getRange(`E5:E${4 + tracts.rows.length}`).format.numberFormat = "0.0"
 tractSheet.getRange(`F5:I${4 + tracts.rows.length}`).format.numberFormat = "#,##0";
 tractSheet.getRange(`J5:O${4 + tracts.rows.length}`).format.numberFormat = "0.0";
 
+const mmgCountySheet = addDataSheet("MMG AL Counties", "Alabama modeled county food insecurity, 2024", "Feeding America Map the Meal Gap 2026; selected fields only; rates are modeled individual estimates and remain separate from retailer proximity", mmgCounties, "P", "MMGAlabamaCounties", { A: 14, B: 10, C: 28, D: 13, E: 21, F: 19, G: 24, H: 22, I: 21, J: 20, K: 20, L: 15, M: 26, N: 24, O: 22, P: 28 });
+mmgCountySheet.getRange(`A5:A${4 + mmgCounties.rows.length}`).format.numberFormat = "@";
+mmgCountySheet.getRange(`D5:D${4 + mmgCounties.rows.length}`).format.numberFormat = "0";
+mmgCountySheet.getRange(`E5:E${4 + mmgCounties.rows.length}`).format.numberFormat = "0.0%";
+mmgCountySheet.getRange(`F5:F${4 + mmgCounties.rows.length}`).format.numberFormat = "#,##0";
+mmgCountySheet.getRange(`G5:I${4 + mmgCounties.rows.length}`).format.numberFormat = "0.0%";
+mmgCountySheet.getRange(`J5:J${4 + mmgCounties.rows.length}`).format.numberFormat = "#,##0";
+mmgCountySheet.getRange(`L5:M${4 + mmgCounties.rows.length}`).format.numberFormat = "$0.00";
+mmgCountySheet.getRange(`N5:N${4 + mmgCounties.rows.length}`).format.numberFormat = "$#,##0";
+mmgCountySheet.getRange(`O5:O${4 + mmgCounties.rows.length}`).format.numberFormat = "0";
+
+const mmgStateSheet = addDataSheet("MMG AL State", "Alabama modeled state food insecurity, 2024", "Feeding America Map the Meal Gap 2026; state estimates aggregate congressional-district results and are not forced to equal county sums", mmgState, "R", "MMGAlabamaState", { A: 12, B: 18, C: 10, D: 13, E: 21, F: 19, G: 24, H: 22, I: 21, J: 20, K: 20, L: 19, M: 23, N: 22, O: 15, P: 26, Q: 24, R: 28 });
+mmgStateSheet.getRange(`A5:A${4 + mmgState.rows.length}`).format.numberFormat = "@";
+mmgStateSheet.getRange(`D5:D${4 + mmgState.rows.length}`).format.numberFormat = "0";
+mmgStateSheet.getRange(`E5:E${4 + mmgState.rows.length}`).format.numberFormat = "0.0%";
+mmgStateSheet.getRange(`F5:F${4 + mmgState.rows.length}`).format.numberFormat = "#,##0";
+mmgStateSheet.getRange(`G5:I${4 + mmgState.rows.length}`).format.numberFormat = "0.0%";
+mmgStateSheet.getRange(`J5:J${4 + mmgState.rows.length}`).format.numberFormat = "#,##0";
+mmgStateSheet.getRange(`K5:K${4 + mmgState.rows.length}`).format.numberFormat = "0.0%";
+mmgStateSheet.getRange(`L5:L${4 + mmgState.rows.length}`).format.numberFormat = "#,##0";
+mmgStateSheet.getRange(`M5:M${4 + mmgState.rows.length}`).format.numberFormat = "0.0%";
+mmgStateSheet.getRange(`N5:N${4 + mmgState.rows.length}`).format.numberFormat = "#,##0";
+mmgStateSheet.getRange(`O5:P${4 + mmgState.rows.length}`).format.numberFormat = "$0.00";
+mmgStateSheet.getRange(`Q5:Q${4 + mmgState.rows.length}`).format.numberFormat = "$#,##0";
+
 const sensSheet = addDataSheet("Sensitivity", "Road-network threshold sensitivity", "Straight-line distance is excluded; the primary result is the 1-mile urban / 10-mile rural row", sensitivity, "I", "SensitivityResults", { A: 28, B: 16, C: 24, D: 20, E: 20, F: 25, G: 25, H: 16, I: 16 });
 sensSheet.getRange(`D5:D${4 + sensitivity.rows.length}`).format.numberFormat = "#,##0";
 sensSheet.getRange(`E5:E${4 + sensitivity.rows.length}`).format.numberFormat = "0.0";
@@ -222,7 +239,7 @@ sensSheet.getRange(`H5:H${4 + sensitivity.rows.length}`).format.numberFormat = "
 sensSheet.getRange(`I5:I${4 + sensitivity.rows.length}`).format.numberFormat = "0.0";
 sensSheet.getRange(`A5:I${4 + sensitivity.rows.length}`).conditionalFormats.add("custom", { formula: "=AND($B5=\"Driving\",$C5=\"1 urban / 10 rural\")", format: { fill: COLORS.paleGreen, font: { bold: true, color: COLORS.green } } });
 
-const qaSheet = addDataSheet("QA", "Quality-assurance results", "No blocking failures; one reviewed source exception is outside Alabama and the project-defined Southeast", qa, "E", "QAResults", { A: 39, B: 13, C: 20, D: 36, E: 86 });
+const qaSheet = addDataSheet("QA", "Quality-assurance results", "No blocking failures; review items document source exceptions and the expected MMG county-to-state difference", qa, "E", "QAResults", { A: 39, B: 13, C: 20, D: 36, E: 86 });
 qaSheet.getRange(`B5:B${4 + qa.rows.length}`).conditionalFormats.add("containsText", { text: "PASS", format: { fill: COLORS.paleGreen, font: { bold: true, color: COLORS.green } } });
 qaSheet.getRange(`B5:B${4 + qa.rows.length}`).conditionalFormats.add("containsText", { text: "REVIEW", format: { fill: COLORS.paleAmber, font: { bold: true, color: COLORS.amber } } });
 qaSheet.getRange(`B5:B${4 + qa.rows.length}`).conditionalFormats.add("containsText", { text: "FAIL", format: { fill: COLORS.paleRed, font: { bold: true, color: COLORS.red } } });
@@ -234,25 +251,40 @@ assessSheet.getRange(`A5:F${4 + assessment.rows.length}`).format.wrapText = true
 const variableSheet = addDataSheet("Variables", "Analysis variable dictionary", "Source definitions and processing notes for retained fields", variables, "E", "VariableDictionary", { A: 32, B: 23, C: 76, D: 16, E: 68 });
 variableSheet.getRange(`A5:E${4 + variables.rows.length}`).format.wrapText = true;
 
-const sourceSheet = addDataSheet("Sources", "Frozen official-source manifest", "URLs, observation vintages, retrieval timestamps, file sizes, and SHA-256 hashes", sources, "I", "SourceManifest", { A: 20, B: 38, C: 50, D: 82, E: 28, F: 39, G: 27, H: 16, I: 68 });
-sourceSheet.getRange(`A5:I${4 + sources.rows.length}`).format.wrapText = true;
+const sourceSheet = addDataSheet("Sources", "Frozen official-source manifest", "URLs, observation vintages, retrieval timestamps, file sizes, SHA-256 hashes, and access notes", sources, "J", "SourceManifest", { A: 20, B: 38, C: 50, D: 82, E: 28, F: 39, G: 27, H: 16, I: 68, J: 70 });
+sourceSheet.getRange(`A5:J${4 + sources.rows.length}`).format.wrapText = true;
 sourceSheet.getRange(`G5:G${4 + sources.rows.length}`).format.numberFormat = "yyyy-mm-dd hh:mm";
 sourceSheet.getRange(`H5:H${4 + sources.rows.length}`).format.numberFormat = "#,##0";
 
+summary.getRange("B7:B16").formulas = [
+  ["=26.8/100"],
+  ["=13.7/100"],
+  [`=INDEX('Southeast'!$C$5:$C$${4 + southeast.rows.length},MATCH(\"AL\",'Southeast'!$B$5:$B$${4 + southeast.rows.length},0))/100`],
+  ["='MMG AL State'!E5"],
+  ["='MMG AL State'!I5"],
+  [`=INDEX('Southeast'!$G$5:$G$${4 + southeast.rows.length},MATCH(\"AL\",'Southeast'!$B$5:$B$${4 + southeast.rows.length},0))/100`],
+  [`=INDEX('Retail by State'!$J$5:$J$${4 + retailStates.rows.length},MATCH(\"AL\",'Retail by State'!$B$5:$B$${4 + retailStates.rows.length},0))`],
+  [`=INDEX('Retail by State'!$K$5:$K$${4 + retailStates.rows.length},MATCH(\"AL\",'Retail by State'!$B$5:$B$${4 + retailStates.rows.length},0))/100`],
+  [`=COUNTIF('QA'!$B$5:$B$${4 + qa.rows.length},\"PASS\")`],
+  [`=COUNTIF('QA'!$B$5:$B$${4 + qa.rows.length},\"FAIL\")`],
+];
+
 await fs.mkdir(previewDir, { recursive: true });
 const renderTargets = [
-  ["Summary", "A1:J27"],
+  ["Summary", "A1:J29"],
   ["Global", "A1:I16"],
   ["US States", "A1:F16"],
   ["Retail by State", "A1:K14"],
   ["Southeast", "A1:N14"],
   ["Alabama Counties", "A1:P14"],
   ["Alabama Tracts", "A1:P14"],
+  ["MMG AL Counties", "A1:P14"],
+  ["MMG AL State", "A1:R5"],
   ["Sensitivity", `A1:I${4 + sensitivity.rows.length}`],
   ["QA", `A1:E${4 + qa.rows.length}`],
   ["Assessment", `A1:F${4 + assessment.rows.length}`],
   ["Variables", `A1:E${4 + variables.rows.length}`],
-  ["Sources", `A1:I${4 + sources.rows.length}`],
+  ["Sources", `A1:J${4 + sources.rows.length}`],
 ];
 for (const [sheetName, range] of renderTargets) {
   const preview = await workbook.render({ sheetName, range, scale: 1, format: "png" });
@@ -260,7 +292,7 @@ for (const [sheetName, range] of renderTargets) {
   await fs.writeFile(path.join(previewDir, `${safe}.png`), new Uint8Array(await preview.arrayBuffer()));
 }
 
-const summaryInspect = await workbook.inspect({ kind: "table", range: "Summary!A1:J27", include: "values,formulas", tableMaxRows: 27, tableMaxCols: 10, maxChars: 12000 });
+const summaryInspect = await workbook.inspect({ kind: "table", range: "Summary!A1:J29", include: "values,formulas", tableMaxRows: 29, tableMaxCols: 10, maxChars: 12000 });
 const southeastInspect = await workbook.inspect({ kind: "table", range: "Southeast!A1:N14", include: "values,formulas", tableMaxRows: 14, tableMaxCols: 14, maxChars: 12000 });
 const errors = await workbook.inspect({ kind: "match", searchTerm: "#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A", options: { useRegex: true, maxResults: 300 }, summary: "final formula error scan", maxChars: 12000 });
 await fs.mkdir(outputDir, { recursive: true });

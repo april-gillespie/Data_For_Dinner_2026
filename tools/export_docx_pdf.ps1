@@ -38,4 +38,3 @@ finally {
 }
 
 Get-Item -LiteralPath $outputPath | Select-Object FullName, Length, LastWriteTime
-

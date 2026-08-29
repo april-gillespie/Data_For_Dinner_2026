@@ -186,14 +186,14 @@ def configure_document(doc: Document):
     footer = section.footer
     fp = footer.paragraphs[0]
     fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = fp.add_run("Data for Dinner 2026  •  August 22, 2026  •  ")
+    r = fp.add_run("Data for Dinner 2026  •  Updated August 29, 2026  •  ")
     base.set_font(r, name="Aptos", size=8, color=MUTED)
     base.add_field(fp, "PAGE")
 
     doc.core_properties.title = "Food Access: Global to Alabama"
-    doc.core_properties.subject = "Official-data pull, factual analysis, dataset sufficiency, and next allergy crawl"
+    doc.core_properties.subject = "Official-data pull, factual analysis, dataset sufficiency, and separate modeled county outcome"
     doc.core_properties.author = "Data for Dinner 2026 team"
-    doc.core_properties.keywords = "food access; food insecurity; Alabama; Southeast; FAOSTAT; USDA SRAM"
+    doc.core_properties.keywords = "food access; food insecurity; Alabama; Southeast; FAOSTAT; USDA SRAM; Map the Meal Gap"
     base.set_update_fields(doc)
 
 
@@ -202,6 +202,8 @@ def build_document() -> Path:
     se_rows = read_csv("data/processed/southeast_state_comparison.csv")
     county_rows = read_csv("data/processed/alabama_county_food_access.csv")
     tract_rows = read_csv("data/processed/alabama_tract_food_access.csv")
+    mmg_county_rows = read_csv("data/processed/alabama_county_food_insecurity_2024.csv")
+    mmg_state_rows = read_csv("data/processed/alabama_state_food_insecurity_2024.csv")
     sensitivity_rows = read_csv("results/sensitivity_analysis.csv")
     qa_rows = read_csv("results/qa_results.csv")
     assessment_rows = read_csv("results/dataset_assessment.csv")
@@ -210,6 +212,8 @@ def build_document() -> Path:
 
     alabama = findings["alabama"]
     united_states = findings["united_states"]
+    mmg = alabama["feeding_america_mmg_2024"]
+    mmg_state = mmg_state_rows[0]
 
     def global_value(geography: str, key: str) -> str:
         row = next(item for item in global_rows if item["geography"] == geography and item["indicator_key"] == key)
@@ -232,17 +236,18 @@ def build_document() -> Path:
     title.add_run("Food Access:\nGlobal to Alabama")
 
     subtitle = doc.add_paragraph(style="Report Subtitle")
-    subtitle.add_run("Official-data pull, factual analysis, dataset sufficiency, and next-crawl recommendation")
+    subtitle.add_run("Official-data pull, factual analysis, dataset sufficiency, and modeled county outcome context")
 
-    base.add_callout(doc, "SCOPE", "Global to United States to project-defined Southeast to Alabama. Food allergies, race and gender demographic analysis, and straight-line distance are outside the active analysis.", accent=BLUE)
+    base.add_callout(doc, "SCOPE", "Global to United States to project-defined Southeast to Alabama. Feeding America county and state estimates are a separate modeled outcome layer. Food allergies, race and gender demographic analysis, and straight-line distance are outside the active analysis.", accent=BLUE)
 
-    meta = doc.add_table(rows=4, cols=2)
+    meta = doc.add_table(rows=5, cols=2)
     meta.style = "Table Grid"
     set_repeat_table_header(meta.rows[0])
     rows = [
         ("Prepared by", "Data for Dinner 2026 project team"),
-        ("Frozen pull", "August 22, 2026 (Central Time)"),
+        ("Frozen pull", "Core sources August 22; Feeding America package August 29, 2026"),
         ("Primary local source", "USDA ERS 2025 SNAP-authorized Retailer Access Map"),
+        ("County outcome layer", "Feeding America Map the Meal Gap 2026, data year 2024"),
         ("Project region", "AL, AR, FL, GA, KY, LA, MS, NC, SC, TN"),
     ]
     for i, (label, value) in enumerate(rows):
@@ -257,7 +262,7 @@ def build_document() -> Path:
 
     # Executive summary
     base.add_heading(doc, "Executive summary", 1)
-    add_section_intro(doc, "The pull supports the current main question. The primary local dataset is sufficient for Alabama and the ten-state comparison, provided the distance method and measurement boundaries remain explicit.")
+    add_section_intro(doc, "The pull supports the current main question. The primary local dataset is sufficient for Alabama and the ten-state comparison, provided the distance method and measurement boundaries remain explicit. Feeding America now supplies a validated, separate county and state outcome layer for 2024.")
 
     base.add_heading(doc, "Key facts", 2)
     add_fact_list(doc, [
@@ -266,6 +271,7 @@ def build_document() -> Path:
         "Project-defined Southeast: 2022–2024 state household estimates range from 11.8% in North Carolina to 19.4% in Arkansas. Alabama is 12.1% ± 2.23 percentage points and ranks ninth of ten from high to low.",
         f"Alabama: {pct(alabama['low_income_low_access_population_pct'])} of low-income residents, or {num(alabama['low_income_low_access_population'])} people, are beyond the primary retailer-access threshold.",
         f"Alabama: {num(alabama['lila_tract_count'])} tracts, or {pct(alabama['lila_tract_pct'])}, are flagged low-income/low-access. The provisional U.S. share is {pct(united_states['lila_tract_pct'])}.",
+        f"Feeding America outcome context: the modeled Alabama rate is {pct(mmg['state_overall_food_insecurity_pct'])}, or {num(mmg['state_food_insecure_persons'])} people, and the modeled child rate is {pct(mmg['state_child_food_insecurity_pct'])}, or {num(mmg['state_food_insecure_children'])} children, in 2024.",
         f"Sensitivity: Alabama's low-income burden is {pct(alabama['driving_threshold_low_income_low_access_pct']['1_urban_10_rural'])} at the primary threshold, {pct(alabama['driving_threshold_low_income_low_access_pct']['0.5_urban_10_rural'])} at 0.5 mile urban / 10 miles rural, and {pct(alabama['driving_threshold_low_income_low_access_pct']['1_urban_20_rural'])} at 1 mile urban / 20 miles rural.",
     ])
 
@@ -273,17 +279,17 @@ def build_document() -> Path:
     decision_rows = [
         ("Primary local dataset", "Retain USDA 2025 SRAM", "Complete for Alabama and the ten project states; supports tract, population, low-income, and subgroup measures."),
         ("Global and U.S. context", "Retain as separate layers", "FAOSTAT population indicators and USDA household estimates answer different questions from retailer proximity."),
+        ("County outcome context", "Retain Map the Meal Gap separately", "The validated 2024 county and state modeled estimates fill a descriptive outcome gap without creating a tract outcome or combined score."),
         ("More datasets", "Add only against a declared gap", "Avoid a broad crawl that mixes vintages and measures without an analytical purpose."),
         ("Distance method", "Road network only", "Straight-line distance is excluded because it does not represent road travel and produced implausibly influential outliers for this study."),
         ("Allergies", "Pause integration; run feasibility crawl", "No single official public source links prevalence, tract food insecurity, store inventory, price, and allergens."),
     ]
     base.add_table(doc, ["Decision area", "Recommendation", "Reason"], decision_rows, [2080, 2560, 4720], font_size=8.8)
-    base.add_callout(doc, "COMPARABILITY", "Global population indicators, U.S. household food insecurity, and tract retailer proximity have different universes, units, and meanings. They are reported side by side, not as one numeric scale.", accent=RED)
-    base.add_page_break(doc)
+    base.add_callout(doc, "COMPARABILITY", "Global population indicators, U.S. household food insecurity, Feeding America modeled individual estimates, and tract retailer proximity have different universes, units, and meanings. They are reported side by side, not as one numeric scale.", accent=RED)
 
     # Data pull
     base.add_heading(doc, "1. Data selected and captured", 1)
-    add_section_intro(doc, "All retained sources are official, publicly downloadable, and frozen with URLs, file sizes, retrieval timestamps, and SHA-256 hashes. Raw files are reproducibly downloaded; processed tables and metadata are stored with the analysis.")
+    add_section_intro(doc, "All retained sources are official and are either publicly downloadable or supplied through an official request workflow. URLs, file sizes, retrieval timestamps, access notes, and SHA-256 hashes are recorded. Public raw files are reproducibly downloaded; the request-only archive remains local while selected processed tables and metadata are stored with the analysis.")
     source_rows = []
     for row in manifest_rows:
         source_rows.append((row["source_id"], row["dataset"], row["geography"], row["vintage"]))
@@ -301,10 +307,10 @@ def build_document() -> Path:
     base.add_heading(doc, "Capture package", 2)
     base.add_table(doc, ["Artifact", "Contents"], [
         ("Source manifest", "Official URL, geography, vintage, retrieval time, bytes, SHA-256, local path."),
-        ("Processed CSVs", "Global summary, all state outcomes, all state retailer access, ten-state comparison, Alabama counties, all Alabama tracts."),
+        ("Processed CSVs", "Global summary, all state outcomes, all state retailer access, ten-state comparison, Alabama retailer-access tables, and selected Alabama Map the Meal Gap county and state extracts."),
         ("Results", "QA checks, sensitivity analysis, dataset sufficiency assessment, key findings."),
-        ("Figures", "Five reviewed charts/maps with source notes and consistent styling."),
-        ("Team files and reproducibility", "This report in DOCX/PDF, a filterable workbook with 12 sheets, acquisition and analysis scripts, a dependency list, and methods documentation."),
+        ("Figures", "Six reviewed charts/maps with source notes and consistent styling."),
+        ("Team files and reproducibility", "This report in DOCX/PDF, a filterable workbook with 14 sheets, acquisition and analysis scripts, a dependency list, and methods documentation."),
     ], [2300, 7060], font_size=9)
 
     # Global
@@ -329,7 +335,6 @@ def build_document() -> Path:
         "The world estimates are 26.8% moderate/severe food insecurity, 9.8% severe food insecurity, 8.1% undernourishment, and 32.7% unable to afford a healthy diet.",
         "The United States is below the world estimate on every selected FAOSTAT indicator: 10.7%, 1.1%, less than 2.5%, and 4.5%, respectively.",
     ])
-    base.add_page_break(doc)
 
     # U.S.
     base.add_heading(doc, "3. United States access to food", 1)
@@ -422,10 +427,43 @@ def build_document() -> Path:
     base.add_table(doc, ["GEOID", "County", "Affected low-income", "Low-income burden", "Poverty rate"], tract_table, [1800, 2000, 2000, 1800, 1760], font_size=8.5)
     base.add_page_break(doc)
 
-    # Subgroups
-    heading = base.add_heading(doc, "8. Subgroup access results", 1)
+    # Feeding America outcome context
+    heading = base.add_heading(doc, "8. Feeding America modeled outcome context", 1)
     heading.paragraph_format.page_break_before = True
-    add_picture(doc, "figures/alabama_subgroup_access.png", "Horizontal comparison of Alabama and United States retailer-access shares for the total population, low-income population, children, seniors, no-vehicle occupied housing units, and SNAP occupied housing units.", "Figure 5. Primary-threshold retailer access by population or housing-unit subgroup.")
+    add_section_intro(doc, "Map the Meal Gap 2026 adds modeled individual-level food-insecurity and localized food-cost estimates for 2024 at county and state levels. It fills a county outcome gap but does not create a tract outcome and does not replace the USDA household estimate or retailer-access measure.")
+    base.add_table(doc, ["Alabama measure", "2024 estimate", "Unit"], [
+        ("Overall food insecurity", pct(mmg["state_overall_food_insecurity_pct"]), f"{num(mmg['state_food_insecure_persons'])} people"),
+        ("Child food insecurity", pct(mmg["state_child_food_insecurity_pct"]), f"{num(mmg['state_food_insecure_children'])} children"),
+        ("Senior food insecurity", pct(mmg["state_senior_food_insecurity_pct"]), "People age 60+"),
+        ("Older-adult food insecurity", pct(mmg["state_older_adult_food_insecurity_pct"]), "People age 50 to 59"),
+        ("Cost per meal", f"${float(mmg['state_cost_per_meal_usd']):.2f}", "Localized estimate"),
+        ("Annual food budget shortfall", f"${float(mmg['state_annual_food_budget_shortfall_usd']):,.0f}", "State estimate"),
+    ], [3900, 1900, 3560], font_size=9.2)
+    add_picture(doc, "figures/alabama_county_food_insecurity_2024.png", "Horizontal bar chart showing the ten highest modeled county food-insecurity rates in Alabama for 2024.", "Figure 5. Highest modeled county food-insecurity rates in Alabama, 2024.", width=6.1)
+    mmg_top_rows = sorted(mmg_county_rows, key=lambda item: float(item["overall_food_insecurity_rate"]), reverse=True)[:10]
+    base.add_table(doc, ["County", "Overall rate", "People", "Child rate", "Cost per meal"], [
+        (
+            row["county"].replace(" County, Alabama", ""),
+            pct(100.0 * float(row["overall_food_insecurity_rate"])),
+            num(row["food_insecure_persons"]),
+            pct(100.0 * float(row["child_food_insecurity_rate"])),
+            f"${float(row['cost_per_meal_usd']):.2f}",
+        )
+        for row in mmg_top_rows
+    ], [2400, 1700, 1700, 1700, 1860], font_size=8.6)
+    add_fact_list(doc, [
+        f"County overall rates range from {pct(mmg['lowest_county']['pct'])} in {mmg['lowest_county']['county'].replace(', Alabama', '')} to {pct(mmg['highest_county']['pct'])} in {mmg['highest_county']['county'].replace(', Alabama', '')}; the county median is {pct(mmg['county_overall_food_insecurity_median_pct'])}.",
+        f"The highest modeled child rate is {pct(mmg['highest_child_rate_county']['pct'])} in {mmg['highest_child_rate_county']['county'].replace(', Alabama', '')}.",
+        f"Market-basket values are imputed in {num(mmg['imputed_market_basket_counties'])} counties and should be interpreted cautiously.",
+        f"County food-insecure counts sum to {num(mmg['county_food_insecure_persons_sum'])}, which is {num(mmg['state_minus_county_food_insecure_persons'])} below the state estimate. The difference is expected because Feeding America state estimates aggregate congressional-district results.",
+    ])
+    base.add_callout(doc, "KEEP SEPARATE", "Map the Meal Gap reports modeled individual estimates. USDA reports household survey estimates. SRAM reports tract retailer proximity. The report does not average, join, or combine these values into one score.", accent=RED)
+    base.add_page_break(doc)
+
+    # Subgroups
+    heading = base.add_heading(doc, "9. Subgroup access results", 1)
+    heading.paragraph_format.page_break_before = True
+    add_picture(doc, "figures/alabama_subgroup_access.png", "Horizontal comparison of Alabama and United States retailer-access shares for the total population, low-income population, children, seniors, no-vehicle occupied housing units, and SNAP occupied housing units.", "Figure 6. Primary-threshold retailer access by population or housing-unit subgroup.")
     subgroup_rows = [
         ("All population", pct(alabama["low_access_population_pct"]), pct(united_states["low_access_population_pct"]), "People"),
         ("Low-income population", pct(alabama["low_income_low_access_population_pct"]), pct(united_states["low_income_low_access_population_pct"]), "Low-income people"),
@@ -444,7 +482,7 @@ def build_document() -> Path:
     base.add_page_break(doc)
 
     # Sensitivity + QA
-    base.add_heading(doc, "9. Sensitivity and sanity checks", 1)
+    base.add_heading(doc, "10. Sensitivity and sanity checks", 1)
     base.add_heading(doc, "Alabama road-network sensitivity", 2)
     al_sensitivity = [row for row in sensitivity_rows if row["geography"] == "Alabama"]
     sens_table = []
@@ -467,11 +505,11 @@ def build_document() -> Path:
     for row in qa_rows:
         qa_table.append((row["status"], row["check"], row["observed"], row["note"] or "N/A"))
     base.add_table(doc, ["Status", "Check", "Observed", "Note"], qa_table, [1100, 3100, 1500, 3660], font_size=7.2)
-    add_small_note(doc, "The one reviewed exception consists of fourteen Suffolk County, New York tracts without low-income denominators and one zero-population Massachusetts tract without a LILA flag. Alabama and the ten project states are complete.")
+    add_small_note(doc, "Two items require review. One covers fourteen Suffolk County, New York tracts without low-income denominators and one zero-population Massachusetts tract without a LILA flag. The other records the expected Map the Meal Gap difference between county sums and the state estimate. Neither is a blocking failure for the reported Alabama results.")
     base.add_page_break(doc)
 
     # Data sufficiency
-    base.add_heading(doc, "10. What is available and whether to change datasets", 1)
+    base.add_heading(doc, "11. What is available and whether to change datasets", 1)
     assessment_table = []
     for row in assessment_rows:
         assessment_table.append((row["source_id"], row["grain"], row["recommendation"], row["limitation"]))
@@ -482,8 +520,8 @@ def build_document() -> Path:
     add_fact_list(doc, [
         "Do not replace SRAM with the 2019 Large Retailer Access Map. The retailer universe and tract base differ; use LRAM only as a labeled sensitivity comparison.",
         "Do not add the full Food Environment Atlas by default. Add a small, predeclared variable set only if the team decides to examine price, assistance, store environment, or another explicit county-level gap.",
-        "If the team wants a local food-insecurity outcome, evaluate a modeled county or tract source separately and document that it is not directly comparable to the official state household series.",
-        "Hold the 2024 Feeding America Alabama data until the source file, direct citation, field definitions, denominator, geography, license, and Alabama reconciliation are documented.",
+        "Retain Feeding America Map the Meal Gap 2026 as a separate modeled county and state outcome layer. It fills the county gap but does not provide a tract outcome.",
+        "Keep the request-only raw archive outside GitHub because it contains no explicit redistribution license. Publish selected Alabama extracts, hashes, definitions, QA, and citations.",
         "Preserve the current frozen pull. Refresh only with a new dated snapshot and a change log.",
     ])
 
@@ -494,9 +532,10 @@ def build_document() -> Path:
         "Observation periods differ across layers. This is a cross-source snapshot, not a synchronized time series.",
         "The current data does not quantify food abundance or supply volume. That visual requires an approved measure and source.",
         "Race and gender demographic analysis is outside the current scope.",
+        "Map the Meal Gap county and state estimates use different geographic models, so their counts should not be forced to reconcile.",
     ])
     # Allergy
-    base.add_heading(doc, "11. Recommended next crawl for food allergies", 1)
+    base.add_heading(doc, "12. Recommended next crawl for food allergies", 1)
     add_section_intro(doc, "Keep allergies outside the active analysis until feasibility is demonstrated. The public official sources identified here describe different parts of the problem and do not form a direct tract-level access dataset.")
     allergy_rows = [
         ("Taxonomy", "FDA nine major allergens", "Milk, egg, fish, crustacean shellfish, tree nuts, peanuts, wheat, soybeans, sesame.", "Scope control; not prevalence or availability."),
@@ -517,10 +556,9 @@ def build_document() -> Path:
         "Pull openFDA enforcement records for undeclared-allergen events; deduplicate and keep recall geography and dates.",
         "Search for a retailer inventory-and-price source only after the first four modules are documented; stop if product/store/date joins cannot be proven.",
     ])
-    base.add_page_break(doc)
 
     # Prompt
-    base.add_heading(doc, "12. Reusable prompt for the allergy crawl", 1)
+    base.add_heading(doc, "13. Reusable prompt for the allergy crawl", 1)
     prompt = (
         "Conduct an official-source-only feasibility crawl for food-allergy access in Alabama and the project-defined Southeast "
         "(AL, AR, FL, GA, KY, LA, MS, NC, SC, TN). Keep this separate from the current food-access analysis until joinability "
@@ -565,6 +603,9 @@ def build_document() -> Path:
         "Descriptive comparisons do not establish causes or policy effects.",
         "State household margins of error should accompany estimates; ranks are descriptive.",
         "Physical proximity is one dimension of food access and cannot be read as product availability or affordability.",
+        "Map the Meal Gap rates are modeled individual estimates, not observed household survey rates or tract outcomes.",
+        "Map the Meal Gap state and county counts use different geographic models and are not expected to sum to the same value.",
+        "The Feeding America request archive contains no explicit redistribution license, so the raw package remains outside GitHub.",
         "Straight-line distance is excluded; road-network thresholds must be disclosed.",
         "The current data does not quantify food abundance or supply volume.",
         "Race and gender demographic analysis is outside the current scope.",
@@ -576,11 +617,11 @@ def build_document() -> Path:
         ("reports/Data_for_Dinner_Food_Access_Analysis.docx", "Editable team report."),
         ("reports/Data_for_Dinner_Food_Access_Analysis.pdf", "Fixed-layout report."),
         ("reports/Data_for_Dinner_Food_Access_Analysis.xlsx", "Filterable source, data, sensitivity, QA, and metadata workbook."),
-        ("data/processed/*.csv", "Analysis-ready tables at global, state, county, and tract levels."),
+        ("data/processed/*.csv", "Analysis-ready tables at global, state, county, and tract levels, including selected Alabama Map the Meal Gap extracts."),
         ("data/metadata/*.csv", "Source manifest and analysis variable dictionary."),
         ("results/*.csv / *.json", "QA, sensitivity, sufficiency assessment, and key findings."),
         ("src/*.py", "Reproducible acquisition and analysis."),
-        ("docs/*.md", "Methods and allergy next-crawl documentation."),
+        ("docs/*.md", "Methods, source decisions, limitations, Map the Meal Gap integration, and allergy next-crawl documentation."),
     ], [4200, 5160], font_size=8.6)
     base.add_page_break(doc)
 
@@ -596,6 +637,9 @@ def build_document() -> Path:
         ("SRAM Reference Guide", "USDA Economic Research Service", "https://www.ers.usda.gov/data-products/food-access-research-atlas/documentation/snap-authorized-retailer-access-map-reference-guide", "Variables, thresholds, and retailer universe."),
         ("SRAM Data Sources and Technical Methods", "USDA Economic Research Service", "https://www.ers.usda.gov/data-products/food-access-research-atlas/documentation/snap-authorized-retailer-access-map-data-sources-and-technical-methods", "STARS, Census, LandScan, ACS, distance, and method details."),
         ("2020 Alabama Census Tract Boundaries", "U.S. Census Bureau", "https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_01_tract_500k.zip", "Mapping geometry."),
+        ("Map the Meal Gap 2026 Report", "Feeding America National Organization", "https://www.feedingamerica.org/research/map-the-meal-gap/overall-executive-summary", "Published July 28, 2026; modeled local food-insecurity and food-cost estimates for 2024."),
+        ("Map the Meal Gap Methodology", "Feeding America National Organization", "https://www.feedingamerica.org/research/map-the-meal-gap/how-we-got-the-map-data", "Model purpose, inputs, geographic methods, food budget shortfall, and meal-cost methodology."),
+        ("Map the Meal Gap Data Request", "Feeding America National Organization", "https://www.feedingamerica.org/research/map-the-meal-gap/by-county", "Official request workflow for the source package."),
         ("Food Allergies", "U.S. Food and Drug Administration", "https://www.fda.gov/food/nutrition-food-labeling-and-critical-foods/food-allergies", "FDA major-allergen taxonomy and labeling context."),
         ("2024 Adult Food-Allergy Estimates", "CDC National Center for Health Statistics", "https://www.cdc.gov/nchs/products/databriefs/db545.htm", "Diagnosed adult prevalence."),
         ("2024 Child Food-Allergy Estimates", "CDC National Center for Health Statistics", "https://www.cdc.gov/nchs/products/databriefs/db546.htm", "Diagnosed child prevalence."),
@@ -614,6 +658,7 @@ def build_document() -> Path:
         ("Road-network sensitivity disclosed", "Yes"),
         ("Straight-line result excluded", "Yes"),
         ("Source hashes and retrieval dates captured", "Yes"),
+        ("Feeding America source gate completed", "Yes; separate county and state outcome layer"),
         ("Blocking QA failures", "None"),
         ("Allergy integration", "Paused pending feasibility gate"),
     ]
