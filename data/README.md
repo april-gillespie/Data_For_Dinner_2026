@@ -8,6 +8,11 @@ Only reviewed metadata and processed outputs are included in this repository.
 - `metadata/variable_dictionary.csv` records retained fields, units, definitions, and processing notes.
 - `processed/*.csv` contains analysis-ready outputs produced by `src/analyze_food_access.py`.
 - `processed/alabama_county_food_insecurity_2024.csv` and `processed/alabama_state_food_insecurity_2024.csv` contain the selected Alabama fields from the validated Feeding America request package. Race and ethnicity fields remain excluded from the active scope.
+- `contributed/sandra_kopecky/WomenInData Data Stats and Summary - Story.xlsx` is Sandra Kopecky's prevailing team story workbook. It is preserved unchanged and credited by name. It organizes the evolving narrative while the validated processed tables remain the audit source for exact claims.
+
+## Contributor workbook review boundary
+
+Sandra's workbook is an accepted team synthesis rather than a new official publisher source. The repository records its SHA-256 hash, seven-sheet structure, authorship metadata, and review notes. Narrative driver labels and static regional summaries require direct citations or reproducible calculations before they become final causal or policy claims.
 
 ## Excluded from the active analysis
 

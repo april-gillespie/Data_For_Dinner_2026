@@ -40,3 +40,9 @@ The completed gate records:
 ## Validation checkpoint
 
 The primary Alabama result remains 20.2% of low-income residents beyond the 1-mile urban and 10-mile rural road-network threshold. The alternate road-network estimates are 35.9% under the 0.5-mile urban threshold and 19.6% under the 20-mile rural threshold. Final deliverables must use the same primary value and state the threshold.
+
+## Team story workbook decision, August 29
+
+Sandra Kopecky's `WomenInData Data Stats and Summary - Story.xlsx` is accepted as the prevailing team story workbook and presentation-development source. Sandra receives explicit credit in the repository, report, charter, project roles, source manifest, and analysis workbook guide.
+
+The file is preserved unchanged so its authorship and original structure remain intact. Its global, U.S., Southeast, Alabama county, and Alabama regional sections guide the evolving story. Exact published values still reconcile to the validated repository tables. Driver labels, causal language, static county rankings, and regional summaries remain exploratory until their calculations and direct sources are documented.

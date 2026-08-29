@@ -58,6 +58,12 @@ Straight-line distance is excluded because it does not follow road travel and pr
 
 The final Alabama primary estimate is 20.2% of low-income residents beyond the selected threshold. The stricter urban threshold produces 35.9%, while the 20-mile rural threshold produces 19.6%. The urban threshold materially affects the estimated burden. Final outputs must state the selected road-network threshold and reconcile to the primary value before publication.
 
+## Team story synthesis
+
+Sandra Kopecky's contributed workbook is the prevailing team story source. It organizes the progression from global context to the United States, broad U.S. regions, the project-defined Southeast, Alabama counties, and Alabama story regions. The submitted file is preserved unchanged and credited to Sandra.
+
+The story workbook does not replace the reproducible analytical lineage. Exact values in publication outputs continue to reconcile to the processed CSV files and the validated analysis workbook. Narrative driver labels and regional explanations are retained as evolving hypotheses unless a direct source and reproducible calculation support them.
+
 ## Interpretation boundaries
 
 - Household food insecurity is an economic and experiential outcome; retailer proximity is a physical-access proxy.

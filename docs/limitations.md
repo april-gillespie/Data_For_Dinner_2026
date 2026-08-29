@@ -18,6 +18,9 @@ These limits apply to the current descriptive analysis and should remain in fina
 - Map the Meal Gap county and state estimates use different geographic models. Alabama county counts sum to 883,710 people, while the state estimate is 919,160; the 35,450-person difference is retained and documented rather than forced to reconcile.
 - Map the Meal Gap rates are modeled approximations. Race and ethnicity fields were excluded from this active scope, and missing or suppressed subpopulation values should not be interpreted as zero.
 - The Feeding America request archive contains no explicit redistribution license. The raw package remains outside GitHub; only selected Alabama extracts, hashes, definitions, and citations are published.
+- Sandra Kopecky's story workbook is the prevailing team narrative synthesis, but several driver labels and Alabama regional characterizations are not formula-derived from the included tables and do not yet have direct source citations. They remain evolving story hypotheses.
+- The story workbook states that Alabama at 12.1% and North Carolina at 11.8% are above a 13.3% national average. Both values are below 13.3%, so the validated report does not repeat that sentence.
+- The story workbook's county ranking and regional averages are static presentation values. Use the validated repository tables for exact publication numbers until those story calculations are made reproducible.
 
 ## Scope limits
 

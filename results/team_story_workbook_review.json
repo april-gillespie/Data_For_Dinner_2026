@@ -1,0 +1,27 @@
+{
+  "status": "prevailing_team_story_workbook",
+  "contributor": "Sandra Kopecky",
+  "file": "data/contributed/sandra_kopecky/WomenInData Data Stats and Summary - Story.xlsx",
+  "bytes": 2409225,
+  "sha256": "3f4a02393c00218350cb63637c0cc20a5866f18eb7cabd69089c159c3af8f3e4",
+  "creator_metadata": "Sandra Kopecky",
+  "sheet_count": 7,
+  "sheets": [
+    "Global",
+    "US",
+    "US Regions",
+    "Southeast",
+    "Structural Drivers of Southeast",
+    "Alabama",
+    "Alabama Regions"
+  ],
+  "formula_cell_count": 205,
+  "formula_pattern_count": 5,
+  "formula_error_matches": 0,
+  "review_items": [
+    "The Southeast narrative says Alabama and North Carolina are above the 13.3 percent national average, although the displayed 12.1 and 11.8 percent values are below it.",
+    "Structural-driver and county key-driver labels require direct supporting sources before publication as explanatory findings.",
+    "Alabama ranking and regional summary values are static and require reproducible calculation lineage before exact publication use.",
+    "The validated repository tables remain the audit source for exact claims while this workbook guides the evolving story."
+  ]
+}

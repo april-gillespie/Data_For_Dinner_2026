@@ -310,8 +310,9 @@ def build_document() -> Path:
         ("Processed CSVs", "Global summary, all state outcomes, all state retailer access, ten-state comparison, Alabama retailer-access tables, and selected Alabama Map the Meal Gap county and state extracts."),
         ("Results", "QA checks, sensitivity analysis, dataset sufficiency assessment, key findings."),
         ("Figures", "Six reviewed charts/maps with source notes and consistent styling."),
-        ("Team files and reproducibility", "This report in DOCX/PDF, a filterable workbook with 14 sheets, acquisition and analysis scripts, a dependency list, and methods documentation."),
+        ("Team files and reproducibility", "This report in DOCX/PDF, a filterable workbook with 15 sheets, Sandra Kopecky's prevailing team story workbook, acquisition and analysis scripts, a dependency list, and methods documentation."),
     ], [2300, 7060], font_size=9)
+    base.add_callout(doc, "TEAM STORY AND CREDIT", "Sandra Kopecky created the prevailing team story workbook and contributed data pulls, synthesis, regional framing, Alabama county detail, charts, and narrative development. The submitted workbook is preserved unchanged. This report uses the validated repository tables for exact claims and treats unsourced driver labels as evolving story hypotheses.", accent=GREEN)
 
     # Global
     base.add_heading(doc, "2. Global access to food", 1)
@@ -669,7 +670,7 @@ def build_document() -> Path:
     base.add_body(doc, "Roles are placed at the end so readers encounter the project question, methods, evidence, and limitations first.")
     base.add_table(doc, ["Team member", "Primary responsibilities"], [
         ("Sharon Brooks", "Team lead and project management, meeting coordination, and review of the repository framework."),
-        ("Sandra Kopecky", "Data and database work, source review, and use of the approved dataset for analysis."),
+        ("Sandra Kopecky", "Data and database work, source review, data pulls, and authorship of the prevailing team story workbook, including regional framing and Alabama narrative development."),
         ("April Gillespie", "Repository management, analysis, technical implementation, documentation updates, and integration of validated team data."),
         ("Shared", "Review definitions and final numbers, record the presentation, and submit during the weekend ending September 13, 2026."),
     ], [2500, 6860], font_size=9.0)

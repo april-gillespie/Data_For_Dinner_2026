@@ -509,7 +509,7 @@ def build_document():
     sr = subtitle.add_run("Project Charter and Data Plan")
     set_font(sr, size=15, color=MUTED)
 
-    add_label_paragraph(doc, "Status", "Updated with decisions from August 25, 2026", after=2)
+    add_label_paragraph(doc, "Status", "Updated through August 29, 2026, including Sandra Kopecky's prevailing team story workbook", after=2)
     add_label_paragraph(doc, "Prepared", "August 22, 2026", after=2)
     add_label_paragraph(doc, "Next review", "Saturday, August 29, 2026 at 1:00 p.m. Central", after=2)
     add_label_paragraph(doc, "Primary focus", "Food insecurity and food access in Alabama", after=12)
@@ -597,6 +597,7 @@ def build_document():
         ("U.S. and Southeast outcome", "USDA Current Population Survey Food Security Supplement", "National and state; three-year averages", "Compare household food-insecurity prevalence across the ten states and United States."),
         ("Core local analysis", "USDA 2025 SNAP-authorized Retailer Access Map", "2020-based census tract", "Primary source for Alabama mapping and consistent geographic comparisons."),
         ("Alabama modeled outcome context", "Feeding America Map the Meal Gap 2026", "County and state; observation year 2024", "Report individual-level modeled food-insecurity and food-cost estimates as a separate layer."),
+        ("Team story synthesis", "Sandra Kopecky, WomenInData Data Stats and Summary - Story", "Global to Alabama narrative", "Use as the prevailing presentation-development workbook; credit Sandra and validate exact claims against the reproducible tables."),
         ("Optional county context", "USDA Food Environment Atlas", "County and state; varying years", "Use only when a specific county-level indicator fills a documented gap."),
         ("Map geometry", "USDA map service or compatible Census tract geometry", "Census tract", "Match the 2025 access data's 2020 tract basis; record the geography vintage."),
     ]
@@ -802,6 +803,7 @@ def build_document():
         ("D04", "USDA Food Environment Atlas", "Optional county context", "Proposed", "Retain only if a documented county-level gap remains."),
         ("D05", "Compatible census-tract geometry", "Mapping", "Proposed", "Use the USDA service or confirmed 2020-based tract geometry."),
         ("D06", "Feeding America Map the Meal Gap 2026", "Alabama county and state outcome context", "Accepted", "Use selected 2024 fields separately; keep the request-only raw archive outside GitHub and retain the reconciliation note."),
+        ("D07", "Sandra Kopecky story workbook", "Prevailing team narrative synthesis", "Accepted", "Preserve the submitted workbook unchanged, credit Sandra, and validate exact claims against repository tables."),
         ("A01", "Allergy/gluten exploration", "Out-of-scope archive", "Archived", "Preserve existing work; exclude it from active data and figures."),
     ]
     add_table(doc, ["ID", "Dataset", "Purpose", "Status", "Next action"], starter_rows, [720, 2460, 1740, 1260, 3180], font_size=8.75)
@@ -898,7 +900,7 @@ def build_document():
     add_body(doc, "Roles are placed at the end so readers encounter the project content before team assignments.")
     role_rows = [
         ("Sharon Brooks", "Team lead and project management", "Coordinate meetings and review the repository framework."),
-        ("Sandra Kopecky", "Data and database", "Review sources and use the approved dataset for analysis."),
+        ("Sandra Kopecky", "Data, database, and story synthesis", "Pull and organize data; author the prevailing team story workbook; develop regional framing and Alabama narrative content."),
         ("April Gillespie", "Repository and analysis", "Manage repository updates, technical implementation, documentation, and integration of validated team data."),
         ("Shared", "Final review and delivery", "Validate final numbers, record the presentation, and submit during the weekend ending September 13, 2026."),
     ]

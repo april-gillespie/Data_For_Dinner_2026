@@ -132,7 +132,7 @@ function addDataSheet(name, title, subtitle, data, endColumn, tableName, widths 
 }
 
 const summary = workbook.worksheets.add("Summary");
-titleBand(summary, "J", "Data for Dinner: food-access analysis", "Global to United States to project-defined Southeast to Alabama | core pull: 2026-08-22 | MMG package: 2026-08-29");
+titleBand(summary, "J", "Data for Dinner: food-access analysis", "Global to United States to project-defined Southeast to Alabama | team story by Sandra Kopecky: 2026-08-29");
 summary.getRange("A4:J4").merge();
 summary.getRange("A4").values = [["Key facts"]];
 summary.getRange("A4:J4").format = { fill: COLORS.green, font: { bold: true, color: COLORS.white, size: 12 } };
@@ -156,7 +156,7 @@ summary.getRange("A18:J18").merge();
 summary.getRange("A18").values = [["Decision"]];
 summary.getRange("A18:J18").format = { fill: COLORS.amber, font: { bold: true, color: COLORS.white } };
 summary.getRange("A19:J23").merge();
-summary.getRange("A19").values = [["Retain USDA SRAM road-network data as the primary local dataset and exclude straight-line fields. Retain Feeding America Map the Meal Gap as a separate modeled county and state outcome layer. Keep FAOSTAT, USDA household estimates, modeled individual estimates, and retailer proximity distinct. Keep allergies outside the active scope."]];
+summary.getRange("A19").values = [["Use Sandra Kopecky's contributed workbook as the prevailing team story source. Retain this validated workbook as the audit source for exact publication values. Retain USDA SRAM road-network data as the primary local dataset, keep Feeding America as a separate modeled outcome layer, and keep allergies outside the active scope."]];
 summary.getRange("A19:J23").format = { fill: COLORS.paleAmber, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.amber } };
 summary.getRange("A25:J25").merge();
 summary.getRange("A25").values = [["Comparability boundary"]];
@@ -169,6 +169,42 @@ summary.getRange("B1:B29").format.columnWidth = 18;
 summary.getRange("C1:C29").format.columnWidth = 3;
 summary.getRange("D1:J29").format.columnWidth = 15;
 summary.freezePanes.freezeRows(2);
+
+const storySheet = workbook.worksheets.add("Team Story Guide");
+titleBand(storySheet, "J", "Prevailing team story workbook", "Story workbook, data synthesis, and regional framing by Sandra Kopecky | received 2026-08-29");
+storySheet.mergeCells("A4:J4");
+storySheet.getRange("A4").values = [["Authorship and status"]];
+storySheet.getRange("A4:J4").format = { fill: COLORS.green, font: { bold: true, color: COLORS.white, size: 12 } };
+storySheet.getRange("A6:B11").values = [
+  ["Contributor", "Sandra Kopecky"],
+  ["Repository file", "data/contributed/sandra_kopecky/WomenInData Data Stats and Summary - Story.xlsx"],
+  ["Status", "Prevailing team story workbook for presentation development"],
+  ["Structure", "7 sheets: Global, US, US Regions, Southeast, Structural Drivers of Southeast, Alabama, Alabama Regions"],
+  ["SHA-256", "3f4a02393c00218350cb63637c0cc20a5866f18eb7cabd69089c159c3af8f3e4"],
+  ["Credit language", "Story workbook, data synthesis, and regional framing by Sandra Kopecky."],
+];
+storySheet.getRange("A6:A11").format = { fill: COLORS.paleBlue, font: { bold: true, color: COLORS.navy }, wrapText: true };
+storySheet.getRange("A6:B11").format.borders = { preset: "inside", style: "thin", color: COLORS.line };
+storySheet.getRange("B6:B11").format.wrapText = true;
+storySheet.mergeCells("A13:J13");
+storySheet.getRange("A13").values = [["How to use Sandra's workbook"]];
+storySheet.getRange("A13:J13").format = { fill: COLORS.blue, font: { bold: true, color: COLORS.white } };
+storySheet.mergeCells("A14:J17");
+storySheet.getRange("A14").values = [["Sandra's workbook guides story order and presentation emphasis from global context through Alabama regional framing. This validated workbook remains the numeric audit source for exact values, denominators, formulas, and QA. The two workbooks are complementary, and Sandra's story contribution should be credited in slides, narration, and supporting materials."]];
+storySheet.getRange("A14:J17").format = { fill: COLORS.paleBlue, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.blue } };
+storySheet.mergeCells("A19:J19");
+storySheet.getRange("A19").values = [["Review items for the evolving story"]];
+storySheet.getRange("A19:J19").format = { fill: COLORS.amber, font: { bold: true, color: COLORS.white } };
+storySheet.mergeCells("A20:J22");
+storySheet.getRange("A20").values = [["The Southeast narrative says Alabama at 12.1% and North Carolina at 11.8% are above the 13.3% national average. Both are below 13.3%, so the validated report does not repeat that sentence."]];
+storySheet.getRange("A20:J22").format = { fill: COLORS.paleAmber, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.amber } };
+storySheet.mergeCells("A24:J27");
+storySheet.getRange("A24").values = [["Structural-driver statements, county key-driver labels, static top-ten rankings, and Alabama regional summaries remain story hypotheses until direct citations and reproducible calculations are attached. Do not combine household food insecurity, modeled individual estimates, retailer proximity, and regional story groupings into one score."]];
+storySheet.getRange("A24:J27").format = { fill: COLORS.paleRed, wrapText: true, verticalAlignment: "top", borders: { preset: "outside", style: "thin", color: COLORS.red } };
+storySheet.getRange("A1:A29").format.columnWidth = 25;
+storySheet.getRange("B1:B29").format.columnWidth = 72;
+storySheet.getRange("C1:J29").format.columnWidth = 14;
+storySheet.freezePanes.freezeRows(2);
 
 const globalSheet = addDataSheet("Global", "Global food-access indicators", "Latest selected FAOSTAT values; do not compare these population measures as if they were USDA household or tract measures", globalData, "I", "GlobalIndicators", { A: 24, B: 64, C: 15, D: 12, E: 14, F: 12, G: 12, H: 12, I: 14 });
 globalSheet.getRange(`F5:H${4 + globalData.rows.length}`).format.numberFormat = "0.0";
@@ -272,6 +308,7 @@ summary.getRange("B7:B16").formulas = [
 await fs.mkdir(previewDir, { recursive: true });
 const renderTargets = [
   ["Summary", "A1:J29"],
+  ["Team Story Guide", "A1:J29"],
   ["Global", "A1:I16"],
   ["US States", "A1:F16"],
   ["Retail by State", "A1:K14"],
@@ -293,10 +330,12 @@ for (const [sheetName, range] of renderTargets) {
 }
 
 const summaryInspect = await workbook.inspect({ kind: "table", range: "Summary!A1:J29", include: "values,formulas", tableMaxRows: 29, tableMaxCols: 10, maxChars: 12000 });
+const storyInspect = await workbook.inspect({ kind: "table", range: "Team Story Guide!A1:J29", include: "values,formulas", tableMaxRows: 29, tableMaxCols: 10, maxChars: 12000 });
 const southeastInspect = await workbook.inspect({ kind: "table", range: "Southeast!A1:N14", include: "values,formulas", tableMaxRows: 14, tableMaxCols: 14, maxChars: 12000 });
 const errors = await workbook.inspect({ kind: "match", searchTerm: "#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A", options: { useRegex: true, maxResults: 300 }, summary: "final formula error scan", maxChars: 12000 });
 await fs.mkdir(outputDir, { recursive: true });
 await fs.writeFile(path.join(previewDir, "summary.inspect.ndjson"), summaryInspect.ndjson);
+await fs.writeFile(path.join(previewDir, "team-story-guide.inspect.ndjson"), storyInspect.ndjson);
 await fs.writeFile(path.join(previewDir, "southeast.inspect.ndjson"), southeastInspect.ndjson);
 await fs.writeFile(path.join(previewDir, "errors.inspect.ndjson"), errors.ndjson);
 

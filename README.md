@@ -2,7 +2,7 @@
 
 ## Project status
 
-The food-access analysis is complete and quality checked. The primary local measure uses road-network distance. Straight-line distance is excluded from the active analysis and all published results. Feeding America Map the Meal Gap 2026 is included as a separate modeled county and state outcome layer for observation year 2024. The team plans to record the final presentation and submit the project during the weekend ending September 13, 2026.
+The food-access analysis is complete and quality checked. The primary local measure uses road-network distance. Straight-line distance is excluded from the active analysis and all published results. Feeding America Map the Meal Gap 2026 is included as a separate modeled county and state outcome layer for observation year 2024. Sandra Kopecky's contributed workbook is now the prevailing team story workbook for presentation development. The validated analysis tables remain the audit source for exact published claims. The team plans to record the final presentation and submit the project during the weekend ending September 13, 2026.
 
 ## Research question
 
@@ -44,6 +44,7 @@ Results are compared only where units, denominators, geography, and periods supp
 - Alabama mapping: U.S. Census Bureau 2020 tract geometry.
 - Alabama county and state outcome context: Feeding America Map the Meal Gap 2026 modeled individual estimates and localized meal-cost measures for 2024.
 - Household need proxy: occupied housing units receiving SNAP, reported with its matching housing-unit denominator.
+- Evolving team story: Sandra Kopecky's contributed workbook organizes the global, U.S., regional, Southeast, Alabama county, and Alabama regional narrative. Its driver labels are treated as hypotheses until direct supporting sources are attached.
 
 These layers answer related but different questions. Global population indicators, U.S. household food insecurity, modeled individual food insecurity, and tract retailer proximity are reported separately and are not combined into one score.
 
@@ -79,10 +80,13 @@ Only reviewed, reproducible, publication-ready files belong in the GitHub reposi
 
 The Feeding America source gate is now complete. The repository includes selected Alabama county and state extracts, a source hash, field definitions, validation checks, and a reconciliation note. The request-only raw archive remains ignored because the package does not state an explicit redistribution license. See [docs/feeding_america_mmg_2026.md](docs/feeding_america_mmg_2026.md).
 
+Sandra Kopecky's contributed workbook is preserved byte for byte under `data/contributed/sandra_kopecky/` and is credited in the project roles, source manifest, report, charter, and workbook guide. It is the prevailing team synthesis for the evolving story. See [docs/sandra_kopecky_story_workbook.md](docs/sandra_kopecky_story_workbook.md) for its role and review boundaries.
+
 ## Repository structure
 
 ```text
 data/
+  contributed/     credited team-created story workbooks
   metadata/        source manifest and variable dictionary
   processed/       analysis-ready CSV outputs
 docs/              methods, decisions, limitations, and future-work notes
@@ -111,11 +115,16 @@ The acquisition script preserves existing downloads and writes SHA-256 hashes to
 - `reports/Data_for_Dinner_Food_Access_Analysis.pdf`
 - `reports/Data_for_Dinner_Food_Access_Analysis.xlsx`
 
+## Prevailing team story workbook
+
+- `data/contributed/sandra_kopecky/WomenInData Data Stats and Summary - Story.xlsx`, created by Sandra Kopecky and preserved as submitted.
+
 ## Supporting documentation
 
 - [Methodology](docs/methodology.md)
 - [August 25 decisions](docs/decisions_2026-08-25.md)
 - [Known limitations and blind spots](docs/limitations.md)
+- [Sandra Kopecky story workbook](docs/sandra_kopecky_story_workbook.md)
 - [Allergy feasibility note](docs/allergy_next_crawl.md)
 
 ## Project roles
