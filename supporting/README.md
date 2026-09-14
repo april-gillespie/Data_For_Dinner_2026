@@ -11,7 +11,7 @@ The workbook contains some conflicting narratives, a regional grouping discrepan
 ## Team
 
 - [Team Intro and Skill Sets](team/Copy%20of%20Team%20Intro%20%26%20Skill%20Sets.docx)
-- [Team Roles workbook](team/Copy%20of%20Team%20Roles.xlsx)
+- [Team Roles workbook](team/Copy%20of%20Team%20Roles.xlsx) **(Excel workbook — download to view)**
 
 These are the original team records, including the submitted profile prose and planning responsibilities. Final presentation credits are shown in [slide 3](../presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf#page=3) and reproduced in the root README.
 
