@@ -15,14 +15,14 @@ def verify(root, staged=False):
     manifest = json.loads((root / 'docs/artifact_manifest.json').read_text(encoding='utf-8'))
     archive = json.loads((root / manifest['archive_manifest']).read_text(encoding='utf-8'))
     checks = []
-    if len(manifest['files']) != 7 or len({f['path'] for f in manifest['files']}) != 7:
-        raise ValueError('Expected seven unique original files')
+    if len(manifest['files']) != 5 or len({f['path'] for f in manifest['files']}) != 5:
+        raise ValueError('Expected five unique retained supplied files')
     for entry in manifest['files']:
         data = (root / entry['path']).read_bytes()
         if (len(data) != entry['bytes'] or hashlib.sha256(data).hexdigest() != entry['sha256']
                 or blob_sha(data) != entry['git_blob_sha1']):
             raise ValueError(f'Original file integrity mismatch: {entry["path"]}')
-    checks.append('Seven original files match sizes, SHA-256, and Git blob hashes')
+    checks.append('Five retained supplied files match sizes, SHA-256, and Git blob hashes')
     archive_files = {f'{archive["publication_root"]}/{f["path"]}': f['git_blob_sha1'] for f in archive['files']}
     old_readme = archive['previous_main_readme']
     archive_files[old_readme['path']] = old_readme['git_blob_sha1']
@@ -30,7 +30,7 @@ def verify(root, staged=False):
         for path, expected_sha in archive_files.items():
             if blob_sha((root / path).read_bytes()) != expected_sha:
                 raise ValueError(f'Historical file changed: {path}')
-        checks.append(f'{len(archive_files)} historical files match original Git blob hashes')
+        checks.append(f'{len(archive_files)} historical files match recorded Git blob hashes')
     else:
         checks.append('Staging mode: historical subtree is validated separately through GitHub')
     virtual = {(root / p).resolve() for p in archive_files}
@@ -38,7 +38,6 @@ def verify(root, staged=False):
         rel = document.relative_to(root).as_posix()
         if rel.startswith(archive['publication_root'] + '/') or rel == old_readme['path']:
             continue
-        # Skip fenced source text when checking Markdown links.
         body = re.sub(r'```[\s\S]*?```', '', document.read_text(encoding='utf-8'))
         for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)', body):
             link = urlsplit(target.strip('<>'))
