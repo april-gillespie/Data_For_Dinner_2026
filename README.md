@@ -40,6 +40,10 @@ The team used FAOSTAT food security indicators for global context and Feeding Am
 | Southeast | The presentation reports **15.8%** compared with a U.S. average of 12.9%. | 17 |
 | Alabama | County comparisons show disparities in low access and low income. The separate low-income/low-access ranking begins with Shelby at **36.70%**, Madison at **35.30%**, and Lee at **32.70%**. | 19 and 20 |
 
+<p align="center">
+  <img src="assets/alabama-food-insecurities.jpg" alt="Alabama Food Insecurities analysis" width="650">
+</p>
+
 These are the values and labels reported in the final presentation. Their measure definitions and source differences are recorded in the [final project summary](docs/final_project.md) and [reconciliation notes](docs/source_priority.md). The county low-income/low-access ranking is a different measure from a food insecurity rate.
 
 ## Community solutions and future work
@@ -50,14 +54,9 @@ Future work would investigate how food allergy constraints affect affordability,
 
 ## Team
 
-The following credits reproduce the roles in slide 3.
-
-| Team member | Background shown | Project roles shown |
-| --- | --- | --- |
-| Sharon Brooks | Data Governance Analyst | Team Lead; Project Manager |
-| April Gillespie | Technical Marketing Engineer | Researcher; Data Scientist; GitHub Manager |
-| Sandra Kopecky | IT Specialist | Data Discovery; Data Analyst; Insights Manager |
-| Toni Randell | IT Data Analyst | Dashboarding; Data Analyst |
+<p align="center">
+  <img src="assets/team-chefs.jpg" alt="Data for Dinner team and project roles" width="650">
+</p>
 
 The original [team introductions and roles](supporting/README.md#team) are preserved as supplied.
 
@@ -67,7 +66,7 @@ The original [team introductions and roles](supporting/README.md#team) are prese
 presentation/   final PDF and slide guide
 video/          final recording home
 supporting/     original research, planning, and team files
-assets/         Women in Data logo and supplied QR images
+assets/         logo, selected presentation visuals, and QR images
 docs/          final summary, source priority, and artifact manifest
 tools/         final package verification
 archive/       preserved earlier analysis and repository documentation
