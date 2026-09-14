@@ -17,13 +17,12 @@ Data for Dinner explores food insecurity from the globe to the United States, th
 | Final video | [Video home](video/README.md), recording pending |
 | Supporting files | [Research workbook and presentation outline](supporting/README.md) |
 
-The final presentation is the source of truth for this project. It takes precedence over supporting workbooks and earlier documentation when they differ. See [source priority and reconciliation](docs/source_priority.md).
-
 ## The problem
 
 Food insecurity impact families & diminishes quality of life. Families face an uneven menu of limited access, unaffordability, and undernourishment. We need community-driven solutions that deliver equitable food and nourishment for all.
 
 The final project focuses on local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government. See presentation slides 4 and 6.
+
 <img width="758" height="529" alt="image" src="https://github.com/user-attachments/assets/a096fad4-d8db-4b94-94e3-046fdb61f4db" />
 
 ## How we approached it
@@ -71,6 +70,7 @@ docs/          final summary, source priority, and artifact manifest
 tools/         final package verification
 archive/       preserved earlier analysis and repository documentation
 ```
+The final presentation is the source of truth for this project. It takes precedence over supporting workbooks and earlier documentation when they differ. See [source priority and reconciliation](docs/source_priority.md).
 
 The [archive](archive/README.md) preserves earlier analysis, code, data, and figures for provenance.
 
