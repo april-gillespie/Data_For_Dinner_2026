@@ -71,7 +71,7 @@ archive/       preserved earlier analysis and repository documentation
 
 The [archive](archive/README.md) preserves earlier analysis, code, data, and figures for provenance.
 
-Source links are collected in the [final project summary](docs/final_project.md#sources). The [artifact manifest](docs/artifact_manifest.json) records the eight supplied files and their SHA-256 hashes. See the [validation record](docs/validation.md) for checks and remaining limitations.
+Source links are collected in the [final project summary](docs/final_project.md#sources). The [artifact manifest](docs/artifact_manifest.json) records the seven supplied files and their SHA-256 hashes. See the [validation record](docs/validation.md) for checks and remaining limitations.
 
 ## For technical reviewers
 
