@@ -40,7 +40,6 @@ The team used FAOSTAT food security indicators for global context and Feeding Am
 | Southeast | The presentation reports **15.8%** compared with a U.S. average of 12.9%. | 17 |
 | Alabama | County comparisons show disparities in low access and low income. The separate low-income/low-access ranking begins with Shelby at **36.70%**, Madison at **35.30%**, and Lee at **32.70%**. | 19 and 20 |
 
-These are the values and labels reported in the final presentation. Their measure definitions and source differences are recorded in the [final project summary](docs/final_project.md) and [reconciliation notes](docs/source_priority.md). The county low-income/low-access ranking is a different measure from a food insecurity rate.
 
 ## Community solutions and future work
 
@@ -76,6 +75,8 @@ The final presentation is the source of truth for this project. It takes precede
 The [archive](archive/README.md) preserves earlier analysis, code, data, and figures for provenance.
 
 Source links are collected in the [final project summary](docs/final_project.md#sources). The [artifact manifest](docs/artifact_manifest.json) records the five supplied files retained in the published package and their SHA-256 hashes. See the [validation record](docs/validation.md) for checks and remaining limitations.
+
+The values and labels reported in the final presentation. Their measure definitions and source differences are recorded in the [final project summary](docs/final_project.md) and [reconciliation notes](docs/source_priority.md). The county low-income/low-access ranking is a different measure from a food insecurity rate.
 
 ## For technical reviewers
 
