@@ -1,6 +1,8 @@
 # Data for Dinner 2026
 
-Women in Data Datathon 2026. Track: Eat. Final presentation: September 13, 2026.
+Women in Data Datathon 2026. 
+Track: Eat. 
+Final presentation: September 13, 2026.
 
 <p align="center">
   <img src="assets/women-in-data-logo.png" alt="Women in Data" width="520">
