@@ -12,22 +12,6 @@
       "preserved_byte_for_byte": true
     },
     {
-      "original_name": "Copy of Team Intro & Skill Sets.docx",
-      "path": "supporting/team/Copy of Team Intro & Skill Sets.docx",
-      "bytes": 10767,
-      "sha256": "41b389269dde6f290fd7d495b23e31bd95958c949c83dd7e8bf9113598b06778",
-      "git_blob_sha1": "c9778333d38d37c21eb6b938363f562e68375c36",
-      "preserved_byte_for_byte": true
-    },
-    {
-      "original_name": "Copy of Team Roles.xlsx",
-      "path": "supporting/team/Copy of Team Roles.xlsx",
-      "bytes": 7833,
-      "sha256": "61af63fc69a2ba3ba5c2bd7bc3218deae9383125882ec3fc67540a5b4d28ee3c",
-      "git_blob_sha1": "339fe8050946886fbfa531336aa071bd1727d4ef",
-      "preserved_byte_for_byte": true
-    },
-    {
       "original_name": "Copy of 2026 Datathon Presentation Outline.docx",
       "path": "supporting/presentation/Copy of 2026 Datathon Presentation Outline.docx",
       "bytes": 422758,
