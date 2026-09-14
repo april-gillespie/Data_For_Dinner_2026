@@ -163,26 +163,3 @@ Folders will be populated as project artifacts are finalized.
 ## Conclusions
 
 *TBD after final team review and completion of the analysis.*
-
-## Team
-
-### Sharon Brooks — Team Lead / Project Manager
-**Background:** Senior Data Governance Business Analyst  
-**Contributions:**
-- Team leadership and project management
-- Dashboarding
-- Data analysis using Excel and SQL
-- Presentation and slide deck development
-
-### Sandra Kopecky — Data / Database Analysis
-**Background:** IT Specialist / Product Owner and adjunct professor. Career experience includes programming, analysis, database programming, and database administration.  
-**Contributions:**
-- SQL and database expertise
-- Python
-- Data analysis
-- Academic and technical perspective
-
-### April Gillespie — Data Analysis / Technical Development
-**Background:** Technical Marketing Engineer with an electrical engineering background.  
-**Contributions:**
-- Github experience.
