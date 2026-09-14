@@ -5,8 +5,8 @@ Publication date: September 13, 2026.
 ## Completed checks
 
 - Reviewed all 27 rendered pages of the final presentation and used them for the active project summary, credits, source links, and reported values.
-- Preserved all seven supplied files byte for byte. The [artifact manifest](artifact_manifest.json) records sizes, SHA-256 hashes, and Git blob hashes.
-- Checked the four supporting Office files read-only. The statistics workbook has 10 worksheets and 215 formula cells with cached results. Independent formula evaluation matched those cached results; this was not native Excel recalculation or validation of the underlying statistical methods.
+- Preserved all five retained supplied files byte for byte. The [artifact manifest](artifact_manifest.json) records sizes, SHA-256 hashes, and Git blob hashes.
+- Checked the two supporting Office files read-only. The statistics workbook has 10 worksheets and 215 formula cells with cached results. Independent formula evaluation matched those cached results; this was not native Excel recalculation or validation of the underlying statistical methods.
 - Decoded both supplied QR images and the final slide QR codes. Their short links agree. Checked their redirect destinations for the GitHub repository and Tableau dashboard.
 - Independently reviewed the authored summaries against the presentation. Documented source differences in [reconciliation notes](source_priority.md), including the differing Midwest values within slide 15.
 
@@ -20,7 +20,7 @@ python tools/verify_final_package.py
 
 It checks original-file sizes and hashes, the archived file hashes, and final Markdown local file targets. It excludes historical Markdown from current-link checks because that content is preserved as a snapshot. External URLs and Markdown anchor fragments are not validated by the script.
 
-Before remote publication, the packaging check uses `--staged` because the existing Git subtree is attached directly without downloading and reuploading historical binaries. The published tree is checked against the [archive manifest](archive_manifest.json), preserving all 54 historical files plus the prior main README.
+Before remote publication, the packaging check uses `--staged` because the existing Git subtree is attached directly without downloading and reuploading historical binaries. The published tree is checked against the [archive manifest](archive_manifest.json).
 
 ## Remaining limitations
 
