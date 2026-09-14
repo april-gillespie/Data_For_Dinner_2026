@@ -1,7 +1,0 @@
-*.pdf binary
-*.docx binary
-*.xlsx binary
-*.jpg binary
-*.png binary
-*.srt -text
-archive/** -text
