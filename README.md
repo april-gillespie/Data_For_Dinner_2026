@@ -57,7 +57,7 @@ Future work would investigate how food allergy constraints affect affordability,
 | Sharon Brooks | Data Governance Analyst | Team Lead; Project Manager |
 | April Gillespie | Technical Marketing Engineer | Researcher; Data Scientist; GitHub Manager |
 | Sandra Kopecky | IT Specialist | Data Discovery; Data Analyst; Insights Manager |
-| Toni Randell | IT Data Analyst | Dashboarding; Data Analyst |
+| Toni Randell | IT Data Analyst | Dashboarding; Data Analyst | Video Editor |
 
 ## Repository guide
 
