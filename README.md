@@ -21,13 +21,13 @@ Data for Dinner explores food insecurity from the globe to the United States, th
 
 Food insecurity impact families & diminishes quality of life. Families face an uneven menu of limited access, unaffordability, and undernourishment. We need community-driven solutions that deliver equitable food and nourishment for all.
 
-The final project focuses on local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government. See presentation slides 4 and 6.
+The final project focuses on local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government. 
 
 <img width="758" height="529" alt="image" src="https://github.com/user-attachments/assets/a096fad4-d8db-4b94-94e3-046fdb61f4db" />
 
 ## How we approached it
 
-The team used FAOSTAT food security indicators for global context and Feeding America for U.S. and Alabama context. The presentation describes batch downloads, merged datasets, Excel analysis, cleanup of aggregation differences, MapChart visualizations, and a Tableau Public dashboard. Collaboration used GitHub, Google Drive, Google Meet, and Microsoft Teams. See slides 8 and 9.
+The team used FAOSTAT food security indicators for global context and Feeding America for U.S. and Alabama context. The presentation describes batch downloads, merged datasets, Excel analysis, cleanup of aggregation differences, MapChart visualizations, and a Tableau Public dashboard. Collaboration used GitHub, Google Drive, Google Meet, and Microsoft Teams. 
 
 **Scope note:** During the project, we narrowed our focus from food access to food insecurity as local data limitations became clearer.
 
@@ -44,13 +44,14 @@ These are the values and labels reported in the final presentation. Their measur
 
 ## Community solutions and future work
 
-The team proposes support for food pantries and shelters, small neighborhood pantries for shelf-stable staples, community buses serving as fresh-food pantries, and local farmers and fishers. These are proposed interventions from slide 22.
+The team proposes support for food pantries and shelters, small neighborhood pantries for shelf-stable staples, community buses serving as fresh-food pantries, and local farmers and fishers. 
 
-Future work would investigate how food allergy constraints affect affordability, access, and nutrition, with expanded data discovery and research relevant to Alabama resources. The final project does not report a completed analysis of allergy impacts. See slide 24.
+Future work would investigate how food allergy constraints affect affordability, access, and nutrition, with expanded data discovery and research relevant to Alabama resources. The final project does not report a completed analysis of allergy impacts. 
 
 ## Team
 
-The following credits reproduce slide 3 of the final presentation.
+<img width="755" height="413" alt="image" src="https://github.com/user-attachments/assets/942d08a9-e598-4a4b-9eda-b804b2a06966" />
+
 
 | Team member | Background shown | Project roles shown |
 | --- | --- | --- |
