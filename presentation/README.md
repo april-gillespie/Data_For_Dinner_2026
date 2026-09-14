@@ -18,4 +18,4 @@ This 27-page presentation, dated September 13, 2026, is the authoritative final 
 | 25 and 26 | Conclusions |
 | 27 | GitHub and Tableau QR links |
 
-The [project summary](../docs/final_project.md) provides a text companion. The [video home](../video/README.md) contains the original spoken captions and the place for the forthcoming recording. The [presentation outline](../supporting/presentation/Copy%20of%202026%20Datathon%20Presentation%20Outline.docx) is supporting planning material.
+The [project summary](../docs/final_project.md) provides a text companion. The [video home](../video/README.md) is reserved for the forthcoming final recording. The [presentation outline](../supporting/presentation/Copy%20of%202026%20Datathon%20Presentation%20Outline.docx) is supporting planning material.
