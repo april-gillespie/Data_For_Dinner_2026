@@ -24,6 +24,7 @@ The final presentation is the source of truth for this project. It takes precede
 Food insecurity impact families & diminishes quality of life. Families face an uneven menu of limited access, unaffordability, and undernourishment. We need community-driven solutions that deliver equitable food and nourishment for all.
 
 The final project focuses on local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government. See presentation slides 4 and 6.
+<img width="758" height="529" alt="image" src="https://github.com/user-attachments/assets/a096fad4-d8db-4b94-94e3-046fdb61f4db" />
 
 ## How we approached it
 
