@@ -1,6 +1,6 @@
 # Supporting project files
 
-These four files are preserved exactly as supplied with the final project. They provide research, team, and planning context. The [September 13 presentation](../presentation/README.md) takes precedence wherever their content differs.
+These two files are retained with the final project for research and presentation-planning context. The [September 13 presentation](../presentation/README.md) takes precedence wherever their content differs.
 
 ## Research
 
@@ -8,15 +8,8 @@ These four files are preserved exactly as supplied with the final project. They 
 
 The workbook contains some conflicting narratives, a regional grouping discrepancy, and a retained external workbook reference. See [reconciliation notes](../docs/source_priority.md#supporting-workbook-notes). The existing workbook has not been refreshed or rewritten.
 
-## Team
-
-- [Team Intro and Skill Sets](team/Copy%20of%20Team%20Intro%20%26%20Skill%20Sets.docx)
-- [Team Roles workbook](team/Copy%20of%20Team%20Roles.xlsx) **(Excel workbook — download to view)**
-
-These are the original team records, including the submitted profile prose and planning responsibilities. Final presentation credits are shown in [slide 3](../presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf#page=3) and reproduced in the root README.
-
 ## Presentation planning
 
 [2026 Datathon Presentation Outline](presentation/Copy%20of%202026%20Datathon%20Presentation%20Outline.docx) records the planned flow and speaker assignments. It is a planning source. Its prompts and instructions are retained as document content.
 
-The [artifact manifest](../docs/artifact_manifest.json) records the original filenames, repository locations, sizes, and hashes.
+The [artifact manifest](../docs/artifact_manifest.json) records the retained filenames, repository locations, sizes, and hashes.
