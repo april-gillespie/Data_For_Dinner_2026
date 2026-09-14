@@ -12,8 +12,8 @@
     },
     {
       "path": "README.md",
-      "git_blob_sha1": "bd4198c6854f426009db21e19ce8d43907d1aaf6",
-      "bytes": 10119,
+      "git_blob_sha1": "ea4d21b64d12451978bcb93bac4827deb0cc1c97",
+      "bytes": 9924,
       "mode": "100644"
     },
     {
@@ -102,8 +102,8 @@
     },
     {
       "path": "docs/decisions_2026-08-25.md",
-      "git_blob_sha1": "bd59afa58d0c964cc49478e29e196ec551625fd3",
-      "bytes": 4392,
+      "git_blob_sha1": "b7e53e972e2c0fde2d340e01b4660f82e0e29f76",
+      "bytes": 4307,
       "mode": "100644"
     },
     {
@@ -128,12 +128,6 @@
       "path": "docs/methodology.md",
       "git_blob_sha1": "cc2ca6b84db05a145ad891e1981dfc762d03a278",
       "bytes": 8163,
-      "mode": "100644"
-    },
-    {
-      "path": "docs/project_roles.md",
-      "git_blob_sha1": "5e83eced5230de0cc1f598652ff10cbbb96905bd",
-      "bytes": 1091,
       "mode": "100644"
     },
     {
@@ -331,6 +325,6 @@
   ],
   "previous_main_readme": {
     "path": "archive/main-before-final-README.md",
-    "git_blob_sha1": "455099fe1c8f899f60d4839c6190237585e37b57"
+    "git_blob_sha1": "e452f30b23160a095cdd79b998f3364e989c312d"
   }
 }
