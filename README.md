@@ -11,10 +11,9 @@ Data for Dinner explores food insecurity from the globe to the United States, th
 | Final presentation, 27 slides | [Read the presentation](presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf) |
 | Tableau Public dashboard | [Explore the dashboard](https://public.tableau.com/shared/NX9Y4P32D?%3Adisplay_count=n&%3Aorigin=viz_share_link) |
 | Final video | [Video home](video/README.md), recording pending |
-| Spoken presentation | [Original captions](video/Data%20for%20Dinner%20Captions.srt) and [readable transcript](video/transcript.md) |
 | Supporting files | [Research workbook, outline, team roles, and introductions](supporting/README.md) |
 
-The final presentation is the source of truth for this project. It takes precedence over supporting workbooks, earlier documentation, and captions when they differ. The captions preserve the supplied record of what was said. See [source priority and reconciliation](docs/source_priority.md).
+The final presentation is the source of truth for this project. It takes precedence over supporting workbooks and earlier documentation when they differ. See [source priority and reconciliation](docs/source_priority.md).
 
 ## The problem
 
@@ -62,7 +61,7 @@ The original [team introductions and roles](supporting/README.md#team) are prese
 
 ```text
 presentation/   final PDF and slide guide
-video/          recording home, original captions, and transcript
+video/          final recording home
 supporting/     original research, planning, and team files
 assets/qr/      supplied GitHub and Tableau QR images
 docs/          final summary, source priority, and artifact manifest
@@ -76,7 +75,7 @@ Source links are collected in the [final project summary](docs/final_project.md#
 
 ## For technical reviewers
 
-To check the supplied file hashes, caption structure, and repository links after cloning, run:
+To check the supplied file hashes and repository links after cloning, run:
 
 ```sh
 python tools/verify_final_package.py
