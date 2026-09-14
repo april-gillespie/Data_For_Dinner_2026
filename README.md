@@ -2,6 +2,10 @@
 
 Women in Data Datathon 2026. Track: Eat. Final presentation: September 13, 2026.
 
+<p align="center">
+  <img src="assets/women-in-data-logo.png" alt="Women in Data" width="520">
+</p>
+
 Data for Dinner explores food insecurity from the globe to the United States, the Southeast, and Alabama. The project connects regional food insecurity patterns with the challenges families face in obtaining affordable, nourishing food, and proposes practical actions for local communities.
 
 ## Project links
@@ -63,7 +67,7 @@ The original [team introductions and roles](supporting/README.md#team) are prese
 presentation/   final PDF and slide guide
 video/          final recording home
 supporting/     original research, planning, and team files
-assets/qr/      supplied GitHub and Tableau QR images
+assets/         Women in Data logo and supplied QR images
 docs/          final summary, source priority, and artifact manifest
 tools/         final package verification
 archive/       preserved earlier analysis and repository documentation
