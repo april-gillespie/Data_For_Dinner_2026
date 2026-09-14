@@ -44,6 +44,6 @@ The supplied workbook has 215 formula cells with cached results. A read-only ind
 
 ## Preservation and validation
 
-All eight supplied files are listed in the [artifact manifest](artifact_manifest.json) with original names, publication paths, sizes, and SHA-256 hashes. All 27 final presentation pages were rendered and visually inspected to verify the source content used in the summaries. The two QR images encode the same links as slide 27.
+All seven supplied files are listed in the [artifact manifest](artifact_manifest.json) with original names, publication paths, sizes, and SHA-256 hashes. All 27 final presentation pages were rendered and visually inspected to verify the source content used in the summaries. The two QR images encode the same links as slide 27.
 
 The final video is pending. The dashboard URL is taken from the supplied QR redirect; live dashboard values were not used to replace the final presentation.
