@@ -12,14 +12,6 @@
       "preserved_byte_for_byte": true
     },
     {
-      "original_name": "Data for Dinner Captions.srt",
-      "path": "video/Data for Dinner Captions.srt",
-      "bytes": 9872,
-      "sha256": "a844b9e707611c7184e842260b0673a658e1ab1151802671c335e9218d6fb766",
-      "git_blob_sha1": "f7677ec40497f9e39450ebe46904010d9e34a2a2",
-      "preserved_byte_for_byte": true
-    },
-    {
       "original_name": "Copy of Team Intro & Skill Sets.docx",
       "path": "supporting/team/Copy of Team Intro & Skill Sets.docx",
       "bytes": 10767,
@@ -68,19 +60,10 @@
       "preserved_byte_for_byte": true
     }
   ],
-  "captions": {
-    "path": "video/Data for Dinner Captions.srt",
-    "blocks": 106,
-    "text_blocks": 62,
-    "empty_blocks": 44,
-    "first_start": "00:00:00,000",
-    "last_end": "00:06:38,500"
-  },
   "video": {
     "status": "awaiting_final_recording",
     "path": null,
-    "url": null,
-    "caption_alignment_verified": false
+    "url": null
   },
   "archive_manifest": "docs/archive_manifest.json"
 }
