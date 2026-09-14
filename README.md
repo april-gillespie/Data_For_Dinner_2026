@@ -15,7 +15,7 @@ Data for Dinner explores food insecurity from the globe to the United States, th
 | Final presentation, 27 slides | [Read the presentation](presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf) |
 | Tableau Public dashboard | [Explore the dashboard](https://public.tableau.com/shared/NX9Y4P32D?%3Adisplay_count=n&%3Aorigin=viz_share_link) |
 | Final video | [Video home](video/README.md), recording pending |
-| Supporting files | [Research workbook, outline, team roles, and introductions](supporting/README.md) |
+| Supporting files | [Research workbook and presentation outline](supporting/README.md) |
 
 The final presentation is the source of truth for this project. It takes precedence over supporting workbooks and earlier documentation when they differ. See [source priority and reconciliation](docs/source_priority.md).
 
@@ -40,10 +40,6 @@ The team used FAOSTAT food security indicators for global context and Feeding Am
 | Southeast | The presentation reports **15.8%** compared with a U.S. average of 12.9%. | 17 |
 | Alabama | County comparisons show disparities in low access and low income. The separate low-income/low-access ranking begins with Shelby at **36.70%**, Madison at **35.30%**, and Lee at **32.70%**. | 19 and 20 |
 
-<p align="center">
-  <img src="assets/alabama-food-insecurities.jpg" alt="Alabama Food Insecurities analysis" width="650">
-</p>
-
 These are the values and labels reported in the final presentation. Their measure definitions and source differences are recorded in the [final project summary](docs/final_project.md) and [reconciliation notes](docs/source_priority.md). The county low-income/low-access ranking is a different measure from a food insecurity rate.
 
 ## Community solutions and future work
@@ -54,19 +50,22 @@ Future work would investigate how food allergy constraints affect affordability,
 
 ## Team
 
-<p align="center">
-  <img src="assets/team-chefs.jpg" alt="Data for Dinner team and project roles" width="650">
-</p>
+The following credits reproduce slide 3 of the final presentation.
 
-The original [team introductions and roles](supporting/README.md#team) are preserved as supplied.
+| Team member | Background shown | Project roles shown |
+| --- | --- | --- |
+| Sharon Brooks | Data Governance Analyst | Team Lead; Project Manager |
+| April Gillespie | Technical Marketing Engineer | Researcher; Data Scientist; GitHub Manager |
+| Sandra Kopecky | IT Specialist | Data Discovery; Data Analyst; Insights Manager |
+| Toni Randell | IT Data Analyst | Dashboarding; Data Analyst |
 
 ## Repository guide
 
 ```text
 presentation/   final PDF and slide guide
 video/          final recording home
-supporting/     original research, planning, and team files
-assets/         logo, selected presentation visuals, and QR images
+supporting/     research and presentation-planning files
+assets/         Women in Data logo and supplied QR images
 docs/          final summary, source priority, and artifact manifest
 tools/         final package verification
 archive/       preserved earlier analysis and repository documentation
@@ -74,7 +73,7 @@ archive/       preserved earlier analysis and repository documentation
 
 The [archive](archive/README.md) preserves earlier analysis, code, data, and figures for provenance.
 
-Source links are collected in the [final project summary](docs/final_project.md#sources). The [artifact manifest](docs/artifact_manifest.json) records the seven supplied files and their SHA-256 hashes. See the [validation record](docs/validation.md) for checks and remaining limitations.
+Source links are collected in the [final project summary](docs/final_project.md#sources). The [artifact manifest](docs/artifact_manifest.json) records the five supplied files retained in the published package and their SHA-256 hashes. See the [validation record](docs/validation.md) for checks and remaining limitations.
 
 ## For technical reviewers
 
