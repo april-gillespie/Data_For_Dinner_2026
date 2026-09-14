@@ -18,7 +18,6 @@ This record captures the meeting decisions that affect the published repository.
 ## Repository and delivery decisions
 
 - Publish only finalized, reviewed files.
-- Keep roles in supporting material at the bottom of the main project documentation.
 - Target final recording and submission for the weekend ending September 13, 2026.
 - Prioritize a visual story that contrasts available food resources with actual access, but do not label a measure as food abundance until its definition and data source are approved.
 
