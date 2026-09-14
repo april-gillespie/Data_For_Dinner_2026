@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Final project packaging and local data
+.publication-work/
+node_modules/
+data/raw/
+~$*
+

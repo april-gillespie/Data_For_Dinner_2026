@@ -1,0 +1,10 @@
+source_id,analytical_purpose,grain,vintage,recommendation,limitation
+FAO_FS,Global and national food-insecurity context,Global/region/country,Current through 2023-2025 for core FIES indicators,KEEP - context only,Not comparable to tract retailer access; no U.S. state detail.
+FAO_COAHD,Economic access to a healthy diet,Global/region/country,July 2026 release; indicators through 2025,KEEP - context only,National and regional estimates; no U.S. state or tract detail.
+USDA_FOOD_SECURITY_CSV,U.S. household food insecurity outcome,National/state,2024 annual; 2022-2024 state average,KEEP - outcome benchmark,State margins of error are material; no official tract outcome.
+USDA_SRAM_2025,Retailer proximity and low-income/low-access burden,2020 census tract,SNAP retailers June 2025; ACS 2020-2024,KEEP - primary local dataset,"Measures proximity to SNAP-authorized retailers, not price, quality, inventory, transit, or household food insecurity."
+CENSUS_TRACTS_AL_2020,Alabama mapping geometry,2020 census tract,2020,KEEP - mapping support,Geometry only; must join on an 11-digit text GEOID.
+USDA_LRAM_2019,Large-supermarket retailer-universe sensitivity,2010 census tract,2019 retailer list,OPTIONAL NEXT CRAWL,"Different retailer universe and tract base; use as a sensitivity comparison, not a time series."
+USDA_FOOD_ENVIRONMENT_ATLAS,"County-level price, store, assistance, and environment context",County/state,Mixed vintages,ADD ONLY FOR A DECLARED GAP,Do not add broadly; retain only variables with a specific analytical purpose.
+FEEDING_AMERICA_MMG_2026,Modeled individual food-insecurity and food-cost context,County/state,"2024 observation year; file updated July 28, 2026",KEEP - separate outcome layer,"Modeled estimates, not household survey rates or tract results. State estimates aggregate district results, so county sums differ from the state total."
+SUBSTATE_FOOD_INSECURITY_OUTCOME,Tract food-insecurity outcome,Tract,No directly comparable tract outcome identified,GAP - do not infer,Map the Meal Gap fills the county outcome gap but does not provide tract-level food-insecurity estimates.

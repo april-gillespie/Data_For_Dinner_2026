@@ -1,0 +1,27 @@
+# Raw and extracted source data are reproducibly downloaded by src/acquire_data.py.
+data/raw/
+
+# Local QA previews and temporary build products.
+qa/
+*.tmp
+*.log
+__pycache__/
+*.py[cod]
+
+# Local dependencies and exploratory work that is not part of the reviewed pipeline.
+node_modules/
+tools/vendor/
+outputs/
+faostat_allergen_inventory.json
+faostat_datasets_*.json
+faostat_zip_schemas_*.json
+fbs_item_profile.json
+gluten_trend_analysis.json
+deliverables/qa_project_charter/
+reports/.assets/
+reports/*.inspect.ndjson
+
+# Office lock files and OS metadata.
+~$*
+.DS_Store
+Thumbs.db

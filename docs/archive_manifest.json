@@ -1,0 +1,336 @@
+{
+  "repository": "april-gillespie/Data_For_Dinner_2026",
+  "source_commit": "d738d4ff8cea0d4e1055380b0ed22042fbb3b758",
+  "source_tree": "ede187b75169aed53d6c760c0c69be40905197c8",
+  "publication_root": "archive/2026-08-analysis",
+  "files": [
+    {
+      "path": ".gitignore",
+      "git_blob_sha1": "8225952330277fc783bdbe4b36e211da86315f58",
+      "bytes": 576,
+      "mode": "100644"
+    },
+    {
+      "path": "README.md",
+      "git_blob_sha1": "bd4198c6854f426009db21e19ce8d43907d1aaf6",
+      "bytes": 10119,
+      "mode": "100644"
+    },
+    {
+      "path": "data/README.md",
+      "git_blob_sha1": "c2d9672c07e41cf3b31dd1cb26564bc8e93b7c2a",
+      "bytes": 2200,
+      "mode": "100644"
+    },
+    {
+      "path": "data/contributed/sandra_kopecky/WomenInData Data Stats and Summary - Story.xlsx",
+      "git_blob_sha1": "6d678ba8bb63dba0a4b731a8ef285c0edd62efac",
+      "bytes": 2409225,
+      "mode": "100644"
+    },
+    {
+      "path": "data/metadata/source_manifest.csv",
+      "git_blob_sha1": "0b75f748a911d4078cbedc090e52c3e879bf18ec",
+      "bytes": 4791,
+      "mode": "100644"
+    },
+    {
+      "path": "data/metadata/variable_dictionary.csv",
+      "git_blob_sha1": "1fb47cb6ed07b7a5981db35b8cc15a1900d63f2c",
+      "bytes": 3191,
+      "mode": "100644"
+    },
+    {
+      "path": "data/processed/alabama_county_food_access.csv",
+      "git_blob_sha1": "6cfc9fc61de77defcb6fd444305ad8983f3cfe74",
+      "bytes": 11734,
+      "mode": "100644"
+    },
+    {
+      "path": "data/processed/alabama_county_food_insecurity_2024.csv",
+      "git_blob_sha1": "64e62195b65e751e77a86c70d232af7721bfaec9",
+      "bytes": 9281,
+      "mode": "100644"
+    },
+    {
+      "path": "data/processed/alabama_state_food_insecurity_2024.csv",
+      "git_blob_sha1": "aaa9b9a2d6ce1577088f4cb2772dffcda7c19745",
+      "bytes": 595,
+      "mode": "100644"
+    },
+    {
+      "path": "data/processed/alabama_tract_food_access.csv",
+      "git_blob_sha1": "9df54f8aeb6046f32d5f0ea77c0b10b6132e93f1",
+      "bytes": 294320,
+      "mode": "100644"
+    },
+    {
+      "path": "data/processed/global_food_access_summary.csv",
+      "git_blob_sha1": "c794ed5305de0c4c80d2f796f39b3216be93175a",
+      "bytes": 5211,
+      "mode": "100644"
+    },
+    {
+      "path": "data/processed/southeast_state_comparison.csv",
+      "git_blob_sha1": "bdde272a9e6b00ebdf7f70bc7c95e77fc1a622a8",
+      "bytes": 2781,
+      "mode": "100644"
+    },
+    {
+      "path": "data/processed/us_food_insecurity_states_2022_2024.csv",
+      "git_blob_sha1": "2bace33ba4d334f736e0c7075e8c43f794fa5469",
+      "bytes": 1820,
+      "mode": "100644"
+    },
+    {
+      "path": "data/processed/us_state_retail_access_summary.csv",
+      "git_blob_sha1": "f1c3bd438d6444a31da763a4735f2af27d6331cf",
+      "bytes": 11156,
+      "mode": "100644"
+    },
+    {
+      "path": "deliverables/Data_for_Dinner_Project_Charter_and_Data_Plan.docx",
+      "git_blob_sha1": "eaee77c1aedfdec1ea48a8b411ab38aab01a3e07",
+      "bytes": 50820,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/allergy_next_crawl.md",
+      "git_blob_sha1": "7b594672fb26f18adb3180d5c755183777046fdd",
+      "bytes": 5005,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/decisions_2026-08-25.md",
+      "git_blob_sha1": "bd59afa58d0c964cc49478e29e196ec551625fd3",
+      "bytes": 4392,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/feeding_america_mmg_2026.md",
+      "git_blob_sha1": "1fd55cae4b7e8132098c5304417f5b12c256633a",
+      "bytes": 3709,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/feeding_america_source.md",
+      "git_blob_sha1": "d97a39428529d24cf3d02333446da238e355c59b",
+      "bytes": 3794,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/limitations.md",
+      "git_blob_sha1": "969f8b7b557d6fa49f0e0b2c407cabaadc125c55",
+      "bytes": 3672,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/methodology.md",
+      "git_blob_sha1": "cc2ca6b84db05a145ad891e1981dfc762d03a278",
+      "bytes": 8163,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/project_roles.md",
+      "git_blob_sha1": "5e83eced5230de0cc1f598652ff10cbbb96905bd",
+      "bytes": 1091,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/sandra_kopecky_story_workbook.md",
+      "git_blob_sha1": "aee2de9a4ab052bbfadd3ba09a61e8be8709238a",
+      "bytes": 2552,
+      "mode": "100644"
+    },
+    {
+      "path": "figures/alabama_county_food_insecurity_2024.png",
+      "git_blob_sha1": "e9fdbce22f370315f37b4d563ba41f4efd566061",
+      "bytes": 59349,
+      "mode": "100644"
+    },
+    {
+      "path": "figures/alabama_subgroup_access.png",
+      "git_blob_sha1": "2f39158839d4f41bd2a8b297de8c75668a0f2469",
+      "bytes": 72980,
+      "mode": "100644"
+    },
+    {
+      "path": "figures/alabama_tract_food_access_map.png",
+      "git_blob_sha1": "a1cbb7de3bd43ddef88898cae446aefd353866f5",
+      "bytes": 161050,
+      "mode": "100644"
+    },
+    {
+      "path": "figures/global_food_access.png",
+      "git_blob_sha1": "ec5fea7e37c095599fd8fe6083596cf91c9df505",
+      "bytes": 63247,
+      "mode": "100644"
+    },
+    {
+      "path": "figures/southeast_food_insecurity.png",
+      "git_blob_sha1": "c6dfce9050c3c403b804317ae73e75134fc3c01e",
+      "bytes": 47670,
+      "mode": "100644"
+    },
+    {
+      "path": "figures/southeast_retail_access.png",
+      "git_blob_sha1": "0bc0b2f116a407c509829af20121cf4fdf93ea6c",
+      "bytes": 52591,
+      "mode": "100644"
+    },
+    {
+      "path": "reports/Data_for_Dinner_Food_Access_Analysis.docx",
+      "git_blob_sha1": "3f559a55b6c680a131825a9e0b6c3e0d86bedc8f",
+      "bytes": 291849,
+      "mode": "100644"
+    },
+    {
+      "path": "reports/Data_for_Dinner_Food_Access_Analysis.pdf",
+      "git_blob_sha1": "f494c8bdbf5966c7dc42bf1e2a68ee2b3b9a00b7",
+      "bytes": 796666,
+      "mode": "100644"
+    },
+    {
+      "path": "reports/Data_for_Dinner_Food_Access_Analysis.xlsx",
+      "git_blob_sha1": "13c0d4bd19e7578b1dcaad7cad0036611e1b2bf7",
+      "bytes": 217198,
+      "mode": "100644"
+    },
+    {
+      "path": "reports/README.md",
+      "git_blob_sha1": "9f418f566c59c61e37a60c32590fb6bc018e75c1",
+      "bytes": 1006,
+      "mode": "100644"
+    },
+    {
+      "path": "requirements.txt",
+      "git_blob_sha1": "e25757b848cc0749b863d2ae9372bc1381a0c08e",
+      "bytes": 110,
+      "mode": "100644"
+    },
+    {
+      "path": "results/dataset_assessment.csv",
+      "git_blob_sha1": "d661c7cd98abbb7c793f3f2806ab23d0da4841e5",
+      "bytes": 2120,
+      "mode": "100644"
+    },
+    {
+      "path": "results/feeding_america_mmg_validation.json",
+      "git_blob_sha1": "a5411d06fb7096f334839b60f79ecadd42952258",
+      "bytes": 1367,
+      "mode": "100644"
+    },
+    {
+      "path": "results/key_findings.json",
+      "git_blob_sha1": "3123c55a6f65ff37fdf8f46a4dc26674f03ffcce",
+      "bytes": 9074,
+      "mode": "100644"
+    },
+    {
+      "path": "results/qa_results.csv",
+      "git_blob_sha1": "d5e363996007c9d5edea1881e8402ee303739f24",
+      "bytes": 1689,
+      "mode": "100644"
+    },
+    {
+      "path": "results/sensitivity_analysis.csv",
+      "git_blob_sha1": "edc2c7760398abdfcb7761dc77157c344efa8a7d",
+      "bytes": 1282,
+      "mode": "100644"
+    },
+    {
+      "path": "results/team_story_workbook_review.json",
+      "git_blob_sha1": "ddbfcf893f859763f60b33fef6314c54809d202d",
+      "bytes": 1174,
+      "mode": "100644"
+    },
+    {
+      "path": "src/acquire_data.py",
+      "git_blob_sha1": "0ccddff65ea16f0552685bab877cae87149b2488",
+      "bytes": 7016,
+      "mode": "100644"
+    },
+    {
+      "path": "src/analyze_food_access.py",
+      "git_blob_sha1": "19f852d58049607d0ef9e2ea4affa73abc533755",
+      "bytes": 49783,
+      "mode": "100644"
+    },
+    {
+      "path": "src/ingest_feeding_america.py",
+      "git_blob_sha1": "9345d54d70ad72e11dab665a4c691d92f4e2518b",
+      "bytes": 4595,
+      "mode": "100644"
+    },
+    {
+      "path": "src/process_feeding_america_mmg.py",
+      "git_blob_sha1": "4d6c05e095a6677ad231859bc213af15ed47e575",
+      "bytes": 12986,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/analyze_gluten_trends.py",
+      "git_blob_sha1": "f94ffe685d76e6f22a6dd817bd6ede6e4dcd8c78",
+      "bytes": 19749,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/build_analysis_workbook.mjs",
+      "git_blob_sha1": "3674e9bfeab463304bc42f17f6f3ebe93ff7e888",
+      "bytes": 27501,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/build_faostat_data_dictionary.mjs",
+      "git_blob_sha1": "f782af29298cd6a7fa30d8be087ab5273b27fa45",
+      "bytes": 36530,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/build_food_access_report.py",
+      "git_blob_sha1": "7bb59d05721070bf3272230e93de751447a9b776",
+      "bytes": 52530,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/create_project_charter.py",
+      "git_blob_sha1": "d53e557a8365279d369d857f4cbbdbcb623384af",
+      "bytes": 45639,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/export_docx_pdf.ps1",
+      "git_blob_sha1": "117bbda86849bfe2b27dfb03281eb8355a3e5b1c",
+      "bytes": 1399,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/extract_faostat_zip_schemas.py",
+      "git_blob_sha1": "651d0ba6c3cfee6e20bda39e415eef7f1442b007",
+      "bytes": 8671,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/inventory_faostat_allergens.py",
+      "git_blob_sha1": "3c3fb2e8e1614a1620342902f01863bb4885edd5",
+      "bytes": 7845,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/profile_fbs_items.py",
+      "git_blob_sha1": "833777c4ff90e73288b4431c7ddce86e57da5fb3",
+      "bytes": 1833,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/render_pdf_pages.py",
+      "git_blob_sha1": "b086e0676fe1c7cb344d425f7314e798d74fc2d1",
+      "bytes": 1528,
+      "mode": "100644"
+    }
+  ],
+  "previous_main_readme": {
+    "path": "archive/main-before-final-README.md",
+    "git_blob_sha1": "455099fe1c8f899f60d4839c6190237585e37b57"
+  }
+}

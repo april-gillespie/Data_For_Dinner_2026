@@ -1,0 +1,258 @@
+{
+  "as_of": "2026-08-29",
+  "global": {
+    "moderate_or_severe_food_insecurity_world_pct_2023_2025": 26.8,
+    "moderate_or_severe_food_insecurity_us_pct_2023_2025": 10.7,
+    "severe_food_insecurity_world_pct_2023_2025": 9.8,
+    "healthy_diet_unaffordability_world_pct_2025": 32.7,
+    "healthy_diet_unaffordability_world_millions_2025": 2692.1,
+    "highest_regional_moderate_or_severe_pct": {
+      "region": "Africa",
+      "value": 57.4
+    }
+  },
+  "united_states": {
+    "year": 2024,
+    "households_thousands": 134062,
+    "food_secure_pct": 86.3,
+    "food_insecure_thousands": 18340,
+    "food_insecure_pct": 13.7,
+    "very_low_thousands": 7202,
+    "very_low_pct": 5.4,
+    "census_south_food_insecure_pct": 15.0,
+    "source_id": "USDA_FOOD_SECURITY_CSV",
+    "state_average_2022_2024_food_insecurity_pct": 13.3,
+    "state_average_2022_2024_food_insecurity_moe_pp": 0.4,
+    "tract_count": 84119,
+    "population": 331449281,
+    "low_income_population": 234624868,
+    "low_access_population": 62320755,
+    "low_access_population_pct": 18.802501188711283,
+    "low_income_low_access_population": 49667746,
+    "low_income_low_access_population_pct": 21.169003278885167,
+    "lila_tract_count": 6301,
+    "lila_tract_pct": 7.490578822858094,
+    "low_access_children_pct": 19.195528410800755,
+    "low_access_seniors_pct": 20.418385617809104,
+    "low_access_no_vehicle_housing_units_pct": 8.861496745902377,
+    "low_access_snap_housing_units_pct": 11.078144248022149
+  },
+  "southeast": {
+    "states": [
+      "AL",
+      "AR",
+      "FL",
+      "GA",
+      "KY",
+      "LA",
+      "MS",
+      "NC",
+      "SC",
+      "TN"
+    ],
+    "highest_food_insecurity_state": {
+      "state": "Arkansas",
+      "pct": 19.4
+    },
+    "highest_low_income_low_access_state": {
+      "state": "Georgia",
+      "pct": 31.64526536899141
+    },
+    "tract_count": 19410,
+    "population": 74879423,
+    "low_income_population": 50670016,
+    "low_access_population": 17832715,
+    "low_access_population_pct": 23.81524093742015,
+    "low_income_low_access_population": 13681611,
+    "low_income_low_access_population_pct": 27.001394670962803,
+    "lila_tract_count": 2154,
+    "lila_tract_pct": 11.097372488408038,
+    "low_access_children_pct": 24.198213090161506,
+    "low_access_seniors_pct": 25.262082311738716,
+    "low_access_no_vehicle_housing_units_pct": 15.566005500691787,
+    "low_access_snap_housing_units_pct": 15.497086858518623
+  },
+  "alabama": {
+    "food_insecurity_pct_2022_2024": 12.1,
+    "food_insecurity_moe_pp": 2.23,
+    "food_insecurity_rank_high_to_low_among_10": 9,
+    "tract_count": 1436,
+    "population": 5024279,
+    "low_income_population": 3243903,
+    "low_access_population": 895423,
+    "low_access_population_pct": 17.821920319313477,
+    "low_income_low_access_population": 656013,
+    "low_income_low_access_population_pct": 20.222953645654634,
+    "lila_tract_count": 151,
+    "lila_tract_pct": 10.515320334261839,
+    "low_access_children_pct": 18.237795057957047,
+    "low_access_seniors_pct": 17.71288866684827,
+    "low_access_no_vehicle_housing_units_pct": 12.64615670601357,
+    "low_access_snap_housing_units_pct": 12.52540864424968,
+    "top_counties_by_affected_low_income_count": [
+      {
+        "county": "Jefferson County",
+        "low_income_low_access_population": 133014,
+        "low_income_low_access_population_pct": 30.788709834221404
+      },
+      {
+        "county": "Madison County",
+        "low_income_low_access_population": 106257,
+        "low_income_low_access_population_pct": 35.26067954882577
+      },
+      {
+        "county": "Shelby County",
+        "low_income_low_access_population": 68184,
+        "low_income_low_access_population_pct": 36.70760004091543
+      },
+      {
+        "county": "Baldwin County",
+        "low_income_low_access_population": 42834,
+        "low_income_low_access_population_pct": 23.907437795117378
+      },
+      {
+        "county": "Mobile County",
+        "low_income_low_access_population": 39741,
+        "low_income_low_access_population_pct": 15.759169154998276
+      },
+      {
+        "county": "Lee County",
+        "low_income_low_access_population": 37598,
+        "low_income_low_access_population_pct": 32.68169293220796
+      },
+      {
+        "county": "Tuscaloosa County",
+        "low_income_low_access_population": 36811,
+        "low_income_low_access_population_pct": 25.05086937289462
+      },
+      {
+        "county": "Montgomery County",
+        "low_income_low_access_population": 33781,
+        "low_income_low_access_population_pct": 25.351975264169067
+      },
+      {
+        "county": "Morgan County",
+        "low_income_low_access_population": 18222,
+        "low_income_low_access_population_pct": 21.715348039040435
+      },
+      {
+        "county": "Calhoun County",
+        "low_income_low_access_population": 14618,
+        "low_income_low_access_population_pct": 21.942030290749162
+      }
+    ],
+    "top_lila_tracts_by_affected_low_income_count_excluding_high_group_quarters": [
+      {
+        "GEOID20": "01073011110",
+        "County24": "Jefferson County",
+        "DD_SRAM_LALOWI1_10": 3388.0,
+        "low_income_low_access_population_pct": 78.57142857142857,
+        "PovertyRate": 21.6
+      },
+      {
+        "GEOID20": "01081040602",
+        "County24": "Lee County",
+        "DD_SRAM_LALOWI1_10": 3194.0,
+        "low_income_low_access_population_pct": 48.23316218665056,
+        "PovertyRate": 23.5
+      },
+      {
+        "GEOID20": "01003011000",
+        "County24": "Baldwin County",
+        "DD_SRAM_LALOWI1_10": 3003.0,
+        "low_income_low_access_population_pct": 80.1013603627634,
+        "PovertyRate": 16.7
+      },
+      {
+        "GEOID20": "01073012701",
+        "County24": "Jefferson County",
+        "DD_SRAM_LALOWI1_10": 2232.0,
+        "low_income_low_access_population_pct": 69.99059266227657,
+        "PovertyRate": 14.7
+      },
+      {
+        "GEOID20": "01073012905",
+        "County24": "Jefferson County",
+        "DD_SRAM_LALOWI1_10": 2136.0,
+        "low_income_low_access_population_pct": 50.65212236186863,
+        "PovertyRate": 27.6
+      },
+      {
+        "GEOID20": "01073011208",
+        "County24": "Jefferson County",
+        "DD_SRAM_LALOWI1_10": 2005.0,
+        "low_income_low_access_population_pct": 68.24370319945541,
+        "PovertyRate": 19.3
+      },
+      {
+        "GEOID20": "01089010626",
+        "County24": "Madison County",
+        "DD_SRAM_LALOWI1_10": 1717.0,
+        "low_income_low_access_population_pct": 64.9886449659349,
+        "PovertyRate": 12.4
+      },
+      {
+        "GEOID20": "01003011603",
+        "County24": "Baldwin County",
+        "DD_SRAM_LALOWI1_10": 1632.0,
+        "low_income_low_access_population_pct": 69.50596252129472,
+        "PovertyRate": 3.5
+      },
+      {
+        "GEOID20": "01045020802",
+        "County24": "Dale County",
+        "DD_SRAM_LALOWI1_10": 1598.0,
+        "low_income_low_access_population_pct": 70.64544650751547,
+        "PovertyRate": 20.6
+      },
+      {
+        "GEOID20": "01097003410",
+        "County24": "Mobile County",
+        "DD_SRAM_LALOWI1_10": 1549.0,
+        "low_income_low_access_population_pct": 60.79277864992151,
+        "PovertyRate": 15.8
+      }
+    ],
+    "driving_threshold_low_income_low_access_pct": {
+      "0.5_urban_10_rural": 35.91630205958686,
+      "1_urban_10_rural": 20.222953645654634,
+      "1_urban_20_rural": 19.617818411956215
+    },
+    "feeding_america_mmg_2024": {
+      "observation_year": 2024,
+      "state_overall_food_insecurity_pct": 17.8,
+      "state_food_insecure_persons": 919160,
+      "state_child_food_insecurity_pct": 24.4,
+      "state_food_insecure_children": 276640,
+      "state_senior_food_insecurity_pct": 7.6,
+      "state_older_adult_food_insecurity_pct": 12.4,
+      "state_cost_per_meal_usd": 3.58,
+      "state_annual_food_budget_shortfall_usd": 624874000,
+      "county_count": 67,
+      "county_overall_food_insecurity_median_pct": 19.0,
+      "highest_county": {
+        "county": "Greene County, Alabama",
+        "pct": 24.8
+      },
+      "lowest_county": {
+        "county": "Shelby County, Alabama",
+        "pct": 13.100000000000001
+      },
+      "highest_child_rate_county": {
+        "county": "Greene County, Alabama",
+        "pct": 39.6
+      },
+      "imputed_market_basket_counties": 22,
+      "county_food_insecure_persons_sum": 883710,
+      "state_minus_county_food_insecure_persons": 35450
+    }
+  },
+  "sufficiency": {
+    "primary_dataset": "USDA ERS 2025 SRAM driving-distance data",
+    "primary_measure_retained": true,
+    "qa_pass_count": 17,
+    "qa_review_count": 2,
+    "qa_fail_count": 0,
+    "known_limit": "Retailer proximity does not measure affordability, food quality, inventory, transit, or household food insecurity."
+  }
+}

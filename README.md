@@ -1,188 +1,79 @@
 # Data for Dinner 2026
 
-Women in Data 2026 Datathon | **What's Cooking?**
+Women in Data Datathon 2026. Track: Eat. Final presentation: September 13, 2026.
 
-## Project Status
+Data for Dinner explores food insecurity from the globe to the United States, the Southeast, and Alabama. The project connects regional food insecurity patterns with the challenges families face in obtaining affordable, nourishing food, and proposes practical actions for local communities.
 
-**Current phase:** TBD
+## Explore the final project
 
+| Resource | Open |
+| --- | --- |
+| Final presentation, 27 slides | [Read the presentation](presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf) |
+| Tableau Public dashboard | [Explore the dashboard](https://public.tableau.com/shared/NX9Y4P32D?%3Adisplay_count=n&%3Aorigin=viz_share_link) |
+| Final video | [Video home](video/README.md), recording pending |
+| Spoken presentation | [Original captions](video/Data%20for%20Dinner%20Captions.srt) and [readable transcript](video/transcript.md) |
+| Supporting files | [Research workbook, outline, team roles, and introductions](supporting/README.md) |
 
+The final presentation is the source of truth for this project. It takes precedence over supporting workbooks, earlier documentation, and captions when they differ. The captions preserve the supplied record of what was said. See [source priority and reconciliation](docs/source_priority.md).
 
-## Datathon
+## The problem and audience
 
-The 2026 Women in Data datathon challenges teams to use open food-system data to investigate meaningful real-world problems and develop practical, evidence-based solutions.
+Food insecurity affects family wellbeing through limited access, unaffordability, and undernourishment. The final project focuses on local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government. See presentation slides 4 and 6.
 
-**Theme:** What's Cooking?  
-**Selected track:** Eat  
-**Project period:** August–September 2026  
-**Final submission:** September 15, 2026
+## Approach
 
-### Evaluation Areas
+The team used FAOSTAT food security indicators for global context and Feeding America for U.S. and Alabama context. The presentation describes batch downloads, merged datasets, Excel analysis, cleanup of aggregation differences, MapChart visualizations, and a Tableau Public dashboard. Collaboration used GitHub, Google Drive, Google Meet, and Microsoft Teams. See slides 8 and 9.
 
-- Depth of Analysis — 35%
-- Practical Application — 30%
-- Presentation Quality — 25%
-- Originality & Innovation — 10%
+The story evolved from an initial emphasis on food access toward food insecurity as local data limitations became clearer. Food allergy impacts remain future work because available data did not support the intended analysis. See slides 10 and 24.
 
-## Working Problem Statement
+## Findings presented
 
+| Topic | Presentation result | Slide |
+| --- | --- | --- |
+| Global context | Africa is reported at 57.4% for the chart category labeled moderate insecurity and 21.1% for severe insecurity. | 12 |
+| U.S. regions | The South is reported at 15.5%, compared with the Northeast at 11.4%, Midwest at 12.3% in the slide text, and West at 12.6%. | 15 |
+| Southeast | The presentation reports 15.8% compared with a U.S. average of 12.9%. | 17 |
+| Alabama | County comparisons show disparities in low access and low income. The separate low-income/low-access ranking begins with Shelby at 36.70%, Madison at 35.30%, and Lee at 32.70%. | 19 and 20 |
 
-## Working Research Question
+These are the values and labels reported in the final presentation. Their measure definitions and source differences are recorded in the [final project summary](docs/final_project.md) and [reconciliation notes](docs/source_priority.md). The county low-income/low-access ranking is a different measure from a food insecurity rate.
 
+## Community solutions and future work
 
-## Research Process and Plan Evolution
+The team proposes support for food pantries and shelters, small neighborhood pantries for shelf-stable staples, community buses serving as fresh-food pantries, and local farmers and fishers. These are proposed interventions from slide 22.
 
-The project follows an iterative research process rather than treating the initial plan as fixed:
-
-1. Define the question, scope, candidate datasets, and proposed measures.
-2. Acquire and inspect the actual source data.
-3. Validate identifiers, denominators, completeness, geography, and measurement definitions.
-4. Run the proposed analysis and sensitivity checks.
-5. Revisit the plan using evidence from implementation.
-6. Update definitions, source status, scope, and documentation before the next stage of analysis.
-
-### Guiding principle
-
-**More data is not automatically better.** Sources are retained only when they answer a defined analytical question, have sufficiently clear geography and denominators, and add information not already supplied by the retained dataset stack.
-
-## Data Sources
-
-| Source | Role | Status |
-|---|---|---|
-| FAOSTAT Suite of Food Security Indicators | Global food-insecurity context | Analyzed |
-| FAOSTAT Cost and Affordability of a Healthy Diet | Global affordability context | Analyzed |
-| USDA Household Food Security estimates | U.S. and state outcome context | Analyzed |
-| USDA 2025 SNAP-authorized Retailer Access Map | Primary Alabama and Southeast physical-access analysis | Analyzed / proposed primary source |
-| 2020 Census tract geometry | Alabama tract mapping | Analyzed |
-| USDA Food Environment Atlas | Optional county-level gap filling | Deferred unless a specific analytical gap is identified |
-| Allergy / gluten exploration | Separate exploratory work | Archived / outside active scope |
-
-## Methodology
-
-The analysis is built around methodological rigor, reproducibility, and explicit interpretation boundaries.
-
-### Source selection
-
-Datasets are evaluated for:
-
-- construct fit to the research question
-- geographic coverage and compatible spatial units
-- stable join keys
-- documented vintage and source provenance
-- acceptable completeness
-- clear denominators and units
-- analytical value beyond already retained sources
-
-### Data preparation and validation
-
-- Preserve frozen raw-data snapshots and source metadata.
-- Record source URLs, retrieval dates, vintages, filenames, and checksums where practical.
-- Store geographic identifiers such as FIPS and GEOID values as text so leading zeros are preserved.
-- Test for duplicate keys, missingness, range violations, denominator inconsistencies, and geographic coverage before analysis.
-- Standardize processed data without overwriting the original source files.
-
-### Aggregation and interpretation
-
-- Recalculate county and state rates from summed numerators and denominators rather than averaging tract percentages.
-- Preserve margins of error for survey-based state food-insecurity estimates.
-- Keep measures with different populations, units, or meanings analytically separate.
-- Distinguish **low-income individuals** from **low-income/low-access tracts** because the underlying USDA definitions are not interchangeable.
-- Use descriptive language and avoid unsupported causal claims.
-- Run sensitivity analyses when methodological choices materially affect the result.
-
-## Current Analysis
-
-
-## Preliminary Findings
-
-## Scope Boundaries
-
-## Practical Application / Proposed Solution
-
-*TBD after team review of the validated analysis and final problem framing.*
-
-The solution should follow from the evidence rather than being selected before the analysis is complete.
-
-## Deliverables
-
-The repository is structured to preserve both the analysis and the final datathon submission.
-
-- [ ] Core source discovery and evaluation
-- [ ] Initial data acquisition and validation
-- [ ] Alabama pilot and tract-key validation
-- [ ] Initial state and Alabama analysis
-- [ ] Sensitivity checks
-- [ ] Initial figures and maps
-- [ ] Final team-approved problem statement and scope
-- [ ] Final analysis notebook(s) / reproducible pipeline
-- [ ] Final figures / visualizations
-- [ ] IEEE-style paper
-- [ ] Final presentation / slide deck
-- [ ] Project recording / presentation video
-- [ ] Final project documentation and repository review
-
-## Repository Structure
-
-```text
-Data_For_Dinner_2026/
-├── README.md
-├── data/
-│   ├── raw/
-│   └── processed/
-├── notebooks/
-├── src/
-├── figures/
-├── presentation/
-├── docs/
-└── results/
-```
-
-Folders will be populated as project artifacts are finalized.
-
-## Project Timeline
-
-### Week 1 — Explore, Define, and Validate
-
-### Week 2 — Refine and Analyze
-
-### Week 3 — Develop and Validate
-
-### Week 4 — Finalize and Present
-
-## Limitations
-
-
-## Final Presentation
-
-*TBD*
-
-## Recording
-
-*TBD*
-
-## Conclusions
-
-*TBD after final team review and completion of the analysis.*
+Future work would investigate how food allergy constraints affect affordability, access, and nutrition, with expanded data discovery and research relevant to Alabama resources. The final project does not report a completed analysis of allergy impacts. See slide 24.
 
 ## Team
 
-### Sharon Brooks — Team Lead / Project Manager
-**Background:** Senior Data Governance Business Analyst  
-**Contributions:**
-- Team leadership and project management
-- Dashboarding
-- Data analysis using Excel and SQL
-- Presentation and slide deck development
+The following credits reproduce the roles in slide 3.
 
-### Sandra Kopecky — Data / Database Analysis
-**Background:** IT Specialist / Product Owner and adjunct professor. Career experience includes programming, analysis, database programming, and database administration.  
-**Contributions:**
-- SQL and database expertise
-- Python
-- Data analysis
-- Academic and technical perspective
+| Team member | Background shown | Project roles shown |
+| --- | --- | --- |
+| Sharon Brooks | Data Governance Analyst | Team Lead; Project Manager |
+| April Gillespie | Technical Marketing Engineer | Researcher; Data Scientist; GitHub Manager |
+| Sandra Kopecky | IT Specialist | Data Discovery; Data Analyst; Insights Manager |
+| Toni Randell | IT Data Analyst | Dashboarding; Data Analyst |
 
-### April Gillespie — Data Analysis / Technical Development
-**Background:** Technical Marketing Engineer with an electrical engineering background.  
-**Contributions:**
-- Github experience.
+The original [team introductions and roles](supporting/README.md#team) are preserved as supplied.
+
+## Repository guide
+
+```text
+presentation/   final PDF and slide guide
+video/          recording home, original captions, and transcript
+supporting/     original research, planning, and team files
+assets/qr/      supplied GitHub and Tableau QR images
+docs/          final summary, source priority, and artifact manifest
+tools/         final package verification
+archive/       preserved earlier analysis and repository documentation
+```
+
+The [archive](archive/README.md) retains the earlier code, processed data, figures, reports, and team contributions for provenance. Its earlier conclusions and priorities have been superseded by the final presentation.
+
+To check the supplied file hashes, caption structure, and repository links after cloning, run:
+
+```sh
+python tools/verify_final_package.py
+```
+
+Source links are collected in the [final project summary](docs/final_project.md#sources). The [artifact manifest](docs/artifact_manifest.json) records the eight supplied files and their SHA-256 hashes. See the [validation record](docs/validation.md) for checks and remaining limitations.
