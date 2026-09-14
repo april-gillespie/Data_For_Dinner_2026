@@ -14,7 +14,7 @@ The presentation identifies FAOSTAT food security indicators for global context 
 
 The workflow uses batch downloads, merged datasets, Excel analysis, cleanup when data did not align with aggregations, MapChart geographic visualizations, and a Tableau Public dashboard. GitHub, Google Drive, Google Meet, and Microsoft Teams supported collaboration. See page 9.
 
-The project shifted from an initial emphasis on food access toward food insecurity because local data were not consistently available. The team also deferred analysis of food allergy impacts when the available data lacked the necessary detail. See page 10 and the supplied captions beginning at 00:02:14,200.
+The project shifted from an initial emphasis on food access toward food insecurity because local data were not consistently available. The team also deferred analysis of food allergy impacts when the available data lacked the necessary detail. See page 10.
 
 ## Findings as presented
 
@@ -82,7 +82,7 @@ Page 24 proposes further research into how food allergy constraints affect affor
 
 Page 26 emphasizes food insecurity across geographic scales, the vulnerability associated with economic shocks and limited food-system resilience, rural isolation and retail constraints, and the value of layered geographic analysis for identifying practical community action.
 
-The [caption transcript](../video/transcript.md) preserves the supplied spoken record. The [video home](../video/README.md) is ready for the final recording.
+The [video home](../video/README.md) is ready for the final recording.
 
 ## Sources
 
