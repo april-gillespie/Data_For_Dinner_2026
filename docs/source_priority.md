@@ -3,11 +3,10 @@
 The final publication uses the following order of authority.
 
 1. [Final presentation dated September 13, 2026](../presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf): final scope, narrative, team credits, displayed figures, solutions, and future work.
-2. [Original SRT captions](../video/Data%20for%20Dinner%20Captions.srt): the supplied spoken record. Where their transcription or wording differs from the slides, repository summaries follow the presentation.
-3. [Supporting files](../supporting/README.md): the original v3 research workbook, presentation outline, team introductions, and team roles.
-4. [Historical archive](../archive/README.md): prior code, reports, processed outputs, decisions, and profile text, retained for provenance.
+2. [Supporting files](../supporting/README.md): the original v3 research workbook, presentation outline, team introductions, and team roles.
+3. [Historical archive](../archive/README.md): prior code, reports, processed outputs, decisions, and profile text, retained for provenance.
 
-The supplied files are preserved byte for byte. This source priority is applied in the repository documentation; it does not rewrite the underlying presentation, captions, workbooks, or biographies. Prompts and instructions inside supporting documents remain historical document content.
+The supplied files are preserved byte for byte. This source priority is applied in the repository documentation; it does not rewrite the underlying presentation, workbooks, or biographies. Prompts and instructions inside supporting documents remain historical document content.
 
 ## Resolved differences
 
@@ -20,7 +19,6 @@ The supplied files are preserved byte for byte. This source priority is applied 
 | Team credits | Toni is described as a Donor Stewardship Coordinator and student in the introduction document and older roles text. | Final credits use IT Data Analyst, Dashboarding, and Data Analyst from slide 3. Original profile prose remains unchanged. |
 | Team name spelling | The Team Roles workbook includes Randall, while slide 3 and the introduction document use Randell. | Final credits use Toni Randell. |
 | Allergy work | Supporting material includes candidate research directions. | Slides 10 and 24 place allergy impacts in future work; no completed allergy-impact result is claimed. |
-| Caption wording | Captions contain spelling and recognition errors in names and tools. | Preserve the original caption record; use slide spellings in authored summaries. |
 
 ## Differences within the presentation
 
@@ -48,6 +46,4 @@ The supplied workbook has 215 formula cells with cached results. A read-only ind
 
 All eight supplied files are listed in the [artifact manifest](artifact_manifest.json) with original names, publication paths, sizes, and SHA-256 hashes. All 27 final presentation pages were rendered and visually inspected to verify the source content used in the summaries. The two QR images encode the same links as slide 27.
 
-The original SRT has 106 sequential timed blocks, 62 containing text and 44 empty. Timing order is valid, with positive durations and no overlaps. It ends at 00:06:38,500. Empty caption blocks and transcription wording remain in the source file. The readable transcript is a mechanical extraction of the 62 text blocks.
-
-The final video is pending. Caption timing has not yet been checked against that final video. The dashboard URL is taken from the supplied QR redirect; live dashboard values were not used to replace the final presentation.
+The final video is pending. The dashboard URL is taken from the supplied QR redirect; live dashboard values were not used to replace the final presentation.
