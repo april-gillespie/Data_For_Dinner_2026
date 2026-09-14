@@ -3,10 +3,10 @@
 The final publication uses the following order of authority.
 
 1. [Final presentation dated September 13, 2026](../presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf): final scope, narrative, team credits, displayed figures, solutions, and future work.
-2. [Supporting files](../supporting/README.md): the original v3 research workbook, presentation outline, team introductions, and team roles.
-3. [Historical archive](../archive/README.md): prior code, reports, processed outputs, decisions, and profile text, retained for provenance.
+2. [Supporting files](../supporting/README.md): the original v3 research workbook and presentation outline.
+3. [Historical archive](../archive/README.md): prior code, reports, processed outputs, and decisions retained for provenance.
 
-The supplied files are preserved byte for byte. This source priority is applied in the repository documentation; it does not rewrite the underlying presentation, workbooks, or biographies. Prompts and instructions inside supporting documents remain historical document content.
+The retained files are preserved byte for byte. This source priority is applied in the repository documentation; it does not rewrite the underlying presentation or workbooks. Prompts and instructions inside supporting documents remain historical document content.
 
 ## Resolved differences
 
@@ -16,8 +16,6 @@ The supplied files are preserved byte for byte. This source priority is applied 
 | Analytical workflow | Earlier documentation called the Python food-access pipeline the primary analysis. | Slides 8 and 9 govern: FAOSTAT and Feeding America, Excel, MapChart, and Tableau. Archived scripts remain the earlier workflow. |
 | Southeast geography | Earlier analysis used a ten-state convention. | Follow the final map and state comparisons, including Texas and Oklahoma on slide 17. |
 | Numerical summaries | Older reports and supporting workbooks contain different values, vintages, and measures. | Active summaries reproduce the presentation values with slide references and preserve their measure labels. |
-| Team credits | Toni is described as a Donor Stewardship Coordinator and student in the introduction document and older roles text. | Final credits use IT Data Analyst, Dashboarding, and Data Analyst from slide 3. Original profile prose remains unchanged. |
-| Team name spelling | The Team Roles workbook includes Randall, while slide 3 and the introduction document use Randell. | Final credits use Toni Randell. |
 | Allergy work | Supporting material includes candidate research directions. | Slides 10 and 24 place allergy impacts in future work; no completed allergy-impact result is claimed. |
 
 ## Differences within the presentation
@@ -44,6 +42,6 @@ The supplied workbook has 215 formula cells with cached results. A read-only ind
 
 ## Preservation and validation
 
-All seven supplied files are listed in the [artifact manifest](artifact_manifest.json) with original names, publication paths, sizes, and SHA-256 hashes. All 27 final presentation pages were rendered and visually inspected to verify the source content used in the summaries. The two QR images encode the same links as slide 27.
+All five retained supplied files are listed in the [artifact manifest](artifact_manifest.json) with original names, publication paths, sizes, and SHA-256 hashes. All 27 final presentation pages were rendered and visually inspected to verify the source content used in the summaries. The two QR images encode the same links as slide 27.
 
 The final video is pending. The dashboard URL is taken from the supplied QR redirect; live dashboard values were not used to replace the final presentation.
