@@ -4,7 +4,7 @@ Women in Data Datathon 2026. Track: Eat. Final presentation: September 13, 2026.
 
 Data for Dinner explores food insecurity from the globe to the United States, the Southeast, and Alabama. The project connects regional food insecurity patterns with the challenges families face in obtaining affordable, nourishing food, and proposes practical actions for local communities.
 
-## Explore the final project
+## Project links
 
 | Resource | Open |
 | --- | --- |
@@ -16,24 +16,26 @@ Data for Dinner explores food insecurity from the globe to the United States, th
 
 The final presentation is the source of truth for this project. It takes precedence over supporting workbooks, earlier documentation, and captions when they differ. The captions preserve the supplied record of what was said. See [source priority and reconciliation](docs/source_priority.md).
 
-## The problem and audience
+## The problem
 
-Food insecurity affects family wellbeing through limited access, unaffordability, and undernourishment. The final project focuses on local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government. See presentation slides 4 and 6.
+Food insecurity impact families & diminishes quality of life. Families face an uneven menu of limited access, unaffordability, and undernourishment. We need community-driven solutions that deliver equitable food and nourishment for all.
 
-## Approach
+The final project focuses on local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government. See presentation slides 4 and 6.
+
+## How we approached it
 
 The team used FAOSTAT food security indicators for global context and Feeding America for U.S. and Alabama context. The presentation describes batch downloads, merged datasets, Excel analysis, cleanup of aggregation differences, MapChart visualizations, and a Tableau Public dashboard. Collaboration used GitHub, Google Drive, Google Meet, and Microsoft Teams. See slides 8 and 9.
 
-The story evolved from an initial emphasis on food access toward food insecurity as local data limitations became clearer. Food allergy impacts remain future work because available data did not support the intended analysis. See slides 10 and 24.
+**Scope note:** During the project, we narrowed our focus from food access to food insecurity as local data limitations became clearer.
 
-## Findings presented
+## Key findings
 
 | Topic | Presentation result | Slide |
 | --- | --- | --- |
-| Global context | Africa is reported at 57.4% for the chart category labeled moderate insecurity and 21.1% for severe insecurity. | 12 |
-| U.S. regions | The South is reported at 15.5%, compared with the Northeast at 11.4%, Midwest at 12.3% in the slide text, and West at 12.6%. | 15 |
-| Southeast | The presentation reports 15.8% compared with a U.S. average of 12.9%. | 17 |
-| Alabama | County comparisons show disparities in low access and low income. The separate low-income/low-access ranking begins with Shelby at 36.70%, Madison at 35.30%, and Lee at 32.70%. | 19 and 20 |
+| Global context | Africa is reported at **57.4%** for the chart category labeled moderate insecurity and 21.1% for severe insecurity. | 12 |
+| U.S. regions | The South is reported at **15.5%**, compared with the Northeast at 11.4%, Midwest at 12.3% in the slide text, and West at 12.6%. | 15 |
+| Southeast | The presentation reports **15.8%** compared with a U.S. average of 12.9%. | 17 |
+| Alabama | County comparisons show disparities in low access and low income. The separate low-income/low-access ranking begins with Shelby at **36.70%**, Madison at **35.30%**, and Lee at **32.70%**. | 19 and 20 |
 
 These are the values and labels reported in the final presentation. Their measure definitions and source differences are recorded in the [final project summary](docs/final_project.md) and [reconciliation notes](docs/source_priority.md). The county low-income/low-access ranking is a different measure from a food insecurity rate.
 
@@ -68,12 +70,14 @@ tools/         final package verification
 archive/       preserved earlier analysis and repository documentation
 ```
 
-The [archive](archive/README.md) retains the earlier code, processed data, figures, reports, and team contributions for provenance. Its earlier conclusions and priorities have been superseded by the final presentation.
+The [archive](archive/README.md) preserves earlier analysis, code, data, and figures for provenance.
+
+Source links are collected in the [final project summary](docs/final_project.md#sources). The [artifact manifest](docs/artifact_manifest.json) records the eight supplied files and their SHA-256 hashes. See the [validation record](docs/validation.md) for checks and remaining limitations.
+
+## For technical reviewers
 
 To check the supplied file hashes, caption structure, and repository links after cloning, run:
 
 ```sh
 python tools/verify_final_package.py
 ```
-
-Source links are collected in the [final project summary](docs/final_project.md#sources). The [artifact manifest](docs/artifact_manifest.json) records the eight supplied files and their SHA-256 hashes. See the [validation record](docs/validation.md) for checks and remaining limitations.
