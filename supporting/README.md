@@ -4,7 +4,7 @@ These four files are preserved exactly as supplied with the final project. They 
 
 ## Research
 
-[WomenInData Data Stats and Summary v3](research/Copy%20of%20WomenInData%20Data%20Stats%20and%20Summary%20v3.xlsx) contains ten worksheets: Global, US, US Regions, Southeast, Structural Drivers of Southeast, Alabama, Alabama Regions, previous Global, previous US Regions, and previous Southeast. The three previous worksheets remain historical material inside the supplied workbook.
+[WomenInData Data Stats and Summary v3](research/Copy%20of%20WomenInData%20Data%20Stats%20and%20Summary%20v3.xlsx) **(Excel workbook — download to view)** contains ten worksheets: Global, US, US Regions, Southeast, Structural Drivers of Southeast, Alabama, Alabama Regions, previous Global, previous US Regions, and previous Southeast. The three previous worksheets remain historical material inside the supplied workbook.
 
 The workbook contains some conflicting narratives, a regional grouping discrepancy, and a retained external workbook reference. See [reconciliation notes](../docs/source_priority.md#supporting-workbook-notes). The existing workbook has not been refreshed or rewritten.
 
