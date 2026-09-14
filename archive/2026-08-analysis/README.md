@@ -80,7 +80,7 @@ Only reviewed, reproducible, publication-ready files belong in the GitHub reposi
 
 The Feeding America source gate is now complete. The repository includes selected Alabama county and state extracts, a source hash, field definitions, validation checks, and a reconciliation note. The request-only raw archive remains ignored because the package does not state an explicit redistribution license. See [docs/feeding_america_mmg_2026.md](docs/feeding_america_mmg_2026.md).
 
-Sandra Kopecky's contributed workbook is preserved byte for byte under `data/contributed/sandra_kopecky/` and is credited in the project roles, source manifest, report, charter, and workbook guide. It is the prevailing team synthesis for the evolving story. See [docs/sandra_kopecky_story_workbook.md](docs/sandra_kopecky_story_workbook.md) for its role and review boundaries.
+Sandra Kopecky's contributed workbook is preserved byte for byte under `data/contributed/sandra_kopecky/` and is credited in the source manifest, report, charter, and workbook guide. It is the prevailing team synthesis for the evolving story. See [docs/sandra_kopecky_story_workbook.md](docs/sandra_kopecky_story_workbook.md) for its role and review boundaries.
 
 ## Repository structure
 
@@ -126,7 +126,3 @@ The acquisition script preserves existing downloads and writes SHA-256 hashes to
 - [Known limitations and blind spots](docs/limitations.md)
 - [Sandra Kopecky story workbook](docs/sandra_kopecky_story_workbook.md)
 - [Allergy feasibility note](docs/allergy_next_crawl.md)
-
-## Project roles
-
-Roles are maintained in the supporting document [docs/project_roles.md](docs/project_roles.md) so readers encounter the project content before team assignments.
