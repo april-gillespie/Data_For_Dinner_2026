@@ -1,0 +1,93 @@
+{
+  "review_date": "2026-09-14",
+  "source_commit": "19ccda8d173c474c0b1262d2b58fd2c589d7b8bf",
+  "files": [
+    {
+      "path": "assets/slide-12-global-food-insecurity.png",
+      "bytes": 177850,
+      "sha256": "98a5ee001a633fbe062d962ef0718777538548f751df6491a5113c0937104c8e",
+      "git_blob_sha1": "b57633d666bdbb0624d413fbe78562b19704c123"
+    },
+    {
+      "path": "assets/slide-14-us-food-insecurity.png",
+      "bytes": 595276,
+      "sha256": "ebd2d8aaf178e9b62bd1b740d0f0ebc542bc13d5deec17f48a9181ea4549897f",
+      "git_blob_sha1": "2e21dff444b99ec9e6cbea230a4daa0f0c7afc42"
+    },
+    {
+      "path": "assets/slide-15-us-food-insecurity-by-region.png",
+      "bytes": 545213,
+      "sha256": "382bf4d4d2cb1b7d1af69411ce272c976612b84c08ad77d7b149a9a95855352e",
+      "git_blob_sha1": "f1887c7718321bbf6f0e6e25bd018c78643406e5"
+    },
+    {
+      "path": "assets/slide-17-southeast-food-insecurity.png",
+      "bytes": 364247,
+      "sha256": "b05d49be494f9b0da8390e43c476d8911aa5c71a0489baf9f960d997232853d7",
+      "git_blob_sha1": "faa13e2086e5025591c7419bcb19b500753d225c"
+    },
+    {
+      "path": "assets/slide-20-alabama-highest-counties.png",
+      "bytes": 411967,
+      "sha256": "6490f4e96ef854526c3b9f14c84db864c39d9068c65487cab6a8f1d878d206a7",
+      "git_blob_sha1": "e87804f0d1f49cc1fbb02f6da3e30bde181787e7"
+    },
+    {
+      "path": "assets/video-poster.jpg",
+      "bytes": 63324,
+      "sha256": "6f971c69c22a519c7da0ec359d218828faf5bded633c577848bfc12d7bef7a0e",
+      "git_blob_sha1": "dfe5fe216f8a690ad20639115bd75edd7626589a"
+    },
+    {
+      "path": "assets/women-in-data-logo.png",
+      "bytes": 11204,
+      "sha256": "b5b0bd27fbeee3cf5c1d7cd6fbb241de426619bac0379d0f1c1e0e6c99445ccd",
+      "git_blob_sha1": "31cd623e7b4723d8e45a3ec09310b3c1457c8226"
+    },
+    {
+      "path": "data/WomenInData_Data_Stats_and_Summary_v3.xlsx",
+      "bytes": 3991898,
+      "sha256": "5878a604785d69b0c5ccb054a531d3302b42e2bf8e76b7c8725a44239c613e42",
+      "git_blob_sha1": "ec27d8de177d1af79cc690df2cec3c462128c5c9"
+    },
+    {
+      "path": "presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf",
+      "bytes": 5969428,
+      "sha256": "e06f3224bd659b3ee7d97182c2f5a0314f99de10864ca927e757895866320536",
+      "git_blob_sha1": "d075f5f1984c61f1ea8e86b5ff0d8d3f06520ae4"
+    },
+    {
+      "path": "video/Data for Dinner Captions.srt",
+      "bytes": 9872,
+      "sha256": "a844b9e707611c7184e842260b0673a658e1ab1151802671c335e9218d6fb766",
+      "git_blob_sha1": "f7677ec40497f9e39450ebe46904010d9e34a2a2"
+    },
+    {
+      "path": "video/Data_for_Dinner_2026.mp4",
+      "bytes": 19634770,
+      "sha256": "75d4d92da5900f52f4a5bfb1ede8e6218f093cbe1df100c3bffaa00064065292",
+      "git_blob_sha1": "06255e318df5d6eb96fb946eb622125e410b1065"
+    }
+  ],
+  "source_video": {
+    "name": "Data for Dinner 2026.mp4",
+    "bytes": 47072989,
+    "sha256": "8d443bcea5a9b700f9db4ceeb47fcecfee0c56962e3c6173a2f38c2f2a503778",
+    "git_blob_sha1": "bf59158749054642e690898ac0e7769209d83212"
+  },
+  "video_edit": {
+    "end_seconds_requested": 401.9,
+    "method": "1080p H.264 encode at CRF 26, medium preset, AAC 128 kb/s, fast-start MP4 metadata",
+    "removed": "Silent black interval after the closing QR slide and a disconnected silent future-work title card",
+    "source_file_unchanged": true,
+    "reencoded": true
+  },
+  "captions": {
+    "path": "video/Data for Dinner Captions.srt",
+    "blocks": 106,
+    "text_blocks": 62,
+    "empty_blocks": 44,
+    "last_end_ms": 398500,
+    "word_alignment_verified": false
+  }
+}

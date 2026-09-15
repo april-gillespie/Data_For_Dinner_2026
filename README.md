@@ -13,10 +13,13 @@ This project is a submission of the 2026 Women in Data (WiD) What's Cooking Data
 
 | Resource | Open |
 | --- | --- |
+| Final video, 6 minutes 42 seconds | [Watch or download the recording](video/Data_for_Dinner_2026.mp4) |
 | Final presentation, 27 slides | [Review the presentation](presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf) |
 | Tableau Public dashboard | [Explore the dashboard](https://public.tableau.com/shared/NX9Y4P32D?%3Adisplay_count=n&%3Aorigin=viz_share_link) |
 | Research workbook | [Download the Excel workbook](data/WomenInData_Data_Stats_and_Summary_v3.xlsx) |
-| Final video | Pending final recording submission |
+| Video guide and captions | [Recording details, original captions, and transcript](video/README.md) |
+
+[![Data For Dinner presentation video](assets/video-poster.jpg)](video/Data_for_Dinner_2026.mp4)
 
 ## The problem
 
@@ -36,11 +39,13 @@ The team used FAOSTAT food security indicators for global context and Feeding Am
 
 ## Key findings
 
+The figures below follow the final presentation. See the [review notes](docs/review.md#data-and-presentation-notes) for differences between the slides, workbook, and dashboard, including measure definitions and the U.S. comparison average.
+
 ### Global context
 
 - Globally, millions experience moderate and severe food insecurity due to poverty and various other factors.
-- Africa and Latin America have the largest populations of food insecurity.
-- Africa's food insecurity levels are moderate **57.4%**, and severe **21.1%**.
+- The global charts compare percentages across regions; they do not establish which regions have the largest numbers of affected people.
+- Slide 12 reports Africa at **57.4%** for the category labeled moderate insecurity and **21.1%** for severe insecurity.
 - Despite global baselines, the distribution of food remains uneven, leaving entire populations without food and nourishment.
 
 ![Global food insecurity, affordability, and nourishment charts](assets/slide-12-global-food-insecurity.png)
@@ -48,14 +53,14 @@ The team used FAOSTAT food security indicators for global context and Feeding Am
 ### United States
 
 - Regional differences create pockets of heightened vulnerability.
-- The South reports **15.5%**, compared with the Northeast at 11.4%, the Midwest at 12.3%, and the West at 12.6%.
+- Slide 15 reports the South at **15.5%**, compared with the Northeast at 11.4%, the Midwest at 12.3% in the slide text, and the West at 12.6%. The Midwest map legend shows 12.2%, while the live dashboard shows 12.1%. See the [review notes](docs/review.md#data-and-presentation-notes).
 
 ![United States food insecurity by region](assets/slide-15-us-food-insecurity-by-region.png)
 
 ### Southeast
 
 - Regional differences create pockets of heightened vulnerability.
-- States across the US Southeast have higher food insecurity **15.8%** than the US Average of **12.9%**.
+- Slide 17 reports Southeast food insecurity at **15.8%**, compared with **12.9%** for the U.S. comparison. The workbook calculates 12.9% as an unweighted average of 50 states plus the District of Columbia, rather than a population-weighted national estimate.
 
 ![US Southeast food insecurity](assets/slide-17-southeast-food-insecurity.png)
 
@@ -63,11 +68,13 @@ The team used FAOSTAT food security indicators for global context and Feeding Am
 
 Alabama faces significant disparities in low access and low income, with some counties experiencing extreme levels of both.
 
+The county ranking below uses the slide label **Low-Income Low-Access**. It is a different measure from a food insecurity rate.
+
 ![Alabama highest counties for low income and low access](assets/slide-20-alabama-highest-counties.png)
 
 ## Community solutions
 
-Communities can make rapid progress on food insecurity by focusing on practical, community-driven solutions that leverage existing infrastructure. These interventions are scalable, cost-effective, and aligned with rural and urban realities:
+The team proposes practical community actions that use existing infrastructure. Their costs and outcomes were not evaluated in this project:
 
 - Support local food pantries
 - Support local shelters
@@ -98,7 +105,7 @@ Alabama food resources to consider include:
   - Pecans
   - Wheat
 
-Future analysis should consider food allergy constraints and local crop availability.
+Future analysis should consider food allergy constraints and local crop availability. The project does not report a completed analysis of allergy impacts.
 
 ## Key takeaways
 
@@ -117,3 +124,12 @@ Future analysis should consider food allergy constraints and local crop availabi
 | April Gillespie | [Technical Marketing Engineer](https://www.linkedin.com/in/april-ee) | Researcher; Data Scientist; GitHub Manager |
 | Sandra Kopecky | [IT Specialist](https://www.linkedin.com/in/sandrakopecky) | Data Discovery; Data Analyst; Insights Manager |
 | Toni Randell | [IT Data Analyst](https://www.linkedin.com/in/tonitheanalyst) | Dashboarding; Data Analyst; Video Editor |
+
+## Sources and review
+
+- [FAOSTAT Suite of Food Security Indicators](https://www.fao.org/faostat/en/#data/FS), cited in slides 8 and 12.
+- [Feeding America Map the Meal Gap](https://map.feedingamerica.org/), cited in the U.S. and Alabama slides.
+- [MapChart](https://www.mapchart.net/usa.html), used for the geographic visuals.
+- [Publication review](docs/review.md), covering the video cleanup, file checks, and remaining data differences.
+
+To verify the published media, file hashes, captions, and local links, run `python tools/verify_publication.py` after cloning the repository.
