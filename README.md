@@ -1,6 +1,6 @@
 # Data For Dinner Team 2026
 
-This project is a submission of the 2026 Women in Data (WiD) What's Cooking Datathon. Data For Dinner explores food insecurity from the globe to the United States, the Southeast, and Alabama. The project connects regional food insecurity patterns with the challenges families face in obtaining affordable, nourishing food, and proposes practical actions for local communities.
+This project is a submission of the 2026 Women in Data (WiD) What's Cooking Datathon. Data For Dinner Team explores food insecurity from the globe to the United States, the Southeast, and Alabama (our home state). The project connects regional food insecurity patterns with the challenges families face in obtaining affordable, nourishing food, and proposes practical actions for local communities.
 
 <p align="center">
   <img src="assets/women-in-data-logo.png" alt="Women in Data" width="220">
@@ -9,7 +9,7 @@ This project is a submission of the 2026 Women in Data (WiD) What's Cooking Data
 **Track:** Eat  
 **Final presentation:** September 13, 2026
 
-## Project links
+## Project Links
 
 | Resource | Open |
 | --- | --- |
@@ -21,27 +21,27 @@ This project is a submission of the 2026 Women in Data (WiD) What's Cooking Data
 
 [![Data For Dinner presentation video](assets/video-poster.jpg)](https://github.com/april-gillespie/Data_For_Dinner_2026/raw/refs/heads/main/video/Data_for_Dinner_2026.mp4)
 
-## The problem
+## The Problem
 
 The United States Department of Agriculture (USDA) defines food insecurity as a household-level economic and social condition of limited or uncertain access to adequate food. Food-secure households have consistent access throughout the year to adequate food for active, healthy living for all household members. Food-insecure households lack that access at some time during the year.
 
 Food insecurity impacts families and diminishes quality of life. Families face an uneven menu of limited access, unaffordability, and undernourishment. We need community-driven solutions that deliver equitable food and nourishment for all.
 
-The stakeholders are  local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government.
+The stakeholders are local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government.
 
 ![United States food insecurity definition and map](assets/slide-14-us-food-insecurity.png)
 
-## How we approached it
+## How We Approached It
 
-The team used datasets from FAOSTAT and Feeding America for food security indicators for global context and Feeding America for U.S. and Alabama context. The presentation describes batch downloads, merged datasets, Excel analysis, cleanup of aggregation differences, MapChart visualizations, and a Tableau Public dashboard. Collaboration used GitHub, Google Drive, Google Meet, and Microsoft Teams.
+The team used data sets from FAOSTAT for global food security indicators and Feeding America for U.S. and Alabama context. Processing and analysis included batch downloads, merged datasets, Excel analysis, cleanup of aggregation differences, MapChart visualizations, and a Tableau Public dashboard. For team collaboration, we used GitHub, Google Drive, Google Meet, and Microsoft Teams.
 
 **Scope note:** During the project, we shifted our focus from food access to food insecurity due to local data limitations.
 
-## Key findings
+## Key Findings
 
 The figures below follow the final presentation. See the [review notes](docs/review.md#data-and-presentation-notes) for differences between the slides, workbook, and dashboard, including measure definitions and the U.S. comparison average.
 
-### Global context
+### Global Context
 
 - Globally, millions experience moderate and severe food insecurity due to poverty and various other factors.
 - The global charts compare percentages across regions; they do not establish which regions have the largest numbers of affected people.
@@ -53,36 +53,48 @@ The figures below follow the final presentation. See the [review notes](docs/rev
 ### United States
 
 - Regional differences create pockets of heightened vulnerability.
-- Slide 15 reports the South at **15.5%**, compared with the Northeast at 11.4%, the Midwest at 12.3% in the slide text, and the West at 12.6%. The Midwest map legend shows 12.2%, while the live dashboard shows 12.1%. See the [review notes](docs/review.md#data-and-presentation-notes).
+- Most notably, food insecurity in the South is **15.5%**, compared with **11.4%** in the Northeast, **12.3%** in the Midwest, and **12.6%** in the West.
 
 ![United States food insecurity by region](assets/slide-15-us-food-insecurity-by-region.png)
 
 ### Southeast
 
-- Regional differences create pockets of heightened vulnerability.
-- Slide 17 reports Southeast food insecurity at **15.8%**, compared with **12.9%** for the U.S. comparison. The workbook calculates 12.9% as an unweighted average of 50 states plus the District of Columbia, rather than a population-weighted national estimate.
+- States across the U.S. Southeast have higher food insecurity at **15.8%** than the U.S. average of **12.9%**.
+- The most affected states are Arkansas at **19.4%**, Kentucky at **18.8%**, and Louisiana, Mississippi, Texas, and Oklahoma at **17%**.
+- Multiple factors affect families:
+  - High poverty
+  - Rural geography
+  - Weaker retailer networks
+  - Transportation barriers
+  - Demographic vulnerabilities
+  - Climate variations that affect crops
+  - Policy gaps
 
-![US Southeast food insecurity](assets/slide-17-southeast-food-insecurity.png)
+![U.S. Southeast food insecurity](assets/slide-17-southeast-food-insecurity.png)
 
 ### Alabama
 
 Alabama faces significant disparities in low access and low income, with some counties experiencing extreme levels of both.
 
-The county ranking below uses the slide label **Low-Income Low-Access**. It is a different measure from a food insecurity rate.
+Poverty, rural regions, transportation gaps, and economic constraints intensify the challenge, creating a cycle that is difficult to break.
+
+![Alabama food insecurity](assets/slide-19-alabama-food-insecurity.png)
 
 ![Alabama highest counties for low income and low access](assets/slide-20-alabama-highest-counties.png)
 
-## Community solutions
+## Local Community Solutions
 
-The team proposes practical community actions that use existing infrastructure. Their costs and outcomes were not evaluated in this project:
+Communities can make rapid progress on food insecurity by focusing on practical, community-driven solutions that leverage existing infrastructure.
+
+These interventions are scalable, cost-effective, and aligned with rural and urban realities:
 
 - Support local food pantries
 - Support local shelters
-- Establish small neighborhood pantries for shelf-stable staples, similar to little libraries
+- Stock food pantries with shelf-stable staples, similar to a little library
 - Use small community buses as fresh-food pantries
 - Support local farmers and fishers
 
-## Future work
+## Future Work
 
 Food allergy impact analysis for food insecurity requires:
 
@@ -93,7 +105,7 @@ Food allergy impact analysis for food insecurity requires:
   - Access
   - Nutrition
 
-Alabama food resources to consider include:
+We identified significant food allergens specific to Alabama resources:
 
 - Seafood
   - Shellfish allergy
@@ -105,9 +117,9 @@ Alabama food resources to consider include:
   - Pecans
   - Wheat
 
-Future analysis should consider food allergy constraints and local crop availability. The project does not report a completed analysis of allergy impacts.
+Future analysis would consider food allergy constraints and local crop availability.
 
-## Key takeaways
+## Key Takeaways
 
 - Food insecurity is a multi-scale systems challenge that becomes clearer when analyzed through integrated, data-driven geospatial methods.
 - Structural instability, economic shocks, and limited food-system resilience create widespread vulnerability.
@@ -125,7 +137,7 @@ Future analysis should consider food allergy constraints and local crop availabi
 | Sandra Kopecky | [IT Specialist](https://www.linkedin.com/in/sandrakopecky) | Data Discovery; Data Analyst; Insights Manager |
 | Toni Randell | [IT Data Analyst](https://www.linkedin.com/in/tonitheanalyst) | Dashboarding; Data Analyst; Video Editor |
 
-## Sources and review
+## Sources and Review
 
 - [FAOSTAT Suite of Food Security Indicators](https://www.fao.org/faostat/en/#data/FS), cited in slides 8 and 12.
 - [Feeding America Map the Meal Gap](https://map.feedingamerica.org/), cited in the U.S. and Alabama slides.
