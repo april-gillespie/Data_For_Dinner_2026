@@ -13,13 +13,13 @@ This project is a submission of the 2026 Women in Data (WiD) What's Cooking Data
 
 | Resource | Open |
 | --- | --- |
-| Final video, 6 minutes 42 seconds | [Watch or download the recording](video/Data_for_Dinner_2026.mp4) |
+| Final video, 6 minutes 42 seconds | [Download the recording](https://github.com/april-gillespie/Data_For_Dinner_2026/raw/refs/heads/main/video/Data_for_Dinner_2026.mp4) |
 | Final presentation, 27 slides | [Review the presentation](presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf) |
 | Tableau Public dashboard | [Explore the dashboard](https://public.tableau.com/shared/NX9Y4P32D?%3Adisplay_count=n&%3Aorigin=viz_share_link) |
 | Research workbook | [Download the Excel workbook](data/WomenInData_Data_Stats_and_Summary_v3.xlsx) |
 | Video guide and captions | [Recording details, original captions, and transcript](video/README.md) |
 
-[![Data For Dinner presentation video](assets/video-poster.jpg)](video/Data_for_Dinner_2026.mp4)
+[![Data For Dinner presentation video](assets/video-poster.jpg)](https://github.com/april-gillespie/Data_For_Dinner_2026/raw/refs/heads/main/video/Data_for_Dinner_2026.mp4)
 
 ## The problem
 

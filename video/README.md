@@ -1,12 +1,12 @@
 # Final presentation video
 
-[Watch or download Data for Dinner 2026](Data_for_Dinner_2026.mp4)
+[Download Data for Dinner 2026](https://github.com/april-gillespie/Data_For_Dinner_2026/raw/refs/heads/main/video/Data_for_Dinner_2026.mp4)
 
-[![Data For Dinner presentation](../assets/video-poster.jpg)](Data_for_Dinner_2026.mp4)
+[![Data For Dinner presentation](../assets/video-poster.jpg)](https://github.com/april-gillespie/Data_For_Dinner_2026/raw/refs/heads/main/video/Data_for_Dinner_2026.mp4)
 
 **Duration:** approximately 6 minutes 42 seconds. **Picture:** 1920 x 1080, 30 frames per second. **Audio:** stereo AAC.
 
-If GitHub does not show a player, use the file page download control or [open the MP4 directly](https://raw.githubusercontent.com/april-gillespie/Data_For_Dinner_2026/main/video/Data_for_Dinner_2026.mp4).
+GitHub does not preview this file inline. Download the MP4, then open it in your preferred video player.
 
 ## Captions and presentation
 
