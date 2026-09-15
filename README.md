@@ -80,7 +80,6 @@ Poverty, rural regions, transportation gaps, and economic constraints intensify 
 
 ![Alabama food insecurity](assets/slide-19-alabama-food-insecurity.png)
 
-![Alabama highest counties for low income and low access](assets/slide-20-alabama-highest-counties.png)
 
 ## Local Community Solutions
 
