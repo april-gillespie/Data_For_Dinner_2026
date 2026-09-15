@@ -13,8 +13,8 @@ This project is a submission of the 2026 Women in Data (WiD) What's Cooking Data
 
 | Resource | Open |
 | --- | --- |
-| Final video, 6 minutes 42 seconds | [Download the recording](https://github.com/april-gillespie/Data_For_Dinner_2026/raw/refs/heads/main/video/Data_for_Dinner_2026.mp4) |
-| Final presentation, 27 slides | [Review the presentation](presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf) |
+| Data for Dinner Team WiD Datathon 2026 Video Submission | [Download the recording](https://github.com/april-gillespie/Data_For_Dinner_2026/raw/refs/heads/main/video/Data_for_Dinner_2026.mp4) |
+| Presentation | [Review the presentation](presentation/DataForDinnerTeam_WiDDatathon2026_Presentation_Final_13Sept2026.pdf) |
 | Tableau Public dashboard | [Explore the dashboard](https://public.tableau.com/shared/NX9Y4P32D?%3Adisplay_count=n&%3Aorigin=viz_share_link) |
 | Research workbook | [Download the Excel workbook](data/WomenInData_Data_Stats_and_Summary_v3.xlsx) |
 | Video guide and captions | [Recording details, original captions, and transcript](video/README.md) |
@@ -27,13 +27,13 @@ The United States Department of Agriculture (USDA) defines food insecurity as a 
 
 Food insecurity impacts families and diminishes quality of life. Families face an uneven menu of limited access, unaffordability, and undernourishment. We need community-driven solutions that deliver equitable food and nourishment for all.
 
-The final project focuses on local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government.
+The stakeholders are  local communities and policy makers: families, farmers and home growers, farmers markets, fishers, and town, county, state, and federal government.
 
 ![United States food insecurity definition and map](assets/slide-14-us-food-insecurity.png)
 
 ## How we approached it
 
-The team used FAOSTAT food security indicators for global context and Feeding America for U.S. and Alabama context. The presentation describes batch downloads, merged datasets, Excel analysis, cleanup of aggregation differences, MapChart visualizations, and a Tableau Public dashboard. Collaboration used GitHub, Google Drive, Google Meet, and Microsoft Teams.
+The team used datasets from FAOSTAT and Feeding America for food security indicators for global context and Feeding America for U.S. and Alabama context. The presentation describes batch downloads, merged datasets, Excel analysis, cleanup of aggregation differences, MapChart visualizations, and a Tableau Public dashboard. Collaboration used GitHub, Google Drive, Google Meet, and Microsoft Teams.
 
 **Scope note:** During the project, we shifted our focus from food access to food insecurity due to local data limitations.
 
