@@ -9,34 +9,40 @@
       "git_blob_sha1": "b57633d666bdbb0624d413fbe78562b19704c123"
     },
     {
+      "bytes": 255874,
+      "git_blob_sha1": "e20568ba3a044c149794f526a8e0ad2d3bfae861",
       "path": "assets/slide-14-us-food-insecurity.png",
-      "bytes": 595276,
-      "sha256": "ebd2d8aaf178e9b62bd1b740d0f0ebc542bc13d5deec17f48a9181ea4549897f",
-      "git_blob_sha1": "2e21dff444b99ec9e6cbea230a4daa0f0c7afc42"
+      "sha256": "f686f5a386ca58ae25122522c7d776c6897c255c0c2dc73e46c70350ae13b196"
     },
     {
+      "bytes": 219795,
+      "git_blob_sha1": "13d554069b6c4cf48d1d0b5115d3134970cd0111",
       "path": "assets/slide-15-us-food-insecurity-by-region.png",
-      "bytes": 545213,
-      "sha256": "382bf4d4d2cb1b7d1af69411ce272c976612b84c08ad77d7b149a9a95855352e",
-      "git_blob_sha1": "f1887c7718321bbf6f0e6e25bd018c78643406e5"
+      "sha256": "646ddee7715c8ca44c41680e55e15e15532826fc3ffdf94c9c979fde13a4b261"
     },
     {
+      "bytes": 172680,
+      "git_blob_sha1": "fcd5d623cd017d8d62a434df617fe2e9e6138268",
       "path": "assets/slide-17-southeast-food-insecurity.png",
-      "bytes": 364247,
-      "sha256": "b05d49be494f9b0da8390e43c476d8911aa5c71a0489baf9f960d997232853d7",
-      "git_blob_sha1": "faa13e2086e5025591c7419bcb19b500753d225c"
+      "sha256": "e7aef2eedd9f8b49f948175e5c463960e69bfd07346c412927e87566fb2d7a53"
     },
     {
+      "bytes": 204853,
+      "git_blob_sha1": "ae79bf865a7c097f2a34bd2c40b0486fcbc66080",
+      "path": "assets/slide-19-alabama-food-insecurity.png",
+      "sha256": "4dc2de72588a76aad1dd0454eb41244b84dc737bba7c981922839f45b6bdcc4c"
+    },
+    {
+      "bytes": 336899,
+      "git_blob_sha1": "9318cfb4471bdab033e3fca242714aaa3f391aed",
       "path": "assets/slide-20-alabama-highest-counties.png",
-      "bytes": 411967,
-      "sha256": "6490f4e96ef854526c3b9f14c84db864c39d9068c65487cab6a8f1d878d206a7",
-      "git_blob_sha1": "e87804f0d1f49cc1fbb02f6da3e30bde181787e7"
+      "sha256": "f5dc1b0af18a35e1bb02552348ce8211385f5fc91b627cf5567435ccf337e347"
     },
     {
+      "bytes": 200668,
+      "git_blob_sha1": "768db79f0534701d2e5098915732ac2ddfc0c749",
       "path": "assets/video-poster.jpg",
-      "bytes": 63324,
-      "sha256": "6f971c69c22a519c7da0ec359d218828faf5bded633c577848bfc12d7bef7a0e",
-      "git_blob_sha1": "dfe5fe216f8a690ad20639115bd75edd7626589a"
+      "sha256": "0bba49e496bf9e2d1b54aba7eda1fab2b2f3704fdb6ccb2ae1ac73627d339dc4"
     },
     {
       "path": "assets/women-in-data-logo.png",
