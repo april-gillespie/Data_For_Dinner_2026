@@ -135,7 +135,7 @@ Future analysis would consider food allergy constraints and local crop availabil
 | Sharon Brooks | [Data Governance Analyst](https://www.linkedin.com/in/sharonbrooks1618) | Team Lead; Project Manager |
 | April Gillespie | [Technical Marketing Engineer](https://www.linkedin.com/in/april-ee) | Researcher; Data Scientist; GitHub Manager |
 | Sandra Kopecky | [IT Specialist](https://www.linkedin.com/in/sandrakopecky) | Data Discovery; Data Analyst; Insights Manager |
-| Toni Randell | [IT Data Analyst](https://www.linkedin.com/in/tonitheanalyst) | Dashboarding; Data Analyst; Video Editor |
+| Toni Randell | [IT Data Analyst](https://www.linkedin.com/in/tonitheanalyst) | Dashboarding; Data Analyst |
 
 ## Sources and Review
 
